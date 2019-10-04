@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>Formulaire plongée</title>
+  </head>
+  <body>
+  <form>
+	  <fieldset>
+  	  <legend>FORMULAIRE PLONGÉE</legend>
+      <br/>
+        
+      <label> Date de la plongée : </label>
+      <input type="date" id="datePlongee" name="datePlongee">
+        
+      <br/>
+      <br/>
+
+      <label> Séance de la plongée : </label> <br/>
+      <label>Matin </label><input type="radio" name="seance"><br />
+      <label>Après-midi </label><input type="radio" name="seance"><br />
+      <label>Soir </label><input type="radio" name="seance">
+
+      <br/>
+      <br/>
+
+      <label> Site de la plongée : </label>
+      <select id="Site">
+        <option value = "SS Yongala Wreck">SS Yongala Wreck</option>
+        <option value = "Barracuda Point">Barracuda Point</option>
+        <option value = "North Horn">North Horn</option>
+      </select>
+
+      <br/>
+      <br/>
+
+      <label> Type d'embarcation : </label><br/>
+      <label>Beclem </label><input type="radio" name="Beclem"><br />
+      <label>Estelenn </label><input type="radio" name="Estelenn">
+
+      <br/>
+      <br/>
+
+      <label>Effectif plongeurs : </label><input type="text" name="effectifP"><br/>
+      <label>Effectif bateau : </label><input type="text" name="effectifB">
+
+      <br/>
+      <br/>
+
+      <label>Directeur de plongée : </label><br/>
+      <label>Nom : </label>
+      <select id="NomDirecteur">
+        <option value = "FONTAINE">FONTAINE</option>
+        <option value = "LAPIERRE">LAPIERRE</option>
+        <option value = "PICOT">PICOT</option>
+      </select> 
+      <label>Prénom : </label>
+      <select id="PrenomDirecteur">
+        <option value = "Quentin">Quentin</option>
+        <option value = "Thomas">Thomas</option>
+        <option value = "Benjamin">Benjamin</option>
+      </select>
+
+      <br/>
+      <br/>
+
+      <label>Sécurité de surface : </label><br/>
+      <label>Nom : </label>
+      <select id="NomDirecteur">
+        <option value = "FONTAINE">FONTAINE</option>
+        <option value = "LAPIERRE">LAPIERRE</option>
+        <option value = "PICOT">PICOT</option>
+      </select> 
+      <label>Prénom : </label>
+      <select id="PrenomDirecteur">
+        <option value = "Quentin">Quentin</option>
+        <option value = "Thomas">Thomas</option>
+        <option value = "Benjamin">Benjamin</option>
+      </select>
+
+      <br/>
+      <br/>
+
+      <input type="submit" name="envoi" value=" Envoyer ">
+      <input type="reset" name="efface" value="Effacer ">
+
+      <br/>
+      <br/>
+    </fieldset><br/></br/>
+   <input type = "button" value = "Retour"  onclick = "history.back()">
+  </form>        
+  </body>
+</html>
