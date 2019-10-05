@@ -1,17 +1,28 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <meta charset="utf-8">
     <title>Formulaire plongée</title>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.datepicker');
+      var instances = M.Datepicker.init(elems, options);
+      });
+    </script>
   </head>
   <body>
   <form>
-	  <fieldset>
+	  <fieldset style="width:850px; margin-left: auto; margin-right: auto; margin-top:5%">
   	  <legend>FORMULAIRE PLONGÉE</legend>
       <br/>
         
       <label> Date de la plongée : </label>
       <input type="date" id="datePlongee" name="datePlongee">
+      <input type="text" class="datepicker">
         
       <br/>
       <br/>
@@ -87,7 +98,7 @@
       <br/>
       <br/>
     </fieldset><br/></br/>
-   <input type = "button" value = "Retour"  onclick = "history.back()">
+   <input type = "button" value = "Retour"  onclick = "history.back()" style="margin:auto">
   </form>        
   </body>
 </html>
