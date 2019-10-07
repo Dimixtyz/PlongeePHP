@@ -4,7 +4,7 @@ $bdd = new bddPlongee();
 
 $questcequoninsert = 'rien';
 
-$reqderniernumutilisateur = "select PER_NUM from PLO_PERSONNE where rownum=1 order by PER_NUM desc";
+$reqderniernumutilisateur = "select PER_NUM from PLO_PERSONNE order by PER_NUM desc LIMIT 1";
 $rep = $bdd->exec($reqderniernumutilisateur);
 $dernierUtil = $rep[0]['PER_NUM'];
 
@@ -35,10 +35,14 @@ if(isset($nom,$prenom,$statut)){
 }
 
 if(isset($aptitudeplongeur) && $statut == "plongeur"){
-    $reqInsererPlongeur = "insert into PLO_PLONGEUR values ($PERNUM,$aptitudeplongeur)";
+    $req = "insert into PLO_PLONGEUR(PER_NUM,APT_CODE) values ($PERNUM,$aptitudeplongeur)";
+
 
 }else if($statut == "securitedesurface"){
-    $reqInsererSecuriteDeSurface = "insert into PLO_PLONGEUR values ($PERNUM,$aptitudeplongeur)";
+    $req = "insert into PLO_PLONGEUR(PER_NUM) values ($PERNUM)";
+}else if($statut == "directeur"){
+    $req =  "insert into PLO_SECURITE_DE_SURFACE(PER_NUM) values ($PERNUM)";
+
 }
 
 
