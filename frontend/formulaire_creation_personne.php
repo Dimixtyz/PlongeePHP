@@ -78,6 +78,9 @@ include "../header.php";
         <button class="btn waves-effect waves-light" type="submit" name="action">Valider
          <i class="material-icons right">send</i>
         </button>
+        <button class="btn waves-effect waves-light" type="reset" name="action">Effacer
+            <i class="material-icons right">clear</i>
+        </button>
       </fieldset>
   </form>
   <script type="text/javascript">

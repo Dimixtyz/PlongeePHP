@@ -12,14 +12,28 @@ include "../header.php";
     <form method="post">
 	  <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
          <legend>Palanquée avant la plongée</legend><br/>
-         <label>Profondeur maximum : </label>
+
+         <label>Profondeur maximum (en mètres) : </label>
          <p class="range-field">
-            <input type="range" id="test5" min="0" max="100" />
-          </p>
-         <label>Temps fond maximum : </label><input type="text" name="tempsMax" placeholder="Temps maximum"><label> (en minutes) </label><br/><br/>
-         <label>Horaire d'immersion : </label><input type="time" name="immersion"><br/><br/>
-         <input type="submit" name="envoi" value=" Envoyer ">
-         <input type="reset" name="efface" value="Effacer ">
+            <input type="range" id="profondeurMax" min="0" max="100" />
+         </p>
+
+         <label>Temps fond maximum (en minutes) : </label>
+         <p class="range-field">
+            <input type="range" id="TempsFondMax" min="0" max="60" />
+         </p>
+
+         <label>Horaire d'immersion : </label>
+         <input type="time" name="immersion"><br/><br/>
+
+         <button class="btn waves-effect waves-light" type="submit" name="action">Valider
+            <i class="material-icons right">send</i>
+        </button>
+
+        <button class="btn waves-effect waves-light" type="reset" name="action">Effacer
+            <i class="material-icons right">clear</i>
+        </button>
+
       </fieldset>
       <fieldset>
         <legend>Palanquée après la plongée</legend><br/>
