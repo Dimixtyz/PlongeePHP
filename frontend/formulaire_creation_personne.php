@@ -9,7 +9,7 @@
     <title>Formulaire personne</title>
   </head>
   <body>
-  <form method="post" action="insererPersonne.php">
+  <form method="post" action="../backend/insererPersonne.php">
 	  <fieldset style="width:500px; margin-left: auto; margin-right: auto;">
         <legend>Inscription personne</legend>
         <br/>
@@ -34,7 +34,7 @@
             <label for="type">Choisir le statut : </label>
             <select class="browser-default" id="type" name="statut" size="1" onChange="THEFUNCTION(this.selectedIndex);">
                 <option value="aucun">Aucun</option>
-                <option value="plongeur">Plongeur</option>
+                <option value="1">Plongeur</option>
                 <option value="securitedesurface">Sécurité de surface</option>
                 <option value="directeur">Directeur</option>
             </select>
@@ -77,14 +77,14 @@
         </button>
       </fieldset>
   </form>
-    <script type="text/javascript">
-        function THEFUNCTION(i) {
-	    var divAptitude = document.getElementById('divAptitude');
-		    switch(i) {
-		    	case 1 : divAptitude.style.display = ''; break;
-		    	default: divAptitude.style.display = 'none'; break;
-		    }
-	    }
-    </script>
+  <script type="text/javascript">
+      function THEFUNCTION(i) {
+          var divAptitude = document.getElementById('divAptitude');
+          switch(i) {
+              case 1 : divAptitude.style.display = ''; break;
+              default: divAptitude.style.display = 'none'; break;
+          }
+      }
+  </script>
   </body>
 </html>

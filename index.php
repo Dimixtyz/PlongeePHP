@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 include "header.php";
 ?>
 <html>
@@ -13,3 +14,9 @@ include "header.php";
         <p>Bienvenue sur le site du projet plongée</p>
     </body>
 </html>
+=======
+
+
+
+?>
+>>>>>>> 70329e4427aefd1ba362a188e2bbf1643b98fca7
