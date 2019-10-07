@@ -1,3 +1,7 @@
+<?php
+include "../header.php";
+?>
+<br/>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -24,7 +28,7 @@
         <label>Temps fond maximum réalisé : </label><input type="text" name="tempsReel" placeholder="Temps fond réalisé"><label> (en minutes) </label><br/><br/>
         <input type="submit" name="envoi" value=" Envoyer ">
         <input type="reset" name="efface" value="Effacer ">
-      </fieldset> <br/></br/>
+      </fieldset> <br/>
      <input type = "button" value = "Retour"  onclick = "history.back()">    
     </form>        
   </body>
