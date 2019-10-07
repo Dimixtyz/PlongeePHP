@@ -1,3 +1,7 @@
+<?php
+include "../header.php";
+?>
+<br/>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -6,9 +10,9 @@
   </head>
   <body>
     <form method="post">
-	  <fieldset style="width:500px; margin-left: auto; margin-right: auto;">
+	  <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
          <legend>Palanquée avant la plongée</legend><br/>
-         <label>Profondeur maximum : </label><input type="text" name="profondeur" placeholder="Profondeur"><label> (en mètres) </label><br/><br/>
+         <label>Profondeur maximum : </label>
          <p class="range-field">
             <input type="range" id="test5" min="0" max="100" />
           </p>
@@ -24,7 +28,7 @@
         <label>Temps fond maximum réalisé : </label><input type="text" name="tempsReel" placeholder="Temps fond réalisé"><label> (en minutes) </label><br/><br/>
         <input type="submit" name="envoi" value=" Envoyer ">
         <input type="reset" name="efface" value="Effacer ">
-      </fieldset> <br/></br/>
+      </fieldset> <br/>
      <input type = "button" value = "Retour"  onclick = "history.back()">    
     </form>        
   </body>
