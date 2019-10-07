@@ -22,5 +22,5 @@
 </html>
 
 <?php
-include "requete_rechercher.php";
+include "../backend/requete_rechercher.php";
 ?>
