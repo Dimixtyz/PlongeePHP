@@ -34,7 +34,7 @@
             <label for="type">Choisir le statut : </label>
             <select class="browser-default" id="type" name="statut" size="1" onChange="THEFUNCTION(this.selectedIndex);">
                 <option value="aucun">Aucun</option>
-                <option value="1">Plongeur</option>
+                <option value="plongeur">Plongeur</option>
                 <option value="securitedesurface">Sécurité de surface</option>
                 <option value="directeur">Directeur</option>
             </select>
@@ -47,7 +47,7 @@
             <select class="browser-default" name="aptitudeplongeur">
 
                 <?php
-                require_once('bddPlongee.php');
+                require_once('../backend/bddPlongee.php');
                 $reqAfficherAptitude = "SELECT * FROM PLO_APTITUDE";
                 $bdd = new bddPlongee();
                 $res = $bdd->exec($reqAfficherAptitude);

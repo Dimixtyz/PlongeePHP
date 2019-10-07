@@ -3,33 +3,14 @@
 
 class bddPlongee
 {
-    private $utilisateur = "ETU2_39";
-    private $mdpBdd = "ETU2_39";
+    private $hote = 'mysql:host=localhost;dbname=pphp2a08_bd;charset=utf8';
+    private $utilisateur = "pphp2a08";
+    private $mdpBdd = "Quae2sheipheing1";
     private $base;
-    private $db;
-
-
-
 
     function __construct(){
         try {
-          $hote = 'spartacus.iutc3.unicaen.fr';
-          $port = '1521'; // port par défaut
-          $service = 'info.iutc3.unicaen.fr';
-
-          $this->db =
-          "oci:dbname=(DESCRIPTION =
-          (ADDRESS_LIST =
-            (ADDRESS =
-              (PROTOCOL = TCP)
-              (Host = ".$hote .")
-              (Port = ".$port."))
-          )
-          (CONNECT_DATA =
-            (SERVICE_NAME = ".$service.")
-          )
-          )";
-            $this->base = new PDO($this->db, $this->utilisateur, $this->mdpBdd);
+            $this->base = new PDO($this->hote, $this->utilisateur, $this->mdpBdd);
             $this->base->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }catch(exception $e) {
             die('Erreur '.$e->getMessage());
@@ -55,11 +36,6 @@ class bddPlongee
         $result = $sth->fetchAll();
         return $result;
     }
-
-
-
-
-
 
 
 }
