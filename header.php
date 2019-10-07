@@ -18,7 +18,7 @@
                 <a href="../index.php" class="brand-logo" style="margin-left:1%">Site de plongé</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="../index.php">Accueil</a></li>
-                    <li><a href="/frontend/formPersonne.php">Formulaire personne</a></li>
+                    <li><a href="/frontend/recherche_personne.php">Recherche personne</a></li>
                     <li><a href="/frontend/formPlongee.php">Formulaire plongée</a></li>
                     <li><a href="/frontend/formPalanquee.php">Formulaire palanquée</a></li>
                     <li><a href="/frontend/formulaire_creation_personne.php">Inscription personne</a></li>

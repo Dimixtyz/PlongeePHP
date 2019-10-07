@@ -1,3 +1,6 @@
+<?php
+include "../header.php";
+?>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -10,7 +13,7 @@
   </head>
   <body>
   <form method="post" action="../backend/insererPersonne.php">
-	  <fieldset style="width:500px; margin-left: auto; margin-right: auto;">
+	  <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
         <legend>Inscription personne</legend>
         <br/>
 

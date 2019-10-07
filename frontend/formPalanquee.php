@@ -10,9 +10,9 @@ include "../header.php";
   </head>
   <body>
     <form method="post">
-	  <fieldset style="width:500px; margin-left: auto; margin-right: auto;">
+	  <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
          <legend>Palanquée avant la plongée</legend><br/>
-         <label>Profondeur maximum : </label><input type="text" name="profondeur" placeholder="Profondeur"><label> (en mètres) </label><br/><br/>
+         <label>Profondeur maximum : </label>
          <p class="range-field">
             <input type="range" id="test5" min="0" max="100" />
           </p>
