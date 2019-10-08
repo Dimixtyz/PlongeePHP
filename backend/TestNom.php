@@ -59,7 +59,7 @@ function VerificationNom(&$nom)
 
 
     //Detecte si il y'a que un '
-    if (preg_match("#^'$#",$nomTemporaire)) {
+    if (preg_match("#^'+$#",$nomTemporaire)) {
         $valide = false;
     }
     //regle des -
@@ -167,7 +167,7 @@ function VerificationPrenom(&$prenom){
   }
 
   //Detecte si il y'a que un '
-  if (preg_match("#^'$#u",$prenomTemporaire)) {
+  if (preg_match("#^'+$#u",$prenomTemporaire)) {
       $valide = false;
   }
   //regle des -
@@ -186,6 +186,17 @@ function VerificationPrenom(&$prenom){
 
   return $valide;
 
+}
+
+function retraitAccent(&$txt){
+    $unwanted_array = array(    'Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'Ae', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
+        'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O', 'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U',
+        'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss', 'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'ae', 'ç'=>'c',
+        'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o',
+        'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y','œ'=>'oe', 'Œ'=>'oe', 'ü'=>'u', 'Ÿ'=>'Y', 'Ŭ'=>'U' );
+
+
+    $txt = strtr( $txt, $unwanted_array );
 }
 
  ?>
