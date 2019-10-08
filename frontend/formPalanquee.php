@@ -7,14 +7,14 @@ include "../header.php";
     <head>
         <meta charset="utf-8">
         <title>Formulaire palanquée</title>
-        <script>
-        
-        </script>
     </head>
     <body>
+
         <form method="post">
             <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
                 <legend>Ajout de personne à la palanquée</legend><br/>
+                <input type="text" id="recherchePal"/>
+                <div id="suggestions"></div>
                 <label>Personne 1 : </label>
                 <div class="input-field col s6">
                     <i class="material-icons prefix">account_circle</i>
@@ -88,6 +88,62 @@ include "../header.php";
                     <i class="material-icons right">clear</i>
                 </button>
             </fieldset>   
-        </form>        
+        </form>
+
+
+
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script>
+            var zoneAjoutPieceCompte;
+            var nbPieceCompte=0;
+            function ajouterPersonne(){
+                if(nbPieceCompte==2){ //si il s'agit du premier ajout
+                    zoneAjoutPieceCompte = document.getElementById('pieceCompteAjoute') //on séléctionne l'emplacement où on veux effectuer les ajouts de champs
+                    document.getElementById('supCompte').style.display='inline' //on rend disponible le bouton supprimer
+                }
+
+                //on ajoute un nouveau champ
+                var input = document.createElement("input");
+                input.type = "text";
+                input.name = "pieceCompteAjoute["+nbPieceCompte+"]";
+                input.id  = "pieceCompte"+nbPieceCompte;
+                input.style.display = "block";
+                zoneAjoutPieceCompte.appendChild(input);
+                nbPieceCompte++;
+            }
+
+            function supprimerPieceCompte(){
+                nbPieceCompte--;
+                zoneAjoutPieceCompte.removeChild(document.getElementById('pieceCompte'+nbPieceCompte)) //on supprime le dernier champs ajouté
+                if(nbPieceCompte==0){
+                    document.getElementById('supCompte').style.display='none';// on rend indisponible le bouton supprimer
+                }
+            }
+
+
+
+            $(document).ready(function(){
+                $('#recherchePal').on('change keyup copy paste cut',function(){
+                    var recherche = $(this).val();
+                    if (!recherche){
+                        recherche = "%";
+                    }
+                    $.ajax({
+                        type:'POST',
+                        url:'../backend/ajoutPalanquee.php',
+                        data:'recherche='+recherche,
+                        success:function(data){
+                            $('#suggestions').html(data);
+                        }
+                    });
+
+                });
+            });
+
+        </script>
+
+
+
     </body>
 </html>
