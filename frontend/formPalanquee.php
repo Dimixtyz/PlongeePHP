@@ -8,28 +8,28 @@ include "../header.php";
         <meta charset="utf-8">
         <title>Formulaire palanquée</title>
         <script>
-            var zoneAjoutPieceCompte; 
-            var nbPieceCompte=0;
+            var zoneAjoutPersonne; 
+            var nbPersonnePalanquee=0;
             function ajouterPersonne(){
-	            if(nbPieceCompte==2){ //si il s'agit du premier ajout
-		            zoneAjoutPieceCompte = document.getElementById('pieceCompteAjoute') //on séléctionne l'emplacement où on veux effectuer les ajouts de champs
+	            if(nbPersonnePalanquee==2){ //si il s'agit du premier ajout
+		            zoneAjoutPersonne = document.getElementById('pieceCompteAjoute') //on séléctionne l'emplacement où on veux effectuer les ajouts de champs
 		        document.getElementById('supCompte').style.display='inline' //on rend disponible le bouton supprimer
 	            }
 	
 	            //on ajoute un nouveau champ
 	            var input = document.createElement("input");
 	            input.type = "text";
-	            input.name = "pieceCompteAjoute["+nbPieceCompte+"]";
-	            input.id  = "pieceCompte"+nbPieceCompte;
+	            input.name = "pieceCompteAjoute["+nbPersonnePalanquee+"]";
+	            input.id  = "pieceCompte"+nbPersonnePalanquee;
 	            input.style.display = "block";
-	            zoneAjoutPieceCompte.appendChild(input);
-	            nbPieceCompte++;
+	            zoneAjoutPersonne.appendChild(input);
+	            nbPersonnePalanquee++;
             }
 
             function supprimerPieceCompte(){
-	            nbPieceCompte--;
-	            zoneAjoutPieceCompte.removeChild(document.getElementById('pieceCompte'+nbPieceCompte)) //on supprime le dernier champs ajouté 
-	            if(nbPieceCompte==0){
+	            nbPersonnePalanquee--;
+	            zoneAjoutPersonne.removeChild(document.getElementById('pieceCompte'+nbPersonnePalanquee)) //on supprime le dernier champs ajouté 
+	            if(nbPersonnePalanquee==0){
 	                document.getElementById('supCompte').style.display='none';// on rend indisponible le bouton supprimer
 	            }
             }
