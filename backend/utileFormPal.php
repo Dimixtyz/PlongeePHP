@@ -1,10 +1,5 @@
 <?php
 
-if (isset($_POST['ajout'])){
-    listePal::ajouterListePal($_POST['ajout']);
-    console_log("ajout objet");
-}
-
 class listePal{
 
     public static $listePal = Array();

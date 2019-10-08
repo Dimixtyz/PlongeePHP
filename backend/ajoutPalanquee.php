@@ -31,8 +31,11 @@ if (isset($_POST['recherche'])){
         console.log("test");
         $.ajax({
             type: "POST",
-            url: "/utileFormPal.php",
-            data:'ajout='+id
+            url: "../backend/ajoutNumListePal.php",
+            data:'ajout='+id,
+            success:function(data){
+                console.log('success');
+            }
         });
     });
 
