@@ -4,6 +4,9 @@ include_once "../backend/bddPlongee.php";
 include_once "../backend/utileFormPal.php";
 $bdd = new bddPlongee();
 
+if (isset($_GET['numPal'])){
+    listePal::ajouterListePal($_GET['numPal']);
+}
 
 ?>
 <br/>
@@ -128,6 +131,7 @@ $bdd = new bddPlongee();
 
                 });
             });
+
 
 
         </script>

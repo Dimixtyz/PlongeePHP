@@ -1,6 +1,7 @@
 <?php
 include_once "bddPlongee.php";
 include_once "utileFormPal.php";
+
 $bdd = new bddPlongee();
 
 if (isset($_POST['recherche'])){
@@ -18,25 +19,15 @@ if (isset($_POST['recherche'])){
 
     <?php
     }
+    listePal::ajouterListePal("2");
 
 
 }
 ?>
-
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
-
     $('#ajoutPer').click(function() {
         var id = $(this).val();
-        console.log("test");
-        $.ajax({
-            type: "POST",
-            url: "../backend/ajoutNumListePal.php",
-            data:'ajout='+id,
-            success:function(data){
-                console.log('success');
-            }
-        });
+        console.log("id : "+id);
+        window.location.replace("../frontend/formPalanquee.php?numPal=" + id);
     });
-
 </script>
