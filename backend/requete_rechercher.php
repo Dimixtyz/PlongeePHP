@@ -39,7 +39,7 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
               Modifier
             </a></td>
 
-          <td><a class="btn btn-danger" href="">
+          <td><a class="btn btn-danger" href="<?php echo "../backend/supprimerPersonne.php?id=".$row['PER_NUM'];?>">
               Supprimer
             </a></td>
         </tr>

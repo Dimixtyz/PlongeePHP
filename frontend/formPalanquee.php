@@ -8,31 +8,7 @@ include "../header.php";
         <meta charset="utf-8">
         <title>Formulaire palanquée</title>
         <script>
-            var zoneAjoutPersonne; 
-            var nbPersonnePalanquee=0;
-            function ajouterPersonne(){
-	            if(nbPersonnePalanquee==2){ //si il s'agit du premier ajout
-		            zoneAjoutPersonne = document.getElementById('pieceCompteAjoute') //on séléctionne l'emplacement où on veux effectuer les ajouts de champs
-		        document.getElementById('supCompte').style.display='inline' //on rend disponible le bouton supprimer
-	            }
-	
-	            //on ajoute un nouveau champ
-	            var input = document.createElement("input");
-	            input.type = "text";
-	            input.name = "pieceCompteAjoute["+nbPersonnePalanquee+"]";
-	            input.id  = "pieceCompte"+nbPersonnePalanquee;
-	            input.style.display = "block";
-	            zoneAjoutPersonne.appendChild(input);
-	            nbPersonnePalanquee++;
-            }
-
-            function supprimerPieceCompte(){
-	            nbPersonnePalanquee--;
-	            zoneAjoutPersonne.removeChild(document.getElementById('pieceCompte'+nbPersonnePalanquee)) //on supprime le dernier champs ajouté 
-	            if(nbPersonnePalanquee==0){
-	                document.getElementById('supCompte').style.display='none';// on rend indisponible le bouton supprimer
-	            }
-            }
+        
         </script>
     </head>
     <body>
