@@ -1,5 +1,10 @@
 <?php
 include "../header.php";
+include_once "../backend/bddPlongee.php";
+include_once "../backend/utileFormPal.php";
+$bdd = new bddPlongee();
+
+
 ?>
 <br/>
 <!DOCTYPE html>
@@ -13,31 +18,33 @@ include "../header.php";
         <form method="post">
             <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
                 <legend>Ajout de personne à la palanquée</legend><br/>
+
+                <div id="listPersonnes">
+                    <?php
+                        $liste = listePal::$listePal;
+                        var_dump($liste);
+                        foreach ($liste as $num){
+                            $reqPersonne = "SELECT PER_NOM, PER_PRENOM FROM PLO_PERSONNE WHERE PER_NUM = $num";
+                            $resP = $bdd->exec($reqPersonne);
+                            var_dump($resP);
+
+                            ?>
+                            <tr>
+                                <th><?php echo $resP[0]['PER_NOM']?></th>
+                                <th><?php echo $resP[0]['PER_PRENOM']?></th>
+                                <th><input type="checkbox" name="listePersonnes[]" value="<?php echo $num?>" checked></th>
+                            </tr>
+
+                            <?php
+                    }
+                    ?>
+
+                </div>
+
                 <input type="text" id="recherchePal"/>
+
                 <div id="suggestions"></div>
-                <label>Personne 1 : </label>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="icon_prefix" type="text" name="nom1" class="validate">
-                    <label for="icon_prefix">Nom : </label>
-                </div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="icon_prefix2" type="text" name="prenom1" class="validate">
-                    <label for="icon_prefix2">Prénom : </label>
-                </div>
-                <label>Personne 2 : </label>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="icon_prefix" type="text" name="nom2" class="validate">
-                    <label for="icon_prefix">Nom : </label>
-                </div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="icon_prefix2" type="text" name="prenom2" class="validate">
-                    <label for="icon_prefix2">Prénom : </label>
-                </div>
-                <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+
 
             </fieldset>
 
@@ -95,30 +102,11 @@ include "../header.php";
 
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script>
-            var zoneAjoutPieceCompte;
-            var nbPieceCompte=0;
-            function ajouterPersonne(){
-                if(nbPieceCompte==2){ //si il s'agit du premier ajout
-                    zoneAjoutPieceCompte = document.getElementById('pieceCompteAjoute') //on séléctionne l'emplacement où on veux effectuer les ajouts de champs
-                    document.getElementById('supCompte').style.display='inline' //on rend disponible le bouton supprimer
-                }
 
-                //on ajoute un nouveau champ
-                var input = document.createElement("input");
-                input.type = "text";
-                input.name = "pieceCompteAjoute["+nbPieceCompte+"]";
-                input.id  = "pieceCompte"+nbPieceCompte;
-                input.style.display = "block";
-                zoneAjoutPieceCompte.appendChild(input);
-                nbPieceCompte++;
-            }
 
-            function supprimerPieceCompte(){
-                nbPieceCompte--;
-                zoneAjoutPieceCompte.removeChild(document.getElementById('pieceCompte'+nbPieceCompte)) //on supprime le dernier champs ajouté
-                if(nbPieceCompte==0){
-                    document.getElementById('supCompte').style.display='none';// on rend indisponible le bouton supprimer
-                }
+            function updateListe()
+            {
+                $( "#listPersonnes" ).load(window.location.href + " #listPersonnes" );
             }
 
 
@@ -140,6 +128,7 @@ include "../header.php";
 
                 });
             });
+
 
         </script>
 

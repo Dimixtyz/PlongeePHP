@@ -1,6 +1,6 @@
 <?php
 include_once "bddPlongee.php";
-include_once "formPalanque.php";
+include_once "utileFormPal.php";
 $bdd = new bddPlongee();
 
 if (isset($_POST['recherche'])){
@@ -13,12 +13,27 @@ if (isset($_POST['recherche'])){
     <tr>
         <th><?php echo $pal['PER_NOM']?></th>
         <th><?php echo $pal['PER_PRENOM']?></th>
-        <th><button></th>
+        <th><button id="ajoutPer" value="<?php echo $pal['PER_NUM'] ?>">Ajouter</button></th>
     </tr>
 
     <?php
     }
 
-    var_dump($rep);
 
 }
+?>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+
+    $('#ajoutPer').click(function() {
+        var id = $(this).val();
+        console.log("test");
+        $.ajax({
+            type: "POST",
+            url: "/utileFormPal.php",
+            data:'ajout='+id
+        });
+    });
+
+</script>
