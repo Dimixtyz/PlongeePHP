@@ -3,13 +3,20 @@ include "../header.php";
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <meta charset="utf-8">
-    <title>Formulaire personne</title>
+    <head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.2/angular-materialize.min.js"></script>
+        <meta charset="utf-8">
+        <title>Formulaire personne</title>
+        <script>
+            $(document).ready(function(){
+                $('select').not('.disabled').formSelect();
+            });         
+        </script>
   </head>
   <body>
   <form method="post" action="../backend/insererPersonne.php">
@@ -32,16 +39,14 @@ include "../header.php";
         </div>
 
         <br/>
-
-        <div>
-            <label for="type">Choisir le statut : </label>
-            <select class="browser-default" id="type" name="statut" size="1" onChange="THEFUNCTION(this.selectedIndex);">
-                <option value="aucun">Aucun</option>
+        <label>Choisir le statut : </label>
+        <div class="input-field s12">
+            <select multiple id="type" name="statut" size="1" onChange="THEFUNCTION(this.selectedIndex);">
                 <option value="plongeur">Plongeur</option>
                 <option value="securitedesurface">Sécurité de surface</option>
                 <option value="directeur">Directeur</option>
             </select>
-
+        </div>
         <br/>
         <br/>
 
@@ -87,7 +92,7 @@ include "../header.php";
       function THEFUNCTION(i) {
           var divAptitude = document.getElementById('divAptitude');
           switch(i) {
-              case 1 : divAptitude.style.display = ''; break;
+              case 0 : divAptitude.style.display = ''; break;
               default: divAptitude.style.display = 'none'; break;
           }
       }
