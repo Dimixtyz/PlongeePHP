@@ -4,8 +4,8 @@ include_once "../backend/bddPlongee.php";
 include_once "../backend/utileFormPal.php";
 $bdd = new bddPlongee();
 
-if (isset($_GET['numPal'])){
-    listePal::ajouterListePal($_GET['numPal']);
+if (isset($_POST['numPal'])){
+    listePal::ajouterListePal($_POST['numPal']);
 }
 
 ?>
@@ -24,9 +24,8 @@ if (isset($_GET['numPal'])){
 
                 <div id="listPersonnes">
                     <?php
-                        $liste = listePal::$listePal;
-                        var_dump($liste);
-                        foreach ($liste as $num){
+                        var_dump(listePal::$liste);
+                        foreach (listePal::$liste as $num){
                             $reqPersonne = "SELECT PER_NOM, PER_PRENOM FROM PLO_PERSONNE WHERE PER_NUM = $num";
                             $resP = $bdd->exec($reqPersonne);
                             var_dump($resP);

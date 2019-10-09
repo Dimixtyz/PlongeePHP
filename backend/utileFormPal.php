@@ -2,21 +2,18 @@
 
 class listePal{
 
-    public static $listePal = Array();
+    public static $liste = array();
 
     public static function initialisation()
     {
-        $listePal = Array();
+        listePal::$liste = array();
     }
 
     public static function ajouterListePal($num)
     {
-        array_push(self::$listePal, $num);
+        listePal::$liste = array_push(listePal::$liste, $num);
     }
 
-    public static function getListe(){
-        return listePal;
-    }
 
 }
 
