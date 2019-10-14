@@ -8,7 +8,7 @@
 
   $bdd->inserer($req);
 
-  header("Location: ../frontend/requete_rechercher.php");
+  header("Location: ../frontend/recherche_personne.php");
   exit();
 
 ?>

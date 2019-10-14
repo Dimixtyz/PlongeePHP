@@ -35,7 +35,7 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
             <p class="text-left">
               <?php echo $row["PER_PRENOM"]; ?></p>
           </td>
-          <td><a class="btn btn-primary" href="">
+          <td><a class="btn btn-primary" href="<?php echo "../frontend/formulaire_creation_personne.php?id=".$row['PER_NUM'];?>">
               Modifier
             </a></td>
 
