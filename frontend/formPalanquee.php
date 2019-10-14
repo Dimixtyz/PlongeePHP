@@ -1,5 +1,13 @@
 <?php
 include "../header.php";
+include_once "../backend/bddPlongee.php";
+include_once "../backend/utileFormPal.php";
+$bdd = new bddPlongee();
+
+if (isset($_POST['numPal'])){
+    listePal::ajouterListePal($_POST['numPal']);
+}
+
 ?>
 <br/>
 <!DOCTYPE html>
@@ -7,37 +15,38 @@ include "../header.php";
     <head>
         <meta charset="utf-8">
         <title>Formulaire palanquée</title>
-        <script>
-        
-        </script>
     </head>
     <body>
+
         <form method="post">
             <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
                 <legend>Ajout de personne à la palanquée</legend><br/>
-                <label>Personne 1 : </label>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="icon_prefix" type="text" name="nom1" class="validate">
-                    <label for="icon_prefix">Nom : </label>
+
+                <div id="listPersonnes">
+                    <?php
+                        var_dump(listePal::$liste);
+                        foreach (listePal::$liste as $num){
+                            $reqPersonne = "SELECT PER_NOM, PER_PRENOM FROM PLO_PERSONNE WHERE PER_NUM = $num";
+                            $resP = $bdd->exec($reqPersonne);
+                            var_dump($resP);
+
+                            ?>
+                            <tr>
+                                <th><?php echo $resP[0]['PER_NOM']?></th>
+                                <th><?php echo $resP[0]['PER_PRENOM']?></th>
+                                <th><input type="checkbox" name="listePersonnes[]" value="<?php echo $num?>" checked></th>
+                            </tr>
+
+                            <?php
+                    }
+                    ?>
+
                 </div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="icon_prefix2" type="text" name="prenom1" class="validate">
-                    <label for="icon_prefix2">Prénom : </label>
-                </div>
-                <label>Personne 2 : </label>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="icon_prefix" type="text" name="nom2" class="validate">
-                    <label for="icon_prefix">Nom : </label>
-                </div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="icon_prefix2" type="text" name="prenom2" class="validate">
-                    <label for="icon_prefix2">Prénom : </label>
-                </div>
-                <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+
+                <input type="text" id="recherchePal"/>
+
+                <div id="suggestions"></div>
+
 
             </fieldset>
 
@@ -88,6 +97,45 @@ include "../header.php";
                     <i class="material-icons right">clear</i>
                 </button>
             </fieldset>   
-        </form>        
+        </form>
+
+
+
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script>
+
+
+            function updateListe()
+            {
+                $( "#listPersonnes" ).load(window.location.href + " #listPersonnes" );
+            }
+
+
+
+            $(document).ready(function(){
+                $('#recherchePal').on('change keyup copy paste cut',function(){
+                    var recherche = $(this).val();
+                    if (!recherche){
+                        recherche = "%";
+                    }
+                    $.ajax({
+                        type:'POST',
+                        url:'../backend/ajoutPalanquee.php',
+                        data:'recherche='+recherche,
+                        success:function(data){
+                            $('#suggestions').html(data);
+                        }
+                    });
+
+                });
+            });
+
+
+
+        </script>
+
+
+
     </body>
 </html>
