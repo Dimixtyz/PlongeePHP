@@ -14,13 +14,13 @@
     </script>
   </head>
   <body>
-  <form>
+  <form method="post" action="../backend/insererPlongee.php">
 	  <fieldset style="width:850px; margin-left: auto; margin-right: auto; margin-top:5%">
   	  <legend>FORMULAIRE PLONGÉE</legend>
       <br/>
         
       <label> Date de la plongée : </label>
-      <input type="date" class="date" id="datePlongee" name="datePlongee">
+      <input type="date" class="date" id="datePlongee" name="dateplongee">
 
 
           <br/>
@@ -75,7 +75,7 @@
 
       <label>Directeur de plongée : </label><br/>
       <label>Nom : </label>
-      <select id="NomDirecteur" class="browser-default">
+      <select id="NomDirecteur" class="browser-default" name="directeurdeplongee">
 
         <option value = "">Sélectionnez un directeur</option>
           <?php
@@ -103,8 +103,8 @@
 
       <label>Sécurité de surface : </label><br/>
       <label>Nom : </label>
-      <select class="browser-default" id="NomDirecteur">
-          <option value = "">Sélectionnez un directeur</option>
+      <select class="browser-default" id="NomSecuriteSurface" name="securitedesurface">
+          <option value = "">Sélectionnez un personnel de sécurité de surface</option>
 
           <?php
           require_once "../backend/bddPlongee.php";
