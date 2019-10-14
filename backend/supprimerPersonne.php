@@ -4,7 +4,7 @@
   $bdd = new bddPlongee();
 
   $idPlongeeASupp = $_GET['id'];
-  $req="DELETE FROM PLO_PERSONNE WHERE PLO_NUM = $idSyllabusASupp";
+  $req="DELETE FROM PLO_PERSONNE WHERE PER_NUM = $idPlongeeASupp";
 
   $bdd->inserer($req);
 
