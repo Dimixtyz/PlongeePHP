@@ -40,17 +40,30 @@ include "../header.php";
 
         <br/>
         <label>Choisir le statut : </label>
-        <div class="input-field s12">
-            <select multiple id="type" name="statut" size="1" onChange="THEFUNCTION(this.selectedIndex);">
-                <option value="plongeur">Plongeur</option>
-                <option value="securitedesurface">Sécurité de surface</option>
-                <option value="directeur">Directeur</option>
-            </select>
+        <div >
+
+            <label>
+                <input type="checkbox"  name="statut[]" value="plongeur" />
+                <span>Plongeur</span><br>
+
+            </label>
+
+            <label>
+                <input type="checkbox"  name="statut[]" value="securitedesurface" />
+                <span>Sécurité de surface</span><br>
+            </label>
+
+            <label>
+                <input type="checkbox"  name="statut[]" value="directeur" />
+                <span>Directeur</span>
+
+            </label>
+
         </div>
         <br/>
         <br/>
 
-        <div style="display:none;" id="divAptitude">
+        <div id="divAptitude">
             <label for="Aptitude">Aptitude du plongeur : </label>
             <select class="browser-default" name="aptitudeplongeur">
 
@@ -88,14 +101,6 @@ include "../header.php";
         </button>
       </fieldset>
   </form>
-  <script type="text/javascript">
-      function THEFUNCTION(i) {
-          var divAptitude = document.getElementById('divAptitude');
-          switch(i) {
-              case 0 : divAptitude.style.display = ''; break;
-              default: divAptitude.style.display = 'none'; break;
-          }
-      }
-  </script>
+
   </body>
 </html>

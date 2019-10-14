@@ -2,6 +2,9 @@
 include "bddPlongee.php";
 $bdd = new bddPlongee();
 
+echo "<pre>";
+print_r($_POST['statut']);
+echo "</pre>";
 
 $reqderniernumutilisateur = "select PER_NUM from PLO_PERSONNE order by PER_NUM desc LIMIT 1";
 $rep = $bdd->exec($reqderniernumutilisateur);
@@ -45,7 +48,7 @@ if(isset($_POST['aptitudeplongeur'])){
 }
 
 
-if(isset($nom,$prenom,$statut)){
+if(isset($nom,$prenom)){
 
     $PERNUM = $dernierUtil+1 ;
     $reqInsertionPerso = "insert into PLO_PERSONNE values ($PERNUM,$nom,$prenom)";
@@ -65,6 +68,7 @@ if(isset($_POST['aptitudeplongeur']) && $statut == "'plongeur'"){
 }
 
 $bdd->inserer($req);
+
 
 
 
