@@ -1,3 +1,7 @@
+<?php
+include "../header.php";
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -15,125 +19,129 @@
   </head>
   <body>
   <form method="post" action="../backend/insererPlongee.php">
-	  <fieldset style="width:850px; margin-left: auto; margin-right: auto; margin-top:5%">
-  	  <legend>FORMULAIRE PLONGÉE</legend>
-      <br/>
+	    <fieldset style="width:850px; margin-left: auto; margin-right: auto; margin-top:5%">
+  	        <legend>FORMULAIRE PLONGÉE</legend>
+            <br/>
         
-      <label> Date de la plongée : </label>
-      <input type="date" class="date" id="datePlongee" name="dateplongee">
+            <label> Date de la plongée : </label>
+            <input type="date" class="date" id="datePlongee" name="dateplongee">
 
 
-          <br/>
-      <br/>
+            <br/>
+            <br/>
 
-      <label> Séance de la plongée : </label> <br/>
-          <label>
-              <input class="with-gap"  name="seance" value="matin" type="radio"  />
-              <span>Matin</span>
-          </label>
-          <label>
-              <input class="with-gap" name="seance" value="apresmidi" type="radio"  />
-              <span>Après-midi</span>
-          </label>
-          <label>
-              <input class="with-gap" name="seance" value="soir" type="radio"  />
-              <span>Soir</span>
-          </label>
+            <label> Séance de la plongée : </label> <br/>
+            
+            <p>
+                <label>
+                    <input name="seance" value="matin" type="radio"  />
+                    <span>Matin</span>
+                </label><br/>
+            </p>
+            <p>
+                <label>
+                    <input name="seance" value="apresmidi" type="radio"  />
+                    <span>Après-midi</span>
+                </label><br/>
+            </p>
+            <p>
+                <label>
+                    <input name="seance" value="soir" type="radio"  />
+                    <span>Soir</span>
+                </label>
+            </p>
+            <br/>
+            <br/>
+            <fieldset>
+                <legend>Site de la plongée</legend>
+                <label>Nom du site : </label><input type="text" name="nomsite"><br/>
+                <label>Localisation du site : </label><input type="text" name="localisationsite"><br/>
+            </fieldset>
 
-      <br/>
-      <br/>
 
-          <fieldset>
-          <legend>Site de la plongée</legend>
-          <label>Nom du site : </label><input type="text" name="nomsite"><br/>
-          <label>Localisation du site : </label><input type="text" name="localisationsite"><br/>
-          </fieldset>
+            <br/>
+            <br/>
 
-
-          <br/>
-      <br/>
-
-          <label> Type d'embarcation : </label><br/>
-          <label>
+            <label> Type d'embarcation : </label><br/>
+            <label>
               <input class="with-gap" name="type_embarcation" value="beclem" type="radio"  />
               <span>Beclem</span>
-          </label>
-          <label>
+            </label><br/>
+            <label>
               <input class="with-gap" name="type_embarcation" value="estelenn" type="radio"  />
               <span>Estelenn</span>
-          </label>
+            </label>
 
 
-      <br/>
-      <br/>
+            <br/>
+            <br/>
 
-      <label>Effectif plongeurs : </label><input type="number" name="effectifP"><br/>
-      <label>Effectif bateau : </label><input type="number" name="effectifB">
+            <label>Effectif plongeurs : </label><input type="number" name="effectifP"><br/>
+            <label>Effectif bateau : </label><input type="number" name="effectifB">
 
-      <br/>
-      <br/>
+            <br/>
+            <br/>
 
-      <label>Directeur de plongée : </label><br/>
-      <label>Nom : </label>
-      <select id="NomDirecteur" class="browser-default" name="directeurdeplongee">
+            <label>Directeur de plongée : </label><br/>
+            <label>Nom : </label>
+            <select id="NomDirecteur" class="browser-default" name="directeurdeplongee">
+                <option value = "">Sélectionnez un directeur</option>
+                <?php
+                include "../backend/bddPlongee.php";
+                $bdd = new bddPlongee();
 
-        <option value = "">Sélectionnez un directeur</option>
-          <?php
-          include "../backend/bddPlongee.php";
-          $bdd = new bddPlongee();
+                $req = "select PER_NUM,PER_NOM, PER_PRENOM from PLO_PERSONNE JOIN PLO_DIRECTEUR USING(PER_NUM) ORDER BY PER_NOM";
 
-          $req = "select PER_NUM,PER_NOM, PER_PRENOM from PLO_PERSONNE JOIN PLO_DIRECTEUR USING(PER_NUM) ORDER BY PER_NOM";
+                $rep = $bdd->exec($req);
 
-          $rep = $bdd->exec($req);
-
-          for($i = 0; $i<sizeof($rep); $i++){
-              $val = $rep[$i][0];
-              $valaafficher = $rep[$i][1].' '.$rep[$i][2];
-              echo "<option value=$val>$valaafficher</option><br/>";
-          }
-
-          ?>
-      </select> 
+                for($i = 0; $i<sizeof($rep); $i++){
+                    $val = $rep[$i][0];
+                    $valaafficher = $rep[$i][1].' '.$rep[$i][2];
+                    echo "<option value=$val>$valaafficher</option><br/>";
+                }?>
+            </select> 
 
 
-      <br/>
-      <br/>
+            <br/>
+            <br/>
 
 
 
-      <label>Sécurité de surface : </label><br/>
-      <label>Nom : </label>
-      <select class="browser-default" id="NomSecuriteSurface" name="securitedesurface">
-          <option value = "">Sélectionnez un personnel de sécurité de surface</option>
+            <label>Sécurité de surface : </label><br/>
+            <label>Nom : </label>
+            <select class="browser-default" id="NomSecuriteSurface" name="securitedesurface">
+                <option value = "">Sélectionnez un personnel de sécurité de surface</option>
 
-          <?php
-          require_once "../backend/bddPlongee.php";
-          $bdd = new bddPlongee();
+                <?php
+                require_once "../backend/bddPlongee.php";
+                $bdd = new bddPlongee();
 
-          $requeteSecuriteSurface = "select PER_NUM,PER_NOM, PER_PRENOM from PLO_PERSONNE JOIN PLO_SECURITE_DE_SURFACE USING(PER_NUM) ORDER BY PER_NOM";
+                $requeteSecuriteSurface = "select PER_NUM,PER_NOM, PER_PRENOM from PLO_PERSONNE JOIN PLO_SECURITE_DE_SURFACE USING(PER_NUM) ORDER BY PER_NOM";
 
-          $resultatSecuriteSurface = $bdd->exec($requeteSecuriteSurface);
+                $resultatSecuriteSurface = $bdd->exec($requeteSecuriteSurface);
 
-          for($i = 0; $i<sizeof($resultatSecuriteSurface); $i++){
-              $vale = $resultatSecuriteSurface[$i][0];
-              $valaffiche = $resultatSecuriteSurface[$i][1].' '.$resultatSecuriteSurface[$i][2];
-              echo "<option value=$vale>$valaffiche</option><br/>";
-          }
-
-          ?>
-      </select> 
+                for($i = 0; $i<sizeof($resultatSecuriteSurface); $i++){
+                    $vale = $resultatSecuriteSurface[$i][0];
+                    $valaffiche = $resultatSecuriteSurface[$i][1].' '.$resultatSecuriteSurface[$i][2];
+                    echo "<option value=$vale>$valaffiche</option><br/>";
+                }?>
+            </select> 
 
 
-      <br/>
-      <br/>
+            <br/>
+            <br/>
 
-      <input type="submit" name="envoi" value=" Envoyer ">
-      <input type="reset" name="efface" value="Effacer ">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Valider
+                <i class="material-icons right">send</i>
+            </button>
+            <button class="btn waves-effect waves-light" type="reset" name="action">Effacer
+                <i class="material-icons right">clear</i>
+            </button>
 
-      <br/>
-      <br/>
-    </fieldset><br/></br/>
-   <input type = "button" value = "Retour"  onclick = "history.back()" style="margin:auto">
-  </form>        
+            <br/>
+            <br/>
+        </fieldset><br/>
+        <input type = "button" value = "Retour"  onclick = "history.back()" style="margin:auto">
+    </form>        
   </body>
 </html>
