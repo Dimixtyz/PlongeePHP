@@ -16,9 +16,7 @@ $oninsereoupas = false ;
 function peutOnInserer($pre,$no){
     $bdd = new bddPlongee();
 
-    $prenom = "'".$pre."'";
-    $nom = "'".$no."'";
-    $req = "SELECT COUNT(*) FROM `PLO_PERSONNE` WHERE upper(PER_NOM) = $nom AND upper(PER_PRENOM) = $prenom ";
+    $req = "SELECT COUNT(*) FROM `PLO_PERSONNE` WHERE upper(PER_NOM) = $no AND upper(PER_PRENOM) = $pre ";
     $res=$bdd->exec($req);
     if($res[0][0]>0){
         return false;
@@ -39,8 +37,8 @@ if(isset($_POST['prenom'])&& $_POST['prenom']!=""){
     $prenom = "'".$_POST['prenom']."'";
 }
 
-if(isset($_POST['statut'])&&$_POST['statut']!="aucun"){
-    $statut = "'".$_POST['statut']."'";
+if(isset($_POST['statut'])){
+    $statut = $_POST['statut'];
 }
 
 if(isset($_POST['aptitudeplongeur'])){
@@ -48,26 +46,40 @@ if(isset($_POST['aptitudeplongeur'])){
 }
 
 
-if(isset($nom,$prenom)){
 
-    $PERNUM = $dernierUtil+1 ;
-    $reqInsertionPerso = "insert into PLO_PERSONNE values ($PERNUM,$nom,$prenom)";
-    $bdd->inserer($reqInsertionPerso);
 
+
+if(isset($statut)&& sizeof($statut)>0){
+    if(isset($nom,$prenom)){
+        if(peutOnInserer($prenom,$nom)){
+            $PERNUM = $dernierUtil+1 ;
+            $reqInsertionPerso = "insert into PLO_PERSONNE values ($PERNUM,$nom,$prenom)";
+            $bdd->inserer($reqInsertionPerso);
+        }else{
+            echo "Cet élève existe déjà !!!";
+        }
+
+    }
+
+    for($i=0 ; $i<sizeof($statut);$i++){
+        if($statut[$i]=="securitedesurface"){
+            $req = "insert into PLO_PLONGEUR(PER_NUM) values ($PERNUM)";
+            $bdd->inserer($req);
+        }else if($statut[$i]=="directeur"){
+            $req =  "insert into PLO_SECURITE_DE_SURFACE(PER_NUM) values ($PERNUM)";
+            $bdd->inserer($req);
+        }else if($statut[$i]=="plongeur" && isset($_POST['aptitudeplongeur'])){
+            $req = "insert into PLO_PLONGEUR(PER_NUM,APT_CODE) values ($PERNUM,$aptitudeplongeur)";
+            $bdd->inserer($req);
+
+        }
+
+
+    }
+
+}else{
+    echo "VOUS DEVEZ CHOISIR UN STATUT !!";
 }
-
-if(isset($_POST['aptitudeplongeur']) && $statut == "'plongeur'"){
-    $req = "insert into PLO_PLONGEUR(PER_NUM,APT_CODE) values ($PERNUM,$aptitudeplongeur)";
-
-
-}else if($statut == "securitedesurface"){
-    $req = "insert into PLO_PLONGEUR(PER_NUM) values ($PERNUM)";
-}else if($statut == "directeur"){
-    $req =  "insert into PLO_SECURITE_DE_SURFACE(PER_NUM) values ($PERNUM)";
-
-}
-
-$bdd->inserer($req);
 
 
 
