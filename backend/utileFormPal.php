@@ -6,12 +6,18 @@ class listePal{
 
     public static function initialisation()
     {
-        listePal::$liste = array();
+        static::$liste = array();
     }
 
     public static function ajouterListePal($num)
     {
-        listePal::$liste = array_push(listePal::$liste, $num);
+        if(!isset(static::$liste)){
+            static::initialisation();
+        }
+
+        static::$liste = array_push(static::$liste, $num);
+
+        echo "<script>console.log('Insertion de '".$num.");</script>";
     }
 
 
