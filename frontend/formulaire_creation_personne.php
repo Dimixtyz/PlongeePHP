@@ -15,7 +15,19 @@ include "../header.php";
         <script>
             $(document).ready(function(){
                 $('select').not('.disabled').formSelect();
-            });         
+            }); 
+        </script>
+        <script type="text/javascript">
+            function affichageAptitude(element){
+                var targetElement;
+                targetElement = document.getElementById(element) ;
+                if (targetElement.style.display == "none"){
+                    targetElement.style.display = "" ;
+                }
+                else{
+                targetElement.style.display = "none" ;
+                }
+            } 
         </script>
   </head>
   <body>
@@ -43,9 +55,8 @@ include "../header.php";
         <div >
 
             <label>
-                <input type="checkbox"  name="statut[]" value="plongeur" />
+                <input type="checkbox"  name="statut[]" value="plongeur" onclick="affichageAptitude('divAptitude')"/>
                 <span>Plongeur</span><br>
-
             </label>
 
             <label>
@@ -56,14 +67,13 @@ include "../header.php";
             <label>
                 <input type="checkbox"  name="statut[]" value="directeur" />
                 <span>Directeur</span>
-
             </label>
 
         </div>
         <br/>
         <br/>
 
-        <div id="divAptitude">
+        <div id="divAptitude" style="display:none">
             <label for="Aptitude">Aptitude du plongeur : </label>
             <select class="browser-default" name="aptitudeplongeur">
 

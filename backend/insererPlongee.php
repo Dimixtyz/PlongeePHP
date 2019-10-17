@@ -1,11 +1,60 @@
 <?php
+include("bddPlongee.php");
+$bdd = new bddPlongee();
 
-$dateplongee = $_POST['dateplongee'];
+if(isset($_POST['nomsite'])&& !empty($_POST['nomsite'])){
+    $nomdusite = $_POST['nomsite'];
 
-$seance = $_POST['seance'];
+}
+if(isset($_POST['localisationsite']) && !empty($_POST['localisationsite'])){
 
-$nomdusite = $_POST['nomsite'];
-$localisationsite = $_POST['localisationsite'];
+    $localisationsite = $_POST['localisationsite'];
+
+}
+
+if(isset($nomdusite) && isset($localisationsite)){
+    $reqderniersite = "select SIT_NUM from SITE order by SIT_NUM desc LIMIT 1";
+    $rep = $bdd->exec($reqderniersite);
+
+    if(!empty($rep)){
+        $dernierSite = $rep[0]['SIT_NUM'];
+        $numsite = $dernierSite+1;
+
+    }else{
+        $numsite = 1;
+    }
+
+    $sitnom = "'".$nomdusite."'" ;
+    $sitlocalisation = "'".$localisationsite."'";
+    $reqinserer = "INSERT INTO SITE (SIT_NUM, SIT_NOM, SIT_LOCALISATION) VALUES ($numsite,$sitnom,$sitlocalisation)";
+
+    $bdd->inserer($reqinserer);
+
+}
+
+
+if(isset($_POST['dateplongee'])){
+    $dateplongee = $_POST['dateplongee'];
+
+}
+
+if(isset($_POST['seance'])){
+    if($_POST['seance']=="matin"){
+        $seance = '1';
+
+    }elseif($_POST['seance']=="apresmidi"){
+        $seance = '2';
+
+    }elseif ($_POST['seance']=="soir"){
+        $seance='3';
+    }
+
+
+}
+
+
+
+
 
 $typeembarcation = $_POST['type_embarcation'];
 
@@ -16,6 +65,25 @@ $effectifdebateau = $_POST['effectifB'];
 $numDirecteurDePlongee = $_POST['directeurdeplongee'];
 
 $numSecuriteDeSurface = $_POST['securitedesurface'];
+
+$nombrePalanquee = $_POST['nombrePal'];
+
+
+$reqPlongee = "INSERT INTO PLO_PLONGEE (PLO_DATE, PLO_MATIN_APRESMIDI, SIT_NUM, EMB_NUM, PER_NUM_DIR, PER_NUM_SECU, PLO_EFFECTIF_PLONGEURS, PLO_EFFECTIF_BATEAU, PLO_NB_PALANQUEES) VALUES ('".$dateplongee."', '".$seance."', '".$numsite."', '".$typeembarcation."', '".$numDirecteurDePlongee."', '".$numSecuriteDeSurface."', '".$effectifdeplongeur."', '".$effectifdebateau."', '".$nombrePalanquee."')";
+
+try
+{
+    $bdd->inserer($reqPlongee);
+    echo "Insertion de la plongée réussie !";
+}
+catch(PDOException $e){
+    echo "L'insertion de la plongée a échoué ";
+}
+
+
+
+
+
 
 
 
