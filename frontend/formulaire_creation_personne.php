@@ -45,7 +45,6 @@ include "../header.php";
             <label>
                 <input type="checkbox"  name="statut[]" value="plongeur" />
                 <span>Plongeur</span><br>
-
             </label>
 
             <label>
@@ -56,7 +55,6 @@ include "../header.php";
             <label>
                 <input type="checkbox"  name="statut[]" value="directeur" />
                 <span>Directeur</span>
-
             </label>
 
         </div>
