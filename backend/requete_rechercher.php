@@ -20,6 +20,7 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
     <tr>
       <th>Nom</th>
       <th>Prénom</th>
+        <th>Statut</th>
       <th>Modifier</th>
       <th>Supprimer</th>
     </tr>
@@ -35,6 +36,40 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
             <p class="text-left">
               <?php echo $row["PER_PRENOM"]; ?></p>
           </td>
+            <td>
+                <p class="text-left">
+                    <?php
+
+                    require_once "bddPlongee.php";
+                    $bdd = new bddPlongee();
+                    $numpersonne = "'".$row['PER_NUM']."'";
+                    $reqPlongeur = "SELECT * FROM PLO_PLONGEUR WHERE PER_NUM =$numpersonne" ;
+                    $reqDirecteur = "SELECT * FROM PLO_DIRECTEUR WHERE PER_NUM =$numpersonne" ;
+                    $reqSecurite = "SELECT * FROM PLO_SECURITE_DE_SURFACE WHERE PER_NUM =$numpersonne";
+
+                    $repPlongeur=$bdd->exec($reqPlongeur);
+                    $repDirecteur=$bdd->exec($reqDirecteur);
+                    $repSecurite=$bdd->exec($reqSecurite);
+
+
+
+                    $statut = "";
+
+                    if(!empty($repDirecteur)){
+                        $statut+="Directeur";
+                    }
+                    if(!empty($repSecurite)){
+                        $statut+="Directeur de surface";
+                    }
+                    if(!empty($repSecurite)){
+                        $statut+="Sécurité de surface";
+                    }
+
+                    echo "COUCOU";
+
+
+                    ?></p>
+            </td>
           <td><a class="btn btn-primary" href="<?php echo "../frontend/formulaire_creation_personne.php?id=".$row['PER_NUM'];?>">
               Modifier
             </a></td>
