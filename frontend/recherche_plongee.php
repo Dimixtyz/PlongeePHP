@@ -26,37 +26,12 @@ include "../header.php";
             });
         });
 
-        $(document).ready(function(){
-            $('#recherche').on('change keyup copy paste cut',function(){
-                var recherche = $(this).val();
-                if (!recherche){
-                    recherche = "%";
-                }
-                $.ajax({
-                    type:'POST',
-                    url:'../backend/requete_rechercher.php',
-                    data:'recherche='+recherche,
-                    success:function(data){
-                        $('#listeEleves').html(data);
-                    }
-                });
-
-            });
-        });
+        
 
 
     </script>
 
-
-
-
-  <div class="form-group">
-    <label for="Recherche"></label>
-    <input type="text" id="recherche" placeholder="Rechercher des membres...">
-  </div>
-
-
-    <a href="formulaire_creation_personne.php">Ajouter une personne</a>
+    <a href="formPlongee.php">Ajouter une plongée</a>
 
     <div id="listeEleves"></div>
 

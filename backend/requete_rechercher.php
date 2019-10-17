@@ -20,7 +20,7 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
     <tr>
       <th>Nom</th>
       <th>Prénom</th>
-        <th>Statut</th>
+      <th>Statut</th>
       <th>Modifier</th>
       <th>Supprimer</th>
     </tr>

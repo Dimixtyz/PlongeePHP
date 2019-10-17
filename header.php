@@ -16,7 +16,7 @@
                 <div class="nav-wrapper">
                     <a href="../index.php" class="brand-logo left" style="padding-left:10px;">Site de Plongée</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="/frontend/recherche_plongee">Recherche plongee</a></li>
+                        <li><a href="/frontend/recherche_plongee.php">Recherche plongee</a></li>
                         <li><a href="/frontend/recherche_personne.php">Recherche personne</a></li>
                         <li><a href="/frontend/formPlongee.php">Formulaire plongée</a></li>
                         <li><a href="/frontend/formPalanquee.php">Formulaire palanquée</a></li>
