@@ -63,10 +63,10 @@ if(isset($statut)&& sizeof($statut)>0){
 
     for($i=0 ; $i<sizeof($statut);$i++){
         if($statut[$i]=="securitedesurface"){
-            $req = "insert into PLO_PLONGEUR(PER_NUM) values ($PERNUM)";
+            $req =  "insert into PLO_SECURITE_DE_SURFACE(PER_NUM) values ($PERNUM)";
             $bdd->inserer($req);
         }else if($statut[$i]=="directeur"){
-            $req =  "insert into PLO_SECURITE_DE_SURFACE(PER_NUM) values ($PERNUM)";
+            $req =  "insert into PLO_DIRECTEUR(PER_NUM) values ($PERNUM)";
             $bdd->inserer($req);
         }else if($statut[$i]=="plongeur" && isset($_POST['aptitudeplongeur'])){
             $req = "insert into PLO_PLONGEUR(PER_NUM,APT_CODE) values ($PERNUM,$aptitudeplongeur)";
