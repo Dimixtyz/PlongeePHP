@@ -1,23 +1,22 @@
 <?php
+session_start();
 
 class listePal{
 
-    public static $liste = array();
-
     public static function initialisation()
     {
-        static::$liste = array();
+        $_SESSION['listePal'] = array();
     }
 
     public static function ajouterListePal($num)
     {
-        if(!isset(static::$liste)){
+        if(!isset($_SESSION['listePal'])){
             static::initialisation();
         }
 
-        static::$liste = array_push(static::$liste, $num);
+        $_SESSION['listePal'] = array_push($_SESSION['listePal'], $num);
 
-        echo "<script>console.log('Insertion de '".$num.");</script>";
+        echo "<script>console.log('Insertion de '+$num);</script>";
     }
 
 

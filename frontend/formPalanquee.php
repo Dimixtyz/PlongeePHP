@@ -1,15 +1,10 @@
 <?php
+include_once "../backend/utileFormPal.php";
 include "../header.php";
 include_once "../backend/bddPlongee.php";
-include_once "../backend/utileFormPal.php";
+
 $bdd = new bddPlongee();
 
-if (isset($_POST['numPal'])){
-    echo "<script>console.log('test de '".$_POST['numPal'].");</script>";
-    listePal::ajouterListePal($_POST['numPal']);
-}else{
-    echo "<script>console.log('test err');</script>";
-}
 
 ?>
 <br/>
@@ -27,25 +22,26 @@ if (isset($_POST['numPal'])){
 
                 <div id="listPersonnes">
                     <?php
-                        $donnes = listePal::$liste;
-                        print_r($donnes);
-                        if (is_array($donnes) || is_object($donnes)){
-                            var_dump(listePal::$liste);
-                            foreach ($donnes as $num){
-                                $reqPersonne = "SELECT PER_NOM, PER_PRENOM FROM PLO_PERSONNE WHERE PER_NUM = $num";
-                                $resP = $bdd->exec($reqPersonne);
-                                var_dump($resP);
+                    if (!empty($_SESSION['listePal'])){
 
-                                ?>
-                                <tr>
-                                    <th><?php echo $resP[0]['PER_NOM']?></th>
-                                    <th><?php echo $resP[0]['PER_PRENOM']?></th>
-                                    <th><input type="checkbox" name="listePersonnes[]" value="<?php echo $num?>" checked></th>
-                                </tr>
-                                <?php
-                            }
-                        }
-                    ?>
+
+                    var_dump($_SESSION['listePal']);
+
+
+                    foreach ((array)$_SESSION['listePal'] as $num){
+
+                        $reqPersonne = "SELECT PER_NOM, PER_PRENOM FROM PLO_PERSONNE WHERE PER_NUM = $num";
+                        $resP = $bdd->exec($reqPersonne);
+                        ?>
+
+        <tr>
+            <th><?php echo $resP[0]['PER_NOM']?></th>
+            <th><?php echo $resP[0]['PER_PRENOM']?></th>
+            <th><input type="checkbox" name="listePersonnes[]" value="<?php echo $num?>" checked></th>
+        </tr>
+
+                    <?php }
+                    }?>
 
                 </div>
 
@@ -102,26 +98,18 @@ if (isset($_POST['numPal'])){
                 <button class="btn waves-effect waves-light" type="reset" name="action">Effacer
                     <i class="material-icons right">clear</i>
                 </button>
-            </fieldset>   
+            </fieldset>
         </form>
-
-
 
 
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script>
 
 
-            function updateListe()
-            {
-                $( "#listPersonnes" ).load(window.location.href + " #listPersonnes" );
-            }
-
-
-
             $(document).ready(function(){
                 $('#recherchePal').on('change keyup copy paste cut',function(){
                     var recherche = $(this).val();
+                    console.log("recherche");
                     if (!recherche){
                         recherche = "%";
                     }
@@ -134,18 +122,6 @@ if (isset($_POST['numPal'])){
                         }
                     });
 
-                });
-            });
-
-            $("btnInsertionPal").click(function() {
-                var id = $(this).val();
-                $.ajax({
-                    type: "POST",
-                    url: "../backend/ajoutNumListePal.php",
-                    data: 'ajout='+id;
-                    success:function(){
-                        updateListe();
-                    }
                 });
             });
 
