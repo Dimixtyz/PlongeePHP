@@ -15,11 +15,34 @@ if (isset($_POST['recherche'])){
     <tr>
         <th><?php echo $pal['PER_NOM']?></th>
         <th><?php echo $pal['PER_PRENOM']?></th>
-        <th><button id="btnInsertionPal" name="btnInsertionPal" value="<?php echo $pal['PER_NUM'] ?>">Ajouter</button></th>
+        <th><button id="btnInsertionPal" value="<?php echo $pal['PER_NUM'] ?>">Ajouter</button></th>
     </tr>
 
     <?php
     }
+
+    ?>
+    <script>
+        $(document).ready(function(){
+            $("#btnInsertionPal").click(function() {
+                var id = $(this).val();
+                console.log("click, val : "+id);
+                $.ajax({
+                    type: "POST",
+                    url: "../backend/ajoutNumListePal.php",
+                    data: 'ajout='+id,
+                    success:function(data){
+                        console.log("succes");
+                        $('#listPersonnes').html(data);
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
+    <?php
 
 
 

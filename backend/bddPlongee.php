@@ -1,6 +1,5 @@
 <?php
 
-
 class bddPlongee
 {
     private $hote = 'mysql:host=localhost;dbname=pphp2a08_bd;charset=utf8';
