@@ -90,6 +90,9 @@ include "../header.php";
 
             <label>Effectif plongeurs : </label><input type="number" name="effectifP"><br/>
             <label>Effectif bateau : </label><input type="number" name="effectifB">
+            <label>Nombre palanquée : </label><input type="number" name="nombrePal">
+
+
 
             <br/>
             <br/>

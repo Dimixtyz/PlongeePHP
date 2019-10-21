@@ -2,6 +2,8 @@
 include "bddPlongee.php";
 $bdd = new bddPlongee();
 
+$eleveinserer = false;
+
 echo "<pre>";
 print_r($_POST['statut']);
 echo "</pre>";
@@ -55,6 +57,7 @@ if(isset($statut)&& sizeof($statut)>0){
             $PERNUM = $dernierUtil+1 ;
             $reqInsertionPerso = "insert into PLO_PERSONNE values ($PERNUM,$nom,$prenom)";
             $bdd->inserer($reqInsertionPerso);
+            $eleveinserer = true;
         }else{
             echo "Cet élève existe déjà !!!";
         }
@@ -62,17 +65,23 @@ if(isset($statut)&& sizeof($statut)>0){
     }
 
     for($i=0 ; $i<sizeof($statut);$i++){
-        if($statut[$i]=="securitedesurface"){
-            $req =  "insert into PLO_SECURITE_DE_SURFACE(PER_NUM) values ($PERNUM)";
-            $bdd->inserer($req);
-        }else if($statut[$i]=="directeur"){
-            $req =  "insert into PLO_DIRECTEUR(PER_NUM) values ($PERNUM)";
-            $bdd->inserer($req);
-        }else if($statut[$i]=="plongeur" && isset($_POST['aptitudeplongeur'])){
-            $req = "insert into PLO_PLONGEUR(PER_NUM,APT_CODE) values ($PERNUM,$aptitudeplongeur)";
-            $bdd->inserer($req);
+        if($eleveinserer){
+
+
+            if($statut[$i]=="securitedesurface"){
+                $req =  "insert into PLO_SECURITE_DE_SURFACE(PER_NUM) values ($PERNUM)";
+                $bdd->inserer($req);
+            }else if($statut[$i]=="directeur"){
+                $req =  "insert into PLO_DIRECTEUR(PER_NUM) values ($PERNUM)";
+                $bdd->inserer($req);
+            }else if($statut[$i]=="plongeur" && isset($_POST['aptitudeplongeur'])){
+                $req = "insert into PLO_PLONGEUR(PER_NUM,APT_CODE) values ($PERNUM,$aptitudeplongeur)";
+                $bdd->inserer($req);
+
+            }
 
         }
+
 
 
     }

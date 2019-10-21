@@ -1,5 +1,4 @@
 <?php
-include_once "../backend/utileFormPal.php";
 include "../header.php";
 include_once "../backend/bddPlongee.php";
 
@@ -20,34 +19,12 @@ $bdd = new bddPlongee();
             <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
                 <legend>Ajout de personne à la palanquée</legend><br/>
 
-                <div id="listPersonnes">
-                    <?php
-                    if (!empty($_SESSION['listePal'])){
 
 
-                    var_dump($_SESSION['listePal']);
 
 
-                    foreach ((array)$_SESSION['listePal'] as $num){
 
-                        $reqPersonne = "SELECT PER_NOM, PER_PRENOM FROM PLO_PERSONNE WHERE PER_NUM = $num";
-                        $resP = $bdd->exec($reqPersonne);
-                        ?>
 
-        <tr>
-            <th><?php echo $resP[0]['PER_NOM']?></th>
-            <th><?php echo $resP[0]['PER_PRENOM']?></th>
-            <th><input type="checkbox" name="listePersonnes[]" value="<?php echo $num?>" checked></th>
-        </tr>
-
-                    <?php }
-                    }?>
-
-                </div>
-
-                <input type="text" id="recherchePal"/>
-
-                <div id="suggestions"></div>
 
 
             </fieldset>
@@ -102,32 +79,7 @@ $bdd = new bddPlongee();
         </form>
 
 
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script>
 
-
-            $(document).ready(function(){
-                $('#recherchePal').on('change keyup copy paste cut',function(){
-                    var recherche = $(this).val();
-                    console.log("recherche");
-                    if (!recherche){
-                        recherche = "%";
-                    }
-                    $.ajax({
-                        type:'POST',
-                        url:'../backend/ajoutPalanquee.php',
-                        data:'recherche='+recherche,
-                        success:function(data){
-                            $('#suggestions').html(data);
-                        }
-                    });
-
-                });
-            });
-
-
-
-        </script>
 
 
 

@@ -53,19 +53,30 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
 
 
 
-                    $statut = "";
+                    $statut ="";
+                    $plongeur = "";
+                    $directeur = "";
+                    $securite = "";
 
-                    if(!empty($repDirecteur)){
-                        $statut+="Directeur";
+
+
+                    if(sizeof($repPlongeur)>0){
+                        $plongeur=" Plongeur";
                     }
-                    if(!empty($repSecurite)){
-                        $statut+="Directeur de surface";
+                    if(sizeof($repDirecteur)>0){
+                        $directeur=" Directeur de surface";
                     }
-                    if(!empty($repSecurite)){
-                        $statut+="Sécurité de surface";
+                    if(sizeof($repSecurite)>0){
+                        $securite=" Sécurité de surface";
                     }
 
-                    echo "COUCOU";
+                    $statut = $plongeur . $directeur . $securite ;
+
+                    if($statut ==""){
+                        echo "Élève";
+                    }else{
+                        echo $statut;
+                    }
 
 
                     ?></p>
