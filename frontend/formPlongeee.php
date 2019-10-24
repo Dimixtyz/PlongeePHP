@@ -175,7 +175,6 @@
                     <legend>Ajout de personne à la palanquée</legend><br/>
 
 
-                    <label>Nom de l'élève</label>
 
 
 
@@ -184,8 +183,8 @@
 
 
                     <div class="input-field col s12">
-
-                        <select style="display: block">
+                        <select style="display: block" name="eleve1">
+                            <option value="choisir">Choisissez un élève</option>
 
 
                             <?php
@@ -203,13 +202,111 @@
                             }
                             ?>
 
+                        </select>
+
+                        <select style="display: block" name="eleve2">
+                            <option value="choisir">Choisissez un élève</option>
+
+
+                            <?php
+                            include_once "../backend/bddPlongee.php";
+                            $bdd = new bddPlongee();
+                            $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
+                            $rep = $bdd->exec($req);
+
+                            if(sizeof($rep>0)){
+                                for($i=0; $i<sizeof($rep);$i++){
+                                    echo "<option value='".$rep[$i]['PER_NUM']."'>".$rep[$i]['PER_NOM']." ".$rep[$i]['PER_PRENOM']."</option>";
+                                }
+
+
+                            }
+                            ?>
+
+                        </select><br>
+
+                        <select style="display: block" name="eleve3">
+                            <option value="choisir">Choisissez un élève</option>
+
+                            <?php
+                            include_once "../backend/bddPlongee.php";
+                            $bdd = new bddPlongee();
+                            $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
+                            $rep = $bdd->exec($req);
+
+                            if(sizeof($rep>0)){
+                                for($i=0; $i<sizeof($rep);$i++){
+                                    echo "<option value='".$rep[$i]['PER_NUM']."'>".$rep[$i]['PER_NOM']." ".$rep[$i]['PER_PRENOM']."</option>";
+                                }
+
+
+                            }
+                            ?>
+
+                        </select>
+                        <select style="display: block" name="eleve4">
+                            <option value="choisir">Choisissez un élève</option>
+
+
+                            <?php
+                            include_once "../backend/bddPlongee.php";
+                            $bdd = new bddPlongee();
+                            $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
+                            $rep = $bdd->exec($req);
+
+                            if(sizeof($rep>0)){
+                                for($i=0; $i<sizeof($rep);$i++){
+                                    echo "<option value='".$rep[$i]['PER_NUM']."'>".$rep[$i]['PER_NOM']." ".$rep[$i]['PER_PRENOM']."</option>";
+                                }
+
+
+                            }
+                            ?>
+
+                        </select>
+                        <select style="display: block" name="eleve5">
+                            <option value="choisir">Choisissez un élève</option>
+
+
+                            <?php
+                            include_once "../backend/bddPlongee.php";
+                            $bdd = new bddPlongee();
+                            $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
+                            $rep = $bdd->exec($req);
+
+                            if(sizeof($rep>0)){
+                                for($i=0; $i<sizeof($rep);$i++){
+                                    echo "<option value='".$rep[$i]['PER_NUM']."'>".$rep[$i]['PER_NOM']." ".$rep[$i]['PER_PRENOM']."</option>";
+                                }
+
+
+                            }
+                            ?>
+
+                        </select>
+                        <select style="display: block" name="eleve6">
+                            <option value="choisir">Choisissez un élève</option>
+
+
+                            <?php
+                            include_once "../backend/bddPlongee.php";
+                            $bdd = new bddPlongee();
+                            $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
+                            $rep = $bdd->exec($req);
+
+                            if(sizeof($rep>0)){
+                                for($i=0; $i<sizeof($rep);$i++){
+                                    echo "<option value='".$rep[$i]['PER_NUM']."'>".$rep[$i]['PER_NOM']." ".$rep[$i]['PER_PRENOM']."</option>";
+                                }
+
+
+                            }
+                            ?>
 
                         </select>
 
-                        <div id="dynamicInput"></div>
-                        <button class="btn waves-effect waves-light" type="button" onClick="add('dynamicInput');">Ajouter élève
-                            <i class="material-icons right">add</i>
-                        </button><br/><br/>
+
+
 
                     </div>
 
