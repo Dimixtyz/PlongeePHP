@@ -68,8 +68,13 @@ $numSecuriteDeSurface = $_POST['securitedesurface'];
 
 $nombrePalanquee = $_POST['nombrePal'];
 
+$tempsprevu = $_POST['tempsprevu'];
+
+$profondeurprevu= $_POST['profprevue'];
 
 $reqPlongee = "INSERT INTO PLO_PLONGEE (PLO_DATE, PLO_MATIN_APRESMIDI, SIT_NUM, EMB_NUM, PER_NUM_DIR, PER_NUM_SECU, PLO_EFFECTIF_PLONGEURS, PLO_EFFECTIF_BATEAU, PLO_NB_PALANQUEES) VALUES ('".$dateplongee."', '".$seance."', '".$numsite."', '".$typeembarcation."', '".$numDirecteurDePlongee."', '".$numSecuriteDeSurface."', '".$effectifdeplongeur."', '".$effectifdebateau."', '".$nombrePalanquee."')";
+
+$reqPalanque = "INSERT INTO PLO_PALANQUEE(PLO_DATE,PLO_MATIN_APRESMIDI, PAL_NUM,PAL_PROFONDEUR_PREVU,PAL_DUREE_PREVUE) VALUES ('".$profondeurprevu."', '".$tempsprevu."')";
 
 try
 {
