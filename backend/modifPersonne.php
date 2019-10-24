@@ -4,29 +4,22 @@ $bdd = new bddPlongee();
 
 $eleveinserer = false;
 
-echo "<pre>";
-print_r($_POST['statut']);
-echo "</pre>";
-
-$rep = $bdd->exec($reqderniernumutilisateur);
-$oninsereoupas = false ;
 
 
 function peutOnInserer($pre,$no){
     $bdd = new bddPlongee();
 
-    $req = "SELECT COUNT(*) FROM `PLO_PERSONNE` WHERE upper(PER_NOM) = $no AND upper(PER_PRENOM) = $pre ";
+    $req = "SELECT PER_NOM, PER_PRENOM FROM `PLO_PERSONNE` WHERE upper(PER_NOM) = $no AND upper(PER_PRENOM) = $pre ";
     $res=$bdd->exec($req);
-    if($res[0][0]>0){
+    if(!empty($res) && $no != $res[0]['PER_NOM'] && $pre != $res[0]['PER_PRENOM']){
         return false;
     }else{
         return true;
     }
 
 
-
-
 }
+
 if (isset($_POST['id'])){
     $id = $_POST['id'];
 }
@@ -67,11 +60,11 @@ if(isset($statut)&& sizeof($statut)>0){
         if($eleveinserer){
 
             $reqSupp = "DELETE FROM PLO_SECURITE_DE_SURFACE WHERE PER_NUM = $id";
-            $bdd->inserer($req);
+            $bdd->inserer($reqSupp);
             $reqSupp = "DELETE FROM PLO_DIRECTEUR WHERE PER_NUM = $id";
-            $bdd->inserer($req);
+            $bdd->inserer($reqSupp);
             $reqSupp = "DELETE FROM PLO_PLONGEUR WHERE PER_NUM = $id";
-            $bdd->inserer($req);
+            $bdd->inserer($reqSupp);
 
             if($statut[$i]=="securitedesurface"){
                 $req =  "insert into PLO_SECURITE_DE_SURFACE(PER_NUM) values ($id)";
@@ -95,8 +88,7 @@ if(isset($statut)&& sizeof($statut)>0){
     echo "VOUS DEVEZ CHOISIR UN STATUT !!";
 }
 
-
-
-
+header("Location: ../frontend/recherche_personne.php");
+exit();
 
 ?>
