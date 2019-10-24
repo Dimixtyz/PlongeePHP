@@ -1,6 +1,4 @@
-<?php
-include "../header.php";
-?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -15,6 +13,20 @@ include "../header.php";
       document.addEventListener('DOMContentLoaded', function() {
       var elems = document.querySelectorAll('.datepicker');
       });
+
+      var choices = ["one", "two"];
+
+      function add(divName){
+          var newDiv = document.createElement('div');
+          var selectHTML = "";
+          selectHTML="<select>";
+          for(i = 0; i < choices.length; i = i + 1) {
+              selectHTML += "<option value='" + choices[i] + "'>" + choices[i] + "</option>";
+          }
+          selectHTML += "</select>";
+          newDiv.innerHTML = selectHTML;
+          document.getElementById(divName).appendChild(newDiv);
+      }
     </script>
   </head>
   <body>
@@ -117,6 +129,7 @@ include "../header.php";
             </select>
 
 
+
             <br/>
             <br/>
 
@@ -146,17 +159,82 @@ include "../header.php";
             <br/>
             <br/>
 
+
+
+
+
+
+            <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
+                <legend>Palanquée avant la plongée</legend><br/>
+
+                <label>Temps prévu (en minutes) : </label><input type="number" name="tempsprevu">
+                <label>Profondeur prévue (en mètres) :</label><input type="number" name="profprevue">
+
+
+                <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
+                    <legend>Ajout de personne à la palanquée</legend><br/>
+
+
+                    <label>Nom de l'élève</label>
+
+
+
+
+
+
+
+                    <div class="input-field col s12">
+
+                        <select style="display: block">
+
+
+                            <?php
+                            include_once "../backend/bddPlongee.php";
+                            $bdd = new bddPlongee();
+                            $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
+                            $rep = $bdd->exec($req);
+
+                            if(sizeof($rep>0)){
+                                for($i=0; $i<sizeof($rep);$i++){
+                                    echo "<option value='".$rep[$i]['PER_NUM']."'>".$rep[$i]['PER_NOM']." ".$rep[$i]['PER_PRENOM']."</option>";
+                                }
+
+
+                            }
+                            ?>
+
+
+                        </select>
+
+                        <div id="dynamicInput"></div>
+                        <button class="btn waves-effect waves-light" type="button" onClick="add('dynamicInput');">Ajouter élève
+                            <i class="material-icons right">add</i>
+                        </button><br/><br/>
+
+                    </div>
+
+
+
+
+                </fieldset>
+
+            </fieldset>
+
+
+
+
+            <br/>
+            <br/>
             <button class="btn waves-effect waves-light" type="submit" name="action">Valider
                 <i class="material-icons right">send</i>
             </button>
             <button class="btn waves-effect waves-light" type="reset" name="action">Effacer
                 <i class="material-icons right">clear</i>
             </button>
-
-            <br/>
-            <br/>
+            <button class="btn waves-effect waves-light" type="button" value = "Retour"  onclick = "history.back()" style="margin:auto">
+                Retour
+            </button>
         </fieldset><br/>
-        <input type = "button" value = "Retour"  onclick = "history.back()" style="margin:auto">
     </form>
   </body>
 </html>

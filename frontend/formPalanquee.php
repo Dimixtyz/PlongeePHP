@@ -29,21 +29,16 @@ $bdd = new bddPlongee();
 
             </fieldset>
 
+
+
 	        <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
                 <legend>Palanquée avant la plongée</legend><br/>
 
-                <label>Profondeur maximum (en mètres) : </label>
-                <p class="range-field">
-                    <input type="range" id="profondeurMax" min="0" max="100" />
-                </p>
+                <label>Profondeur maximum (en mètres) :</label><input type="number" name="profmaxavant">
+                <label>Temps fond maximum (en minutes) : </label><input type="number" name="tempsfondmaxavant">
+                <label>Horraire d'immersion (en min) : </label><input type="number" name="tempsimmersionavant">
 
-                <label>Temps fond maximum (en minutes) : </label>
-                <p class="range-field">
-                    <input type="range" id="TempsFondMax" min="0" max="60" />
-                </p>
 
-                <label>Horaire d'immersion : </label>
-                <input type="time" name="immersion"><br/><br/>
 
                 <button class="btn waves-effect waves-light" type="submit" name="action">Valider
                     <i class="material-icons right">send</i>
@@ -56,18 +51,11 @@ $bdd = new bddPlongee();
             <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
                 <legend>Palanquée après la plongée</legend><br/>
 
-                <label>Heuraire d'émersion : </label>
-                <input type="time" name="sortie">
+                <label>Profondeur maximum (en mètres) :</label><input type="number" name="profmaxapres">
+                <label>Temps fond maximum (en minutes) : </label><input type="number" name="tempsfondmaxapres">
+                <label>Horraire d'immersion (en min) : </label><input type="number" name="tempsimmersionapres">
 
-                <label>Profondeur maximum realisé : </label>
-                <p class="range-field">
-                    <input type="range" id="profondeurMaxReel" min="0" max="100" />
-                </p>
-
-                <label>Temps fond maximum réalisé : </label>
-                <p class="range-field">
-                    <input type="range" id="TempsFondMaxReel" min="0" max="60" />
-                </p><br><br/>
+                <br><br/>
 
                 <button class="btn waves-effect waves-light" type="submit" name="action">Valider
                     <i class="material-icons right">send</i>
