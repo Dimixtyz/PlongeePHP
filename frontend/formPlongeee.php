@@ -1,4 +1,6 @@
-
+<?php
+include "../header.php";
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -9,25 +11,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <meta charset="utf-8">
     <title>Formulaire plongée</title>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.datepicker');
-      });
-
-      var choices = ["one", "two"];
-
-      function add(divName){
-          var newDiv = document.createElement('div');
-          var selectHTML = "";
-          selectHTML="<select>";
-          for(i = 0; i < choices.length; i = i + 1) {
-              selectHTML += "<option value='" + choices[i] + "'>" + choices[i] + "</option>";
-          }
-          selectHTML += "</select>";
-          newDiv.innerHTML = selectHTML;
-          document.getElementById(divName).appendChild(newDiv);
-      }
-    </script>
   </head>
   <body>
   <form method="post" action="../backend/insererPlongee.php">
@@ -183,7 +166,7 @@
 
 
                     <div class="input-field col s12">
-                        <select style="display: block" name="eleve1">
+                        <select style="display: block" name="elevepal1[]">
                             <option value="choisir">Choisissez un élève</option>
 
 
@@ -204,7 +187,7 @@
 
                         </select>
 
-                        <select style="display: block" name="eleve2">
+                        <select style="display: block" name="elevepal1[]">
                             <option value="choisir">Choisissez un élève</option>
 
 
@@ -225,7 +208,7 @@
 
                         </select><br>
 
-                        <select style="display: block" name="eleve3">
+                        <select style="display: block" name="elevepal1[]">
                             <option value="choisir">Choisissez un élève</option>
 
                             <?php
@@ -244,27 +227,7 @@
                             ?>
 
                         </select>
-                        <select style="display: block" name="eleve4">
-                            <option value="choisir">Choisissez un élève</option>
-
-
-                            <?php
-                            include_once "../backend/bddPlongee.php";
-                            $bdd = new bddPlongee();
-                            $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
-                            $rep = $bdd->exec($req);
-
-                            if(sizeof($rep>0)){
-                                for($i=0; $i<sizeof($rep);$i++){
-                                    echo "<option value='".$rep[$i]['PER_NUM']."'>".$rep[$i]['PER_NOM']." ".$rep[$i]['PER_PRENOM']."</option>";
-                                }
-
-
-                            }
-                            ?>
-
-                        </select>
-                        <select style="display: block" name="eleve5">
+                        <select style="display: block" name="elevepal1[]">
                             <option value="choisir">Choisissez un élève</option>
 
 
@@ -284,7 +247,27 @@
                             ?>
 
                         </select>
-                        <select style="display: block" name="eleve6">
+                        <select style="display: block" name="elevepal1[]">
+                            <option value="choisir">Choisissez un élève</option>
+
+
+                            <?php
+                            include_once "../backend/bddPlongee.php";
+                            $bdd = new bddPlongee();
+                            $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
+                            $rep = $bdd->exec($req);
+
+                            if(sizeof($rep>0)){
+                                for($i=0; $i<sizeof($rep);$i++){
+                                    echo "<option value='".$rep[$i]['PER_NUM']."'>".$rep[$i]['PER_NOM']." ".$rep[$i]['PER_PRENOM']."</option>";
+                                }
+
+
+                            }
+                            ?>
+
+                        </select>
+                        <select style="display: block" name="elevepal1[]">
                             <option value="choisir">Choisissez un élève</option>
 
 

@@ -74,23 +74,52 @@ $profondeurprevu= $_POST['profprevue'];
 
 $reqPlongee = "INSERT INTO PLO_PLONGEE (PLO_DATE, PLO_MATIN_APRESMIDI, SIT_NUM, EMB_NUM, PER_NUM_DIR, PER_NUM_SECU, PLO_EFFECTIF_PLONGEURS, PLO_EFFECTIF_BATEAU, PLO_NB_PALANQUEES) VALUES ('".$dateplongee."', '".$seance."', '".$numsite."', '".$typeembarcation."', '".$numDirecteurDePlongee."', '".$numSecuriteDeSurface."', '".$effectifdeplongeur."', '".$effectifdebateau."', '".$nombrePalanquee."')";
 
-$reqPalanque = "INSERT INTO PLO_PALANQUEE(PLO_DATE,PLO_MATIN_APRESMIDI, PAL_NUM,PAL_PROFONDEUR_PREVU,PAL_DUREE_PREVUE) VALUES ('".$profondeurprevu."', '".$tempsprevu."')";
+
+$reqdernierpal = "select PAL_NUM from PLO_PALANQUEE order by PAL_NUM desc LIMIT 1";
+$repDernierePal = $bdd->exec($reqdernierpal);
+
+
+
+if(sizeof($repDernierePal)==0){
+    $repDernierePal = 1 ;
+}else{
+    $repDernierePal = $repDernierePal[0]['PAL_NUM']+1;
+}
+
+
 
 try
 {
     $bdd->inserer($reqPlongee);
-    echo "Insertion de la plongée réussie !";
 }
 catch(PDOException $e){
-    echo "L'insertion de la plongée a échoué ";
+}
+
+$reqPalanque = "INSERT INTO PLO_PALANQUEE(PLO_DATE,PLO_MATIN_APRESMIDI, PAL_NUM,PAL_PROFONDEUR_PREVU,PAL_DUREE_PREVUE) VALUES ('".$dateplongee."', '".$seance."', '".$repDernierePal."','".$profondeurprevu."', '".$tempsprevu."')";
+try
+{
+    $bdd->inserer($reqPalanque);
+}
+catch(PDOException $e){
+}
+
+$elevePal1 = $_POST['elevepal1'];
+for($i=0; $i < 5 ; $i++){
+    if($elevePal1[$i]!="choisir"){
+        $reqAjoutElevePal = "INSERT INTO PLO_CONCERNER (PLO_DATE, PLO_MATIN_APRESMIDI, PAL_NUM, PER_NUM) VALUES ('".$dateplongee."','".$seance."','".$repDernierePal."','".$elevePal1[$i]."')";
+        try
+        {
+            $bdd->inserer($reqAjoutElevePal);
+        }
+        catch(PDOException $e){
+        }
+    }
+
 }
 
 
-
-
-
-
-
+header('Location: ../frontend/recherche_plongee.php');
+exit();
 
 
 ?>

@@ -14,7 +14,7 @@ include "../header.php";
 
 
 
-    <a href="formPlongee.php">Ajouter une plongée</a>
+    <a href="formPlongeee.php">Ajouter une plongée</a>
 
     <div id="listeEleves"></div>
 
