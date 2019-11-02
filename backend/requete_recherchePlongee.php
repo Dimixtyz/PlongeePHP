@@ -11,12 +11,14 @@ $bdd = new bddPlongee();
   if (!empty($rep)) {
     ?>
 
+      <form method="post" action="../frontend/affichagePlongee.php"/>
     <table class="col-md-3 table">
     <tr>
       <th>Date</th>
       <th>Séance</th>
       <th>Site</th>
       <th>Type d'embarcation</th>
+        <th>Afficher</th>
       <th>Modifier</th>
       <th>Supprimer</th>
     </tr>
@@ -48,6 +50,9 @@ $bdd = new bddPlongee();
             <p class="text-left">
               <?php echo $row["EMB_NOM"]; ?></p>
           </td>
+            <td>
+
+            </td>
           <td><a class="btn btn-primary" href="">
               Modifier
             </a></td>

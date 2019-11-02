@@ -11,7 +11,7 @@ function peutOnInserer($pre,$no){
 
     $req = "SELECT PER_NOM, PER_PRENOM FROM `PLO_PERSONNE` WHERE upper(PER_NOM) = $no AND upper(PER_PRENOM) = $pre ";
     $res=$bdd->exec($req);
-    if(!empty($res) && $no != $res[0]['PER_NOM'] && $pre != $res[0]['PER_PRENOM']){
+    if(!empty($res) && $_POST['nom'] != $res[0]['PER_NOM'] && $_POST['prenom'] != $res[0]['PER_PRENOM']){
         return false;
     }else{
         return true;
