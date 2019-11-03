@@ -51,7 +51,7 @@ if(isset($statut)&& sizeof($statut)>0){
     if(isset($nom,$prenom)){
         if(peutOnInserer($prenom,$nom)){
             $PERNUM = $dernierUtil+1 ;
-            $reqInsertionPerso = "insert into PLO_PERSONNE values ($PERNUM,$nom,$prenom)";
+            $reqInsertionPerso = "insert into PLO_PERSONNE(PER_NUM, PER_NOM, PER_PRENOM) values ($PERNUM,$nom,$prenom)";
             $bdd->inserer($reqInsertionPerso);
             $eleveinserer = true;
         }else{

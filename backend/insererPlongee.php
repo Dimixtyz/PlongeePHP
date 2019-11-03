@@ -13,7 +13,7 @@ if(isset($_POST['localisationsite']) && !empty($_POST['localisationsite'])){
 }
 
 if(isset($nomdusite) && isset($localisationsite)){
-    $reqderniersite = "select SIT_NUM from SITE order by SIT_NUM desc LIMIT 1";
+    $reqderniersite = "select SIT_NUM from PLO_SITE order by SIT_NUM desc LIMIT 1";
     $rep = $bdd->exec($reqderniersite);
 
     if(!empty($rep)){
@@ -26,7 +26,7 @@ if(isset($nomdusite) && isset($localisationsite)){
 
     $sitnom = "'".$nomdusite."'" ;
     $sitlocalisation = "'".$localisationsite."'";
-    $reqinserer = "INSERT INTO SITE (SIT_NUM, SIT_NOM, SIT_LOCALISATION) VALUES ($numsite,$sitnom,$sitlocalisation)";
+    $reqinserer = "INSERT INTO PLO_SITE (SIT_NUM, SIT_NOM, SIT_LOCALISATION) VALUES ($numsite,$sitnom,$sitlocalisation)";
 
     $bdd->inserer($reqinserer);
 
