@@ -71,6 +71,8 @@ function VerificationNom(&$nom)
         $valide = false;
     }
 
+    $nomTemporaire = preg_replace("#'#", "\'", $nomTemporaire);
+
     if ($valide) {
       $nom = $nomTemporaire;
     }
@@ -178,6 +180,8 @@ function VerificationPrenom(&$prenom){
   if (!preg_match("#^[[:alpha:] '-]*$#u",$prenomTemporaire)) {
       $valide = false;
   }
+
+  $prenomTemporaire = preg_replace("#'#", "\'", $prenomTemporaire);
 
   if ($valide) {
     $prenom = $prenomTemporaire;
