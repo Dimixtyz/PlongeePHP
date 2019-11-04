@@ -1,5 +1,7 @@
 <?php
-include "bddPlongee.php";
+include_once "bddPlongee.php";
+include_once "TestNom.php";
+
 $bdd = new bddPlongee();
 
 $eleveinserer = false;
@@ -11,7 +13,7 @@ $dernierUtil = $rep[0]['PER_NUM'];
 $oninsereoupas = false ;
 
 
-function peutOnInserer($pre,$no){
+function peutOnInserer(&$pre,&$no){
     $bdd = new bddPlongee();
 
     $req = "SELECT COUNT(*) FROM `PLO_PERSONNE` WHERE upper(PER_NOM) = $no AND upper(PER_PRENOM) = $pre ";
@@ -19,11 +21,12 @@ function peutOnInserer($pre,$no){
     if($res[0][0]>0){
         return false;
     }else{
-        return true;
+        if (VerificationNom($no) && VerificationPrenom($pre)){
+            return true;
+        }else{
+            return false;
+        }
     }
-
-
-
 
 }
 
@@ -55,7 +58,7 @@ if(isset($statut)&& sizeof($statut)>0){
             $bdd->inserer($reqInsertionPerso);
             $eleveinserer = true;
         }else{
-            echo "Cet élève existe déjà !!!";
+            echo "Impossible d'inserer cet utilisateur";
         }
 
     }
