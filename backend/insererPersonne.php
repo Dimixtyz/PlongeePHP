@@ -16,26 +16,29 @@ $oninsereoupas = false ;
 function peutOnInserer(&$pre,&$no){
     $bdd = new bddPlongee();
 
-    $req = "SELECT COUNT(*) FROM `PLO_PERSONNE` WHERE upper(PER_NOM) = $no AND upper(PER_PRENOM) = $pre ";
-    $res=$bdd->exec($req);
-    if($res[0][0]>0){
-        return false;
-    }else{
-        if (VerificationNom($no) && VerificationPrenom($pre)){
-            return true;
-        }else{
+    if (VerificationNom($no) && VerificationPrenom($pre)) {
+
+        $nomRecherche = "'" . strtoupper($no) . "'";
+        $prenomRecherche = "'" . strtoupper($pre) . "'";
+
+        $req = "SELECT COUNT(*) FROM PLO_PERSONNE WHERE upper(PER_NOM) = $nomRecherche AND upper(PER_PRENOM) = $prenomRecherche";
+
+        $res = $bdd->exec($req);
+        if ($res[0][0] > 0) {
             return false;
+        } else {
+            return true;
         }
     }
 
 }
 
 if(isset($_POST['nom'])&& $_POST['nom']!=""){
-    $nom = "'".$_POST['nom']."'";
+    $nom = $_POST['nom'];
 }
 
 if(isset($_POST['prenom'])&& $_POST['prenom']!=""){
-    $prenom = "'".$_POST['prenom']."'";
+    $prenom = $_POST['prenom'];
 }
 
 if(isset($_POST['statut'])){
@@ -54,6 +57,9 @@ if(isset($statut)&& sizeof($statut)>0){
     if(isset($nom,$prenom)){
         if(peutOnInserer($prenom,$nom)){
             $PERNUM = $dernierUtil+1 ;
+
+            $prenom = "'".$prenom."'";
+            $nom = "'".$nom."'";
             $reqInsertionPerso = "insert into PLO_PERSONNE(PER_NUM, PER_NOM, PER_PRENOM) values ($PERNUM,$nom,$prenom)";
             $bdd->inserer($reqInsertionPerso);
             $eleveinserer = true;
