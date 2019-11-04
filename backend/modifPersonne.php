@@ -41,51 +41,119 @@ if(isset($_POST['aptitudeplongeur'])){
 }
 
 
+if(isset($nom,$prenom)){
+    if(peutOnInserer($prenom,$nom)){
+        $reqInsertionPerso = "UPDATE PLO_PERSONNE SET PER_NOM = $nom, PER_PRENOM = $prenom WHERE PER_NUM = $id";
+        $bdd->inserer($reqInsertionPerso);
+        $eleveinserer = true;
+    }else{
+        echo "Cet élève existe déjà !!!";
+    }
 
+}
 
 
 if(isset($statut)&& sizeof($statut)>0){
-    if(isset($nom,$prenom)){
-        if(peutOnInserer($prenom,$nom)){
-            $reqInsertionPerso = "UPDATE PLO_PERSONNE SET PER_NOM = $nom, PER_PRENOM = $prenom WHERE PER_NUM = $id";
-            $bdd->inserer($reqInsertionPerso);
-            $eleveinserer = true;
-        }else{
-            echo "Cet élève existe déjà !!!";
-        }
 
+    $reqEstIlDirectreur = "SELECT COUNT(*) as NUM_PER FROM `PLO_DIRECTEUR` WHERE PER_NUM = $id";
+    $repEstIlDirecteur = $bdd->exec($reqEstIlDirectreur);
+
+    if($repEstIlDirecteur[0]['NUM_PER']==1){
+        $estDirecteur= true;
+    }else{
+        $estDirecteur= false;
     }
+
+    $reqEstIlSecuriteDeSurface = "SELECT COUNT(*) as NUM_PER FROM `PLO_SECURITE_DE_SURFACE` WHERE PER_NUM = $id";
+    $repEstIlSecuriteDeSurface = $bdd->exec($reqEstIlSecuriteDeSurface);
+    if($repEstIlSecuriteDeSurface[0]['NUM_PER']==1){
+        $estSecuriteDeSurface= true;
+    }else{
+        $estSecuriteDeSurface= false;
+    }
+
+    $reqEstIlPlongeur = "SELECT COUNT(*) as NUM_PER,APT_CODE FROM `PLO_PLONGEUR` WHERE PER_NUM = $id";
+    $repEstIlPlongeur = $bdd->exec($reqEstIlPlongeur);
+    if($repEstIlPlongeur[0]['NUM_PER']==1){
+        $estPlongeur= true;
+    }else{
+        $estPlongeur= false;
+    }
+
+    $cptDir = false;
+    $cptPlongeur = false;
+    $cptSec = false;
+
+
 
     for($i=0 ; $i<sizeof($statut);$i++){
-        if($eleveinserer){
 
-            $reqSupp = "DELETE FROM PLO_SECURITE_DE_SURFACE WHERE PER_NUM = $id";
-            $bdd->inserer($reqSupp);
-            $reqSupp = "DELETE FROM PLO_DIRECTEUR WHERE PER_NUM = $id";
-            $bdd->inserer($reqSupp);
-            $reqSupp = "DELETE FROM PLO_PLONGEUR WHERE PER_NUM = $id";
-            $bdd->inserer($reqSupp);
+        if($statut[$i]=="securitedesurface" && $estSecuriteDeSurface==false){
+            $req =  "insert into PLO_SECURITE_DE_SURFACE(PER_NUM) values ($id)";
+            $bdd->inserer($req);
+        }else if($statut[$i]=="directeur" && $estDirecteur==false){
+            $req =  "insert into PLO_DIRECTEUR(PER_NUM) values ($id)";
+            $bdd->inserer($req);
+        }else if($statut[$i]=="plongeur" && isset($_POST['aptitudeplongeur']) && $estPlongeur==false){
+            $req = "insert into PLO_PLONGEUR(PER_NUM,APT_CODE) values ($id,$aptitudeplongeur)";
+            $bdd->inserer($req);
 
-            if($statut[$i]=="securitedesurface"){
-                $req =  "insert into PLO_SECURITE_DE_SURFACE(PER_NUM) values ($id)";
-                $bdd->inserer($req);
-            }else if($statut[$i]=="directeur"){
-                $req =  "insert into PLO_DIRECTEUR(PER_NUM) values ($id)";
-                $bdd->inserer($req);
-            }else if($statut[$i]=="plongeur" && isset($_POST['aptitudeplongeur'])){
-                $req = "insert into PLO_PLONGEUR(PER_NUM,APT_CODE) values ($id,$aptitudeplongeur)";
-                $bdd->inserer($req);
-
-            }
-
+        }else if($statut[$i]=="plongeur" && isset($_POST['aptitudeplongeur']) && $estPlongeur){
+            $req = "UPDATE `PLO_PLONGEUR` SET `APT_CODE` = $aptitudeplongeur WHERE PER_NUM = $id";
+            $bdd->inserer($req);
         }
 
+        if($statut[$i]=="directeur"){
+            $cptDir=true;
+        }
+        if($statut[$i]=="securitedesurface"){
+            $cptSec=true;
+        }
+        if($statut[$i]=="plongeur"){
+            $cptPlongeur = true;
+        }
 
 
     }
 
+        if($estPlongeur && $cptPlongeur==false){
+            try{
+                $reqSupp = "DELETE FROM PLO_PLONGEUR WHERE PER_NUM = $id";
+                $bdd->inserer($reqSupp);
+            }catch (PDOException $e){
+
+            }
+        }
+
+        if($estSecuriteDeSurface && $cptSec==false){
+            try{
+                $reqSupp = "DELETE FROM PLO_SECURITE_DE_SURFACE WHERE PER_NUM = $id";
+                $bdd->inserer($reqSupp);
+            }catch(PDOException $e){
+
+            }
+        }
+
+        if($estDirecteur && $cptDir==false){
+            try{
+                $reqSupp = "DELETE FROM PLO_DIRECTEUR WHERE PER_NUM = $id";
+                $bdd->inserer($reqSupp);
+            }catch (PDOException $e){
+
+            }
+        }
+
+
+
+
+
+
+
+
+
+
 }else{
-    echo "VOUS DEVEZ CHOISIR UN STATUT !!";
+    //echo "VOUS DEVEZ CHOISIR UN STATUT !!";
 }
 
 header("Location: ../frontend/recherche_personne.php");
