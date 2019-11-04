@@ -16,17 +16,18 @@ $oninsereoupas = false ;
 function peutOnInserer(&$pre,&$no){
     $bdd = new bddPlongee();
 
-    $prenomsearch = "'".$pre."'";
-    $nomsearch = "'".$no."'";
-    $req = "SELECT COUNT(*) FROM `PLO_PERSONNE` WHERE upper(PER_NOM) = $nomsearch AND upper(PER_PRENOM) = $prenomsearch ";
-    $res=$bdd->exec($req);
-    if($res[0][0]>0){
-        return false;
-    }else{
-        if (VerificationNom($no) && VerificationPrenom($pre)){
-            return true;
-        }else{
+    if (VerificationNom($no) && VerificationPrenom($pre)) {
+
+        $nomRecherche = "'" . strtoupper($no) . "'";
+        $prenomRecherche = "'" . strtoupper($pre) . "'";
+
+        $req = "SELECT COUNT(*) FROM PLO_PERSONNE WHERE upper(PER_NOM) = $nomRecherche AND upper(PER_PRENOM) = $prenomRecherche";
+
+        $res = $bdd->exec($req);
+        if ($res[0][0] > 0) {
             return false;
+        } else {
+            return true;
         }
     }
 
