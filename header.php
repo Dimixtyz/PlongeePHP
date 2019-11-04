@@ -10,12 +10,6 @@
         <link rel="stylesheet" type="text/css" href="/frontend/css/style.css">
         <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="script.js"></script>
-        <script>
-        $(document).ready(function(){
-            $('.modal').modal();
-            $('.dropdown-trigger').dropdown();
-        });
-        </script>
     </head>
     <body>
         <div class="navbar-fixed">
