@@ -4,10 +4,6 @@ $bdd = new bddPlongee();
 
 $eleveinserer = false;
 
-echo "<pre>";
-print_r($_POST['statut']);
-echo "</pre>";
-
 $reqderniernumutilisateur = "select PER_NUM from PLO_PERSONNE order by PER_NUM desc LIMIT 1";
 $rep = $bdd->exec($reqderniernumutilisateur);
 $dernierUtil = $rep[0]['PER_NUM'];
@@ -55,7 +51,7 @@ if(isset($statut)&& sizeof($statut)>0){
     if(isset($nom,$prenom)){
         if(peutOnInserer($prenom,$nom)){
             $PERNUM = $dernierUtil+1 ;
-            $reqInsertionPerso = "insert into PLO_PERSONNE values ($PERNUM,$nom,$prenom)";
+            $reqInsertionPerso = "insert into PLO_PERSONNE(PER_NUM, PER_NOM, PER_PRENOM) values ($PERNUM,$nom,$prenom)";
             $bdd->inserer($reqInsertionPerso);
             $eleveinserer = true;
         }else{
@@ -91,10 +87,8 @@ if(isset($statut)&& sizeof($statut)>0){
 }
 
 
-
-
-
-
+header("Location: ../frontend/recherche_personne.php");
+exit();
 
 
 ?>
