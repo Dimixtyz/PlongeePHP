@@ -185,7 +185,8 @@ include "../header.php";
                             }
                             ?>
 
-                        </select>
+                        </select><br>
+
 
                         <select style="display: block" name="elevepal1[]">
                             <option value="choisir">Choisissez un élève</option>
@@ -226,7 +227,8 @@ include "../header.php";
                             }
                             ?>
 
-                        </select>
+                        </select><br>
+
                         <select style="display: block" name="elevepal1[]">
                             <option value="choisir">Choisissez un élève</option>
 
@@ -246,7 +248,8 @@ include "../header.php";
                             }
                             ?>
 
-                        </select>
+                        </select><br>
+
                         <select style="display: block" name="elevepal1[]">
                             <option value="choisir">Choisissez un élève</option>
 
@@ -266,7 +269,8 @@ include "../header.php";
                             }
                             ?>
 
-                        </select>
+                        </select><br>
+
                         <select style="display: block" name="elevepal1[]">
                             <option value="choisir">Choisissez un élève</option>
 
@@ -286,7 +290,8 @@ include "../header.php";
                             }
                             ?>
 
-                        </select>
+                        </select><br>
+
 
 
 
