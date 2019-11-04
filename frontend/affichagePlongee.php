@@ -25,7 +25,7 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])){
   <div><h2>FICHE DE SECURITE</h2></div>
 
   <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
-    <table>
+    <table class="centered">
       <tr>
         <td>Date :</td>
         <td><?php echo $resPlongee[0]['PLO_DATE'];?></td>
@@ -50,12 +50,8 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])){
         <td><?php echo $resPlongee[0]['PLO_EFFECTIF_BATEAU'];?></td>
       </tr>
     </table>
-  </fieldset>
 
-  <br>
-
-  <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
-    <table>
+    <table class="centered">
       <tr>
         <td>Sécurité de surface :</td>
         <td><?php
@@ -74,11 +70,11 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])){
       for ($i = 0; $i<sizeof($resPalanquees); $i++){
 
         ?>
+        <h4>Palanquee <?php echo $i+1;?></h4>
 
         <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
-          <legend>Palanquee <?php echo $i+1;?></legend>
 
-          <table>
+          <table class="centered">
             <tr>
               <td>Heure de départ :</td>
               <td><?php echo $resPalanquees[$i]['PAL_HEURE_IMMERSION']?></td>
@@ -114,13 +110,17 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])){
 
           </table>
 
-          <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
-            <table>
-              <tr>
-                <th>Nom</th>
-                <th>Niveau</th>
-              </tr>
+            <br>
+            <br>
+            <table class="centered">
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Niveau</th>
+                  </tr>
+                </thead>
 
+                <tbody>
               <?php
               $numPal = "'".$resPalanquees[$i]['PAL_NUM']."'";
               $reqPlongeur = "SELECT * FROM PLO_PALANQUEE JOIN PLO_CONCERNER USING (PLO_DATE,PLO_MAT_MID_SOI,PAL_NUM) JOIN PLO_PLONGEUR USING (PER_NUM) JOIN PLO_PERSONNE USING (PER_NUM) JOIN PLO_APTITUDE USING (APT_CODE) WHERE PLO_DATE = $datePlongee AND PLO_MAT_MID_SOI = $periodePlongee AND PAL_NUM=$numPal";
@@ -137,10 +137,10 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])){
               }
 
               ?>
-
+                </tbody>
 
             </table>
-          </fieldset>
+
 
 
         </fieldset>
