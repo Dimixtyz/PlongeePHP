@@ -27,7 +27,7 @@ $bdd = new bddPlongee();
         ?>
 
           <input type="hidden" name="datePlo" value="<?php echo $row["PLO_DATE"];?>">
-          <input type="hidden" name="periodePlongee" value="<?php echo $row["PLO_MATIN_APRESMIDI"];?>">
+          <input type="hidden" name="periodePlongee" value="<?php echo $row["PLO_MAT_MID_SOI"];?>">
 
         <tr>
           <td>
@@ -36,13 +36,13 @@ $bdd = new bddPlongee();
           </td>
           <td>
             <p class="text-left">
-              <?php if($row["PLO_MATIN_APRESMIDI"]== 1){
+              <?php if($row["PLO_MAT_MID_SOI"]== 1){
                       echo ("Matin");
                     } 
-                    else if($row["PLO_MATIN_APRESMIDI"]== 2){
+                    else if($row["PLO_MAT_MID_SOI"]== 2){
                       echo("Après-midi");
                     }
-                    else if($row["PLO_MATIN_APRESMIDI"]== 3){
+                    else if($row["PLO_MAT_MID_SOI"]== 3){
                       echo("Soir");
                     }?></p>
           </td>
