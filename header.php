@@ -10,6 +10,12 @@
         <link rel="stylesheet" type="text/css" href="/frontend/css/style.css">
         <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="script.js"></script>
+        <script>
+        $(document).ready(function(){
+            $('.modal').modal();
+            $('.dropdown-trigger').dropdown();
+        });
+        </script>
     </head>
     <body>
         <div class="navbar-fixed">
@@ -17,10 +23,8 @@
                 <div class="nav-wrapper">
                     <a href="../index.php" class="brand-logo left" style="padding-left:10px;">Site de Plongée</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="/frontend/recherche_plongee.php">Recherche plongee</a></li>
+                        <li><a href="/frontend/recherche_plongee.php">Recherche plongée</a></li>
                         <li><a href="/frontend/recherche_personne.php">Recherche personne</a></li>
-                        <li><a href="/frontend/formPlongeee.php">Formulaire plongée</a></li>
-                        <li><a href="/frontend/formulaire_creation_personne.php">Inscription personne</a></li>
                     </ul>
                 </div>
             </nav>
