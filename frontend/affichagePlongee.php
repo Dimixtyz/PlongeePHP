@@ -10,8 +10,8 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])){
   $datePlongee = $_POST['datePlo'];
   $periodePlongee = $_POST['periodePlongee'];
 
-  $reqPlongee = "SELECT * FROM PLO_PLONGEE JOIN SITE USING(SIT_NUM) WHERE PLO_DATE = $datePlongee AND PLO_MATIN_APRESMIDI = $periodePlongee";
-  $reqPalanquees = "SELECT * FROM PLO_PALANQUEE WHERE PLO_DATE = $datePlongee AND PLO_MATIN_APRESMIDI = $periodePlongee";
+  $reqPlongee = "SELECT * FROM PLO_PLONGEE JOIN PLO_SITE USING(SIT_NUM) WHERE PLO_DATE = $datePlongee AND PLO_MAT_MID_SOI = $periodePlongee";
+  $reqPalanquees = "SELECT * FROM PLO_PALANQUEE WHERE PLO_DATE = $datePlongee AND PLO_MAT_MID_SOI = $periodePlongee";
 
 
   $resPalanquees = $bdd->exec($reqPalanquees);
