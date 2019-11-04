@@ -23,6 +23,7 @@ function peutOnInserer(&$pre,&$no){
 
         $req = "SELECT COUNT(*) FROM PLO_PERSONNE WHERE upper(PER_NOM) = $nomRecherche AND upper(PER_PRENOM) = $prenomRecherche";
 
+
         $res = $bdd->exec($req);
         if ($res[0][0] > 0) {
             return false;
@@ -63,6 +64,13 @@ if(isset($statut)&& sizeof($statut)>0){
             $reqInsertionPerso = "insert into PLO_PERSONNE(PER_NUM, PER_NOM, PER_PRENOM) values ($PERNUM,$nom,$prenom)";
             $bdd->inserer($reqInsertionPerso);
             $eleveinserer = true;
+
+            if (!empty($_POST['certificat'])){
+                $reqCertificat = "UPDATE PLO_PERSONNE SET PER_DATE_CERTIF_MED = SYSDATE() WHERE PER_NUM = $PERNUM";
+                $bdd->inserer($reqCertificat);
+            }
+
+
         }else{
             echo "Impossible d'inserer cet utilisateur";
         }
