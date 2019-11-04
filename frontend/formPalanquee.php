@@ -3,8 +3,6 @@ include "../header.php";
 include_once "../backend/bddPlongee.php";
 
 $bdd = new bddPlongee();
-
-
 ?>
 <br/>
 <!DOCTYPE html>
@@ -15,61 +13,144 @@ $bdd = new bddPlongee();
     </head>
     <body>
 
-        <form method="post">
+        <div id="AjoutPalanquee">
             <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
-                <legend>Ajout de personne à la palanquée</legend><br/>
-
-
-
-
-
-
-
-
-
-            </fieldset>
-
-
-
-	        <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
                 <legend>Palanquée avant la plongée</legend><br/>
 
-                <label>Profondeur maximum (en mètres) :</label><input type="number" name="profmaxavant">
-                <label>Temps fond maximum (en minutes) : </label><input type="number" name="tempsfondmaxavant">
-                <label>Horraire d'immersion (en min) : </label><input type="number" name="tempsimmersionavant">
+                <label>Temps prévu (en minutes) : </label><input type="number" name="tempsprevu">
+                <label>Profondeur prévue (en mètres) :</label><input type="number" name="profprevue">
 
 
+                <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
+                    <legend>Ajout de personne à la palanquée</legend><br/>
 
-                <button class="btn waves-effect waves-light" type="submit" name="action">Valider
-                    <i class="material-icons right">send</i>
-                </button>
-                <button class="btn waves-effect waves-light" type="reset" name="action">Effacer
-                    <i class="material-icons right">clear</i>
-                </button>
-            </fieldset>
-
-            <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
-                <legend>Palanquée après la plongée</legend><br/>
-
-                <label>Profondeur maximum (en mètres) :</label><input type="number" name="profmaxapres">
-                <label>Temps fond maximum (en minutes) : </label><input type="number" name="tempsfondmaxapres">
-                <label>Horraire d'immersion (en min) : </label><input type="number" name="tempsimmersionapres">
-
-                <br><br/>
-
-                <button class="btn waves-effect waves-light" type="submit" name="action">Valider
-                    <i class="material-icons right">send</i>
-                </button>
-                <button class="btn waves-effect waves-light" type="reset" name="action">Effacer
-                    <i class="material-icons right">clear</i>
-                </button>
-            </fieldset>
-        </form>
+                    <div class="input-field col s12">
+                        <select style="display: block" name="elevepal1[]">
+                            <option value="choisir">Choisissez un élève</option>
 
 
+                            <?php
+                            include_once "../backend/bddPlongee.php";
+                            $bdd = new bddPlongee();
+                            $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
+                            $rep = $bdd->exec($req);
+
+                            if(sizeof($rep>0)){
+                                for($i=0; $i<sizeof($rep);$i++){
+                                    echo "<option value='".$rep[$i]['PER_NUM']."'>".$rep[$i]['PER_NOM']." ".$rep[$i]['PER_PRENOM']."</option>";
+                            }
 
 
+                            }
+                            ?>
 
+                        </select>
+
+                        <select style="display: block" name="elevepal1[]">
+                            <option value="choisir">Choisissez un élève</option>
+
+
+                            <?php
+                            include_once "../backend/bddPlongee.php";
+                            $bdd = new bddPlongee();
+                            $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
+                            $rep = $bdd->exec($req);
+
+                            if(sizeof($rep>0)){
+                                for($i=0; $i<sizeof($rep);$i++){
+                                    echo "<option value='".$rep[$i]['PER_NUM']."'>".$rep[$i]['PER_NOM']." ".$rep[$i]['PER_PRENOM']."</option>";
+                                }
+
+
+                            }
+                            ?>
+
+                        </select><br>
+
+                            <select style="display: block" name="elevepal1[]">
+                                <option value="choisir">Choisissez un élève</option>
+
+                                <?php
+                                include_once "../backend/bddPlongee.php";
+                                $bdd = new bddPlongee();
+                                $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
+                                $rep = $bdd->exec($req);
+
+                                if(sizeof($rep>0)){
+                                    for($i=0; $i<sizeof($rep);$i++){
+                                        echo "<option value='".$rep[$i]['PER_NUM']."'>".$rep[$i]['PER_NOM']." ".$rep[$i]['PER_PRENOM']."</option>";
+                                    }
+
+
+                                }
+                                ?>
+
+                            </select>
+                            <select style="display: block" name="elevepal1[]">
+                                <option value="choisir">Choisissez un élève</option>
+
+
+                                <?php
+                                include_once "../backend/bddPlongee.php";
+                                $bdd = new bddPlongee();
+                                $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
+                                $rep = $bdd->exec($req);
+
+                                if(sizeof($rep>0)){
+                                    for($i=0; $i<sizeof($rep);$i++){
+                                        echo "<option value='".$rep[$i]['PER_NUM']."'>".$rep[$i]['PER_NOM']." ".$rep[$i]['PER_PRENOM']."</option>";
+                                    }
+
+
+                                }
+                                ?>
+
+                            </select>
+                            <select style="display: block" name="elevepal1[]">
+                                <option value="choisir">Choisissez un élève</option>
+
+
+                                <?php
+                                include_once "../backend/bddPlongee.php";
+                                $bdd = new bddPlongee();
+                                $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
+                                $rep = $bdd->exec($req);
+
+                                if(sizeof($rep>0)){
+                                    for($i=0; $i<sizeof($rep);$i++){
+                                        echo "<option value='".$rep[$i]['PER_NUM']."'>".$rep[$i]['PER_NOM']." ".$rep[$i]['PER_PRENOM']."</option>";
+                                    }
+
+
+                                }
+                                ?>
+
+                            </select>
+                            <select style="display: block" name="elevepal1[]">
+                                <option value="choisir">Choisissez un élève</option>
+
+
+                                <?php
+                                include_once "../backend/bddPlongee.php";
+                                $bdd = new bddPlongee();
+                                $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
+                                $rep = $bdd->exec($req);
+
+                                if(sizeof($rep>0)){
+                                    for($i=0; $i<sizeof($rep);$i++){
+                                        echo "<option value='".$rep[$i]['PER_NUM']."'>".$rep[$i]['PER_NOM']." ".$rep[$i]['PER_PRENOM']."</option>";
+                                    }
+
+
+                                }
+                                ?>
+
+                            </select>
+                    </div>
+                 </fieldset><br/>
+
+            </fieldset><br/>
+        </div>
 
     </body>
 </html>

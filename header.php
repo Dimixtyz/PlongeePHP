@@ -21,7 +21,6 @@
                         <li><a href="/frontend/recherche_personne.php">Recherche personne</a></li>
                         <li><a href="/frontend/formPlongeee.php">Formulaire plongée</a></li>
                         <li><a href="/frontend/formulaire_creation_personne.php">Inscription personne</a></li>
-                        <li><a href="/backend/deconnexion.php" onclick = "javascript:confirm('êtes-vous certain ?')">Déconnexion</a></li>
                     </ul>
                 </div>
             </nav>
