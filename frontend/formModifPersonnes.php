@@ -151,6 +151,7 @@ if(isset($_GET['id'])) {
             <input type="hidden" name="id" value="<?php echo $id;?>">
             <?php if($plongeur){echo "<script> affichageAptitude('divAptitude');console.log('Plongeur');</script>";}?>
 
+            <br>
             <?php
 
             $reqTestCertificat = "SELECT PER_NUM FROM PLO_PERSONNE WHERE PER_NUM = '".$id."' AND PER_DATE_CERTIF_MED > DATE_ADD(NOW(), INTERVAL -365 DAY)";

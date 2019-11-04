@@ -16,15 +16,18 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
   if (!empty($rep)) {
     ?>
 
-    <table class="col-md-3 table">
-    <tr>
-      <th>Nom</th>
-      <th>Prénom</th>
-      <th>Statut</th>
-      <th>Certificat</th>
-      <th>Modifier</th>
-      <th>Supprimer</th>
-    </tr>
+    <table class="centered">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Statut</th>
+          <th>Certificat</th>
+          <th>Modifier</th>
+          <th>Supprimer</th>
+        </tr>
+      </thead>
+      <tbody>
       <?php
       foreach ($rep as $row) {
         ?>
@@ -113,6 +116,7 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
       echo "Il n'y a aucun eleves de ce nom dans la base";
   }
     ?>
+        </tbody>
       </table>
     </div>
   <?php
