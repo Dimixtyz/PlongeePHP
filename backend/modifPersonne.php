@@ -9,7 +9,7 @@ $eleveinserer = false;
 function peutOnInserer($pre,$no){
     $bdd = new bddPlongee();
 
-    $req = "SELECT PER_NOM, PER_PRENOM FROM `PLO_PERSONNE` WHERE upper(PER_NOM) = $no AND upper(PER_PRENOM) = $pre ";
+    $req = "SELECT PER_NOM, PER_PRENOM FROM PLO_PERSONNE WHERE upper(PER_NOM) = $no AND upper(PER_PRENOM) = $pre ";
     $res=$bdd->exec($req);
     if(!empty($res) && $_POST['nom'] != $res[0]['PER_NOM'] && $_POST['prenom'] != $res[0]['PER_PRENOM']){
         return false;
@@ -144,8 +144,10 @@ if(isset($statut)&& sizeof($statut)>0){
         }
 
 
-
-
+    if (!empty($_POST['certificat'])){
+        $reqCertificat = "UPDATE PLO_PERSONNE SET PER_DATE_CERTIF_MED = SYSDATE() WHERE PER_NUM = $id";
+        $bdd->inserer($reqCertificat);
+    }
 
 
 

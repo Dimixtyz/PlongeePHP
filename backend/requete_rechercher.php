@@ -1,6 +1,6 @@
 <?php
 
-include "bddPlongee.php";
+include_once "bddPlongee.php";
 
 
 $bdd = new bddPlongee();
@@ -21,6 +21,7 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
       <th>Nom</th>
       <th>Prénom</th>
       <th>Statut</th>
+      <th>Certificat</th>
       <th>Modifier</th>
       <th>Supprimer</th>
     </tr>
@@ -40,8 +41,6 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
                 <p class="text-left">
                     <?php
 
-                    require_once "bddPlongee.php";
-                    $bdd = new bddPlongee();
                     $numpersonne = "'".$row['PER_NUM']."'";
                     $reqPlongeur = "SELECT * FROM PLO_PLONGEUR WHERE PER_NUM =$numpersonne" ;
                     $reqDirecteur = "SELECT * FROM PLO_DIRECTEUR WHERE PER_NUM =$numpersonne" ;
@@ -81,6 +80,25 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
 
                     ?></p>
             </td>
+
+            <td>
+                <?php
+
+                $reqTestCertificat = "SELECT PER_NUM FROM PLO_PERSONNE WHERE PER_NUM = $numpersonne AND PER_DATE_CERTIF_MED > DATE_ADD(NOW(), INTERVAL -365 DAY)";
+                $reqTestCertificat = $bdd->exec($reqTestCertificat);
+
+                if (!empty($reqTestCertificat)){
+                    echo "<span class='new badge' data-badge-caption='à jour'></span>";
+                }else{
+                    echo "<span class='new badge red' data-badge-caption='pas à jour'></span>";
+                }
+
+
+
+                ?>
+            </td>
+
+
           <td><a class="btn btn-primary" href="<?php echo "../frontend/formModifPersonnes.php?id=".$row['PER_NUM'];?>">
               Modifier
             </a></td>
