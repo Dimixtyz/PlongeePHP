@@ -20,8 +20,8 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
       <thead>
         <tr>
           <th>Nom</th>
-          <th>Prénom</th>
           <th>Statut</th>
+          <th>Nombres de plongées</th>
           <th>Certificat</th>
           <th>Modifier</th>
           <th>Supprimer</th>
@@ -34,11 +34,7 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
         <tr>
           <td>
             <p class="text-left">
-              <?php echo $row["PER_NOM"]; ?></p>
-          </td>
-          <td>
-            <p class="text-left">
-              <?php echo $row["PER_PRENOM"]; ?></p>
+                <a onclick="consulter(<?php echo $row['PER_NUM'];?>)" href="#"><?php echo $row["PER_NOM"]." ".$row["PER_PRENOM"]; ?></a></p>
           </td>
             <td>
                 <p class="text-left">
@@ -86,6 +82,16 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
 
             <td>
                 <?php
+                    $reqNbPlo = "SELECT COUNT(*) as nbPlo FROM PLO_PALANQUEE JOIN PLO_CONCERNER USING (PLO_DATE, PLO_MAT_MID_SOI, PAL_NUM) JOIN PLO_PLONGEUR USING (PER_NUM) WHERE PER_NUM = $numpersonne";
+                    $reqNbPlo = $bdd->exec($reqNbPlo);
+                    echo $reqNbPlo[0]['nbPlo'];
+
+                ?>
+
+            </td>
+
+            <td>
+                <?php
 
                 $reqTestCertificat = "SELECT PER_NUM FROM PLO_PERSONNE WHERE PER_NUM = $numpersonne AND PER_DATE_CERTIF_MED > DATE_ADD(NOW(), INTERVAL -365 DAY)";
                 $reqTestCertificat = $bdd->exec($reqTestCertificat);
@@ -102,12 +108,12 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
             </td>
 
 
-          <td><a class="btn btn-primary" href="<?php echo "../frontend/formModifPersonnes.php?id=".$row['PER_NUM'];?>">
-              Modifier
+          <td><a class="btn waves-effect waves-light blue lighten-2" href="<?php echo "../frontend/formModifPersonnes.php?id=".$row['PER_NUM'];?>">
+                  <i class="material-icons medium">create</i>
             </a></td>
 
-          <td><a class="btn btn-danger" href="<?php echo "../backend/supprimerPersonne.php?id=".$row['PER_NUM'];?>">
-              Supprimer
+          <td><a class="btn waves-effect waves-light red lighten-2" href="<?php echo "../backend/supprimerPersonne.php?id=".$row['PER_NUM'];?>">
+                  <i class="material-icons medium">clear</i>
             </a></td>
         </tr>
       <?php
@@ -119,5 +125,27 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
         </tbody>
       </table>
     </div>
+
   <?php
 }
+?>
+
+<script>
+
+    function consulter(num){
+        const form = document.createElement('form');
+        form.method = 'post';
+        form.action = '../frontend/afficherUtilisateur.php';
+
+        const hiddenField = document.createElement('input');
+        hiddenField.type = 'hidden';
+        hiddenField.name = 'id';
+        hiddenField.value = num;
+
+        form.appendChild(hiddenField);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+</script>
