@@ -113,11 +113,11 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
             </td>
 
 
-          <td><a class="btn btn-primary" href="<?php echo "../frontend/formModifPersonnes.php?id=".$row['PER_NUM'];?>">
+          <td><a class="button blue" href="<?php echo "../frontend/formModifPersonnes.php?id=".$row['PER_NUM'];?>">
               Modifier
             </a></td>
 
-          <td><a class="btn btn-danger" href="<?php echo "../backend/supprimerPersonne.php?id=".$row['PER_NUM'];?>">
+          <td><a class="button red" href="<?php echo "../backend/supprimerPersonne.php?id=".$row['PER_NUM'];?>">
               Supprimer
             </a></td>
         </tr>
