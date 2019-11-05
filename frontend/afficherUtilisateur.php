@@ -11,9 +11,10 @@ if (isset($_POST['id'])) {
     $reqPersonne = $bdd->exec($reqPersonne);
     ?>
     <div class="center"><h4><?php echo $reqPersonne[0]['PER_NOM'] . " " . $reqPersonne[0]['PER_PRENOM']; ?></h4></div>
-    <br>
+    <br><br>
     <div id="Role">
-    Role :
+    <h5 class="center">Roles :</h5>
+
     <table class="centered">
     <thead>
     <th>Directeur</th>
@@ -40,7 +41,7 @@ if (isset($_POST['id'])) {
     $reqSecuSurface = "SELECT PER_NUM FROM PLO_SECURITE_DE_SURFACE WHERE PER_NUM = $id";
     $reqSecuSurface = $bdd->exec($reqSecuSurface);
 
-    if (!empty($reqDirecteur)) {
+    if (!empty($reqSecuSurface)) {
         ?>
         <td><i class="material-icons medium">done</i></td>
         <?php
@@ -79,8 +80,16 @@ if (isset($_POST['id'])) {
         if(!empty($reqPlongeur)) {
             $reqNbPlo = "SELECT COUNT(*) as nbPlo FROM PLO_PALANQUEE JOIN PLO_CONCERNER USING (PLO_DATE, PLO_MAT_MID_SOI, PAL_NUM) JOIN PLO_PLONGEUR USING (PER_NUM) WHERE PER_NUM = $id";
             $reqNbPlo = $bdd->exec($reqNbPlo);
+
+            $reqNiveau = "SELECT APT_LIBELLE FROM PLO_APTITUDE JOIN PLO_PLONGEUR USING (APT_CODE) WHERE PER_NUM = $id";
+            $reqNiveau = $bdd->exec($reqNiveau);
+
             ?>
-            <div class="center">A réalisé : <?php echo $reqNbPlo[0]['nbPlo'];?> plongées</div>
+            <br>
+            <div class="center"><h5>Niveau : <?php echo $reqNiveau[0]['APT_LIBELLE'];?></h5></div>
+            <br>
+            <div class="center"><h5>A réalisé : <?php echo $reqNbPlo[0]['nbPlo'];?> plongées</h5></div>
+            <br>
 
 <?php
     }
@@ -97,9 +106,7 @@ if (isset($_POST['id'])) {
       <th>Séance</th>
       <th>Site</th>
       <th>Type d'embarcation</th>
-        <th>Afficher</th>
-      <th>Modifier</th>
-      <th>Supprimer</th>
+      <th>Afficher</th>
     </tr>
       <?php
       foreach ($rep as $row) {
@@ -136,13 +143,6 @@ if (isset($_POST['id'])) {
             <td>
                 <button type="submit" form="formAfficher">Afficher</button>
             </td>
-          <td><a class="btn btn-primary" href="">
-              Modifier
-            </a></td>
-
-          <td><a class="btn btn-danger" href="">
-              Supprimer
-            </a></td>
         </tr>
       <?php
     }
