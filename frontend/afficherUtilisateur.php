@@ -86,9 +86,9 @@ if (isset($_POST['id'])) {
 
             ?>
             <br>
-            <div class="center"><h5>Niveau : <?php echo $reqNiveau[0]['APT_LIBELLE'];?></h5></div>
+            <div class="center"><h5><b>Niveau :</b> <?php echo $reqNiveau[0]['APT_LIBELLE'];?></h5></div>
             <br>
-            <div class="center"><h5>A réalisé : <?php echo $reqNbPlo[0]['nbPlo'];?> plongées</h5></div>
+            <div class="center"><h5><b>A réalisé :</b> <?php echo $reqNbPlo[0]['nbPlo'];?> plongées</h5></div>
             <br>
 
 <?php
