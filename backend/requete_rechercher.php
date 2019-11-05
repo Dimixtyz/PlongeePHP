@@ -34,7 +34,7 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
         <tr>
           <td>
             <p class="text-left">
-              <?php echo $row["PER_NOM"]." ".$row["PER_PRENOM"]; ?></p>
+                <a onclick="consulter(<?php echo $row['PER_NUM'];?>)" href="#"><?php echo $row["PER_NOM"]." ".$row["PER_PRENOM"]; ?></a></p>
           </td>
             <td>
                 <p class="text-left">
@@ -125,5 +125,27 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
         </tbody>
       </table>
     </div>
+
   <?php
 }
+?>
+
+<script>
+
+    function consulter(num){
+        const form = document.createElement('form');
+        form.method = 'post';
+        form.action = '../frontend/afficherUtilisateur.php';
+
+        const hiddenField = document.createElement('input');
+        hiddenField.type = 'hidden';
+        hiddenField.name = 'id';
+        hiddenField.value = num;
+
+        form.appendChild(hiddenField);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+</script>

@@ -1,4 +1,6 @@
 <?php
+include_once "../header.php";
+include_once "../backend/bddPlongee.php";
 
 if (isset($_POST['id'])) {
 
@@ -12,7 +14,7 @@ if (isset($_POST['id'])) {
     <br>
     <div id="Role">
     Role :
-    <table>
+    <table class="centered">
     <thead>
     <th>Directeur</th>
     <th>Securite de surface</th>
@@ -21,7 +23,7 @@ if (isset($_POST['id'])) {
     <tbody>
     <?php
 
-    $reqDirecteur = "SELECT PER_NUM FROM PLO_DIRECTEUR WHERE PER_NUM = $numpersonne";
+    $reqDirecteur = "SELECT PER_NUM FROM PLO_DIRECTEUR WHERE PER_NUM = $id";
     $reqDirecteur = $bdd->exec($reqDirecteur);
 
     if (!empty($reqDirecteur)) {
@@ -35,7 +37,7 @@ if (isset($_POST['id'])) {
 
     }
 
-    $reqSecuSurface = "SELECT PER_NUM FROM PLO_SECURITE_DE_SURFACE WHERE PER_NUM = $numpersonne";
+    $reqSecuSurface = "SELECT PER_NUM FROM PLO_SECURITE_DE_SURFACE WHERE PER_NUM = $id";
     $reqSecuSurface = $bdd->exec($reqSecuSurface);
 
     if (!empty($reqDirecteur)) {
@@ -49,24 +51,15 @@ if (isset($_POST['id'])) {
     }
 
 
-                    $reqPlongeur = "SELECT * FROM PLO_PLONGEUR WHERE PER_NUM = $id";
-                    $reqPlongeur = $bdd->exec($reqPlongeur);
-
-                    if(!empty($reqPlongeur)) {
-                        $reqNbPlo = "SELECT COUNT(*) as nbPlo FROM PLO_PALANQUEE JOIN PLO_CONCERNER USING (PLO_DATE, PLO_MAT_MID_SOI, PAL_NUM) JOIN PLO_PLONGEUR USING (PER_NUM) WHERE PER_NUM = $numpersonne";
-                        $reqNbPlo = $bdd->exec($reqNbPlo);
-                        ?>
-                        <div class="center">A réalisé : <?php echo $reqNbPlo[0]['nbPlo'];?> plongées</div>
-<?php
 
 
 
 
-    $req = 'SELECT * from PLO_PLONGEE join PLO_SITE on PLO_PLONGEE.SIT_NUM = PLO_SITE.SIT_NUM join PLO_EMBARCATION on PLO_PLONGEE.EMB_NUM = PLO_EMBARCATION.EMB_NUM JOIN PLO_PALANQUE USING (PLO_DATE,PLO_MAT_MID_SOI) JOIN PLO_CONCERNER USING (PLO_DATE, PLO_MAT_MID_SOI, PAL_NUM) JOIN PLO_PLONGEUR USING (PER_NUM) WHERE PER_NUM = $id';
-    $rep = $bdd->exec($req);
+    $reqPlongeur = "SELECT * FROM PLO_PLONGEUR WHERE PER_NUM = $id";
+    $reqPlongeur = $bdd->exec($reqPlongeur);
 
 
-    if (!empty($rep)){
+    if (!empty($reqPlongeur)){
         ?>
         <td><i class="material-icons medium">done</i></td>
         <?php
@@ -82,6 +75,17 @@ if (isset($_POST['id'])) {
         </table>
     </div>
         <?php
+
+        if(!empty($reqPlongeur)) {
+            $reqNbPlo = "SELECT COUNT(*) as nbPlo FROM PLO_PALANQUEE JOIN PLO_CONCERNER USING (PLO_DATE, PLO_MAT_MID_SOI, PAL_NUM) JOIN PLO_PLONGEUR USING (PER_NUM) WHERE PER_NUM = $id";
+            $reqNbPlo = $bdd->exec($reqNbPlo);
+            ?>
+            <div class="center">A réalisé : <?php echo $reqNbPlo[0]['nbPlo'];?> plongées</div>
+
+<?php
+    }
+    $req = "SELECT * from PLO_PLONGEE join PLO_SITE on PLO_PLONGEE.SIT_NUM = PLO_SITE.SIT_NUM join PLO_EMBARCATION on PLO_PLONGEE.EMB_NUM = PLO_EMBARCATION.EMB_NUM JOIN PLO_PALANQUEE USING (PLO_DATE,PLO_MAT_MID_SOI) JOIN PLO_CONCERNER USING (PLO_DATE, PLO_MAT_MID_SOI, PAL_NUM) JOIN PLO_PLONGEUR USING (PER_NUM) WHERE PER_NUM = $id";
+    $rep = $bdd->exec($req);
 
   if (!empty($rep)) {
     ?>
@@ -142,10 +146,5 @@ if (isset($_POST['id'])) {
         </tr>
       <?php
     }
-  }else{
-      echo "Il n'y a aucune plongée dans la base";
   }
-
-}
-
 }
