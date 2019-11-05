@@ -141,7 +141,7 @@ if (isset($_POST['id'])) {
               <?php echo $row["EMB_NOM"]; ?></p>
           </td>
             <td>
-                <button type="submit" form="formAfficher">Afficher</button>
+                <button class="waves-effect waves-light btn-small deep-purple darken-2" type="submit" form="formAfficher"><i class="material-icons medium">visibility</i></button>
             </td>
         </tr>
       <?php
