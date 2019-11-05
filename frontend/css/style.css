@@ -1,19 +1,67 @@
-.slider .indicators .indicator-item {
-    background-color: #666666;
-    border: 3px solid #ffffff;
-    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-    -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-  }
-  .slider .indicators .indicator-item.active {
-    background-color: #ffffff;
-  }
-  .slider {
-    width: 900px;
-    margin: 0 auto;
-  }
-  .slider .indicators {
-    bottom: 60px;
-    z-index: 100;
-    /* text-align: left; */
-  }
+.backback{
+  width:100%;
+  background-color:#64b5f6;
+  padding-top:20px;
+}
+
+#range1{
+  width:100%;
+  padding-left:10px;
+  padding-right:10px;
+}
+
+#range2{
+  width:100%;
+  padding-left:10px;
+  padding-right:10px;
+  padding-bottom:20px;
+}
+
+#cadre2{
+  background-color:#ef5350;
+  height:250px;
+  border-radius:20px;
+  margin:5px;width:24.2%;
+}
+
+.bouton1{
+  margin: 0 auto;
+  width:52%;
+  padding-top:30px;
+}
+
+.bouton2{
+  margin: 0 auto;
+  width:32%;
+  padding-top:30px;
+}
+
+.bouton3{
+  margin: 0 auto;
+  width:42%;
+  padding-top:30px;
+}
+
+.bouton4{
+  margin: 0 auto;
+  width:57%;
+  padding-top:30px;
+}
+
+#cadre1{
+  background-color:#ef5350;
+  height:75px;
+  border-radius:20px;
+  margin:5px;
+  width:24.2%;
+}
+
+#texteBouton{
+  text-align:center;
+  border-radius:5px;
+}
+
+.titre1{
+  text-align:center;
+  font-size: 20px;
+}
