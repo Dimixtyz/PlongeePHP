@@ -12,7 +12,7 @@ include "header.php";
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
 
-    <body>
+    <body id="fond">
         <!--<div class="slider">
             <ul class="slides">
                 <li>
@@ -67,21 +67,33 @@ include "header.php";
                 <div class="col s12 m6 l3" id="cadre2">
                     <div class="bouton1">
                         <a id="texteBouton" class="waves-effect waves-light btn lime lighten-2" href="/frontend/recherche_plongee.php">Recherche plongée</a>
+                        <br/>
+                        <br/>
+                        <a id="texteBouton" class="waves-effect waves-light btn lime lighten-2" href="/frontend/formPlongeee.php">Ajouter plongée</a>
                     </div>
                 </div>
                 <div class="col s12 m6 l3" id="cadre2">
-                    <div class="bouton2">
+                    <div class="bouton1">
                         <a id="texteBouton" class="waves-effect waves-light btn lime lighten-2" href="/frontend/recherche_personne.php">Personne</a>
+                        <br/>
+                        <br/>
+                        <a id="texteBouton" class="waves-effect waves-light btn lime lighten-2" href="/frontend/formulaire_creation_personne.php">Inscription personne</a>
                     </div>      
                 </div>
                 <div class="col s12 m6 l3" id="cadre2">
-                    <div class="bouton3">
-                        <a id="texteBouton" class="waves-effect waves-light btn lime lighten-2"  href="/frontend/recherche_personne.php">Ajouter Site</a>
+                    <div class="bouton1">
+                        <a id="texteBouton" class="waves-effect waves-light btn lime lighten-2"  href="/frontend/recherche_personne.php">Ajouter site</a>
+                        <br/>
+                        <br/>
+                        <a id="texteBouton" class="waves-effect waves-light btn lime lighten-2"  href="/frontend/recherche_personne.php">Gestion site</a>
                     </div>      
                 </div>
                 <div class="col s12 m6 l3" id="cadre2">
-                    <div class="bouton4">
+                    <div class="bouton1">
                         <a id="texteBouton" class="waves-effect waves-light btn lime lighten-2" href="/frontend/recherche_personne.php">Ajouter embarcation</a>
+                        <br/>
+                        <br/>
+                        <a id="texteBouton" class="waves-effect waves-light btn lime lighten-2"  href="">Gestion embarcation</a>
                     </div>      
                 </div>
             </div>
