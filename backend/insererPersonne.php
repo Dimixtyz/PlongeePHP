@@ -16,6 +16,7 @@ $oninsereoupas = false ;
 function peutOnInserer(&$pre,&$no){
     $bdd = new bddPlongee();
 
+
     if (VerificationNom($no) && VerificationPrenom($pre)) {
 
         $nomRecherche = "'" . strtoupper($no) . "'";
@@ -30,8 +31,9 @@ function peutOnInserer(&$pre,&$no){
         } else {
             return true;
         }
+    }else{
+        return false;
     }
-
 }
 
 if(isset($_POST['nom'])&& $_POST['nom']!=""){

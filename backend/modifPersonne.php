@@ -1,22 +1,32 @@
 <?php
-include "bddPlongee.php";
+include_once "bddPlongee.php";
+include_once "TestNom.php";
 $bdd = new bddPlongee();
 
 $eleveinserer = false;
 
 
 
-function peutOnInserer($pre,$no){
+function peutOnInserer(&$pre,&$no){
+
     $bdd = new bddPlongee();
 
-    $req = "SELECT PER_NOM, PER_PRENOM FROM PLO_PERSONNE WHERE upper(PER_NOM) = $no AND upper(PER_PRENOM) = $pre ";
-    $res=$bdd->exec($req);
-    if(!empty($res) && $_POST['nom'] != $res[0]['PER_NOM'] && $_POST['prenom'] != $res[0]['PER_PRENOM']){
-        return false;
-    }else{
-        return true;
-    }
+    if (VerificationNom($no) && VerificationPrenom($pre)) {
 
+        $nomRecherche = "'" . strtoupper($no) . "'";
+        $prenomRecherche = "'" . strtoupper($pre) . "'";
+
+        $req = "SELECT PER_NOM, PER_PRENOM FROM PLO_PERSONNE WHERE upper(PER_NOM) = $nomRecherche AND upper(PER_PRENOM) = $prenomRecherche ";
+
+        $res=$bdd->exec($req);
+        if(!empty($res) && $_POST['nom'] != $res[0]['PER_NOM'] && $_POST['prenom'] != $res[0]['PER_PRENOM']){
+            return false;
+        }else{
+            return true;
+        }
+    }else{
+        return false;
+    }
 
 }
 
@@ -25,11 +35,11 @@ if (isset($_POST['id'])){
 }
 
 if(isset($_POST['nom'])&& $_POST['nom']!=""){
-    $nom = "'".$_POST['nom']."'";
+    $nom = $_POST['nom'];
 }
 
 if(isset($_POST['prenom'])&& $_POST['prenom']!=""){
-    $prenom = "'".$_POST['prenom']."'";
+    $prenom = $_POST['prenom'];
 }
 
 if(isset($_POST['statut'])){
@@ -43,7 +53,7 @@ if(isset($_POST['aptitudeplongeur'])){
 
 if(isset($nom,$prenom)){
     if(peutOnInserer($prenom,$nom)){
-        $reqInsertionPerso = "UPDATE PLO_PERSONNE SET PER_NOM = $nom, PER_PRENOM = $prenom WHERE PER_NUM = $id";
+        $reqInsertionPerso = "UPDATE PLO_PERSONNE SET PER_NOM = '".$nom."', PER_PRENOM = '".$prenom."' WHERE PER_NUM = $id";
         $bdd->inserer($reqInsertionPerso);
         $eleveinserer = true;
     }else{
