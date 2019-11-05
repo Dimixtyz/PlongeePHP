@@ -22,6 +22,7 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
           <th>Nom</th>
           <th>Prénom</th>
           <th>Statut</th>
+          <th>Nombres de plongées</th>
           <th>Certificat</th>
           <th>Modifier</th>
           <th>Supprimer</th>
@@ -82,6 +83,16 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
 
 
                     ?></p>
+            </td>
+
+            <td>
+                <?php
+                    $reqNbPlo = "SELECT COUNT(*) as nbPlo FROM PLO_PALANQUEE JOIN PLO_CONCERNER USING (PLO_DATE, PLO_MAT_MID_SOI, PAL_NUM) JOIN PLO_PLONGEUR USING (PER_NUM) WHERE PER_NUM = $numpersonne";
+                    $reqNbPlo = $bdd->exec($reqNbPlo);
+                    echo $reqNbPlo[0]['nbPlo'];
+
+                ?>
+
             </td>
 
             <td>
