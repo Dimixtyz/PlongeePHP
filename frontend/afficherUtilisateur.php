@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST['id'])){
+if (isset($_POST['id'])) {
 
     $bdd = new bddPlongee();
     $id = $_POST['id'];
@@ -8,9 +8,47 @@ if (isset($_POST['id'])){
     $reqPersonne = "SELECT * FROM PLO_PERSONNE WHERE PER_NUM = $id";
     $reqPersonne = $bdd->exec($reqPersonne);
     ?>
-    <div class="center"><h4><?php echo $reqPersonne[0]['PER_NOM']." ".$reqPersonne[0]['PER_PRENOM'];?></h4></div>
+    <div class="center"><h4><?php echo $reqPersonne[0]['PER_NOM'] . " " . $reqPersonne[0]['PER_PRENOM']; ?></h4></div>
+    <br>
+    <div id="Role">
+    Role :
+    <table>
+    <thead>
+    <th>Directeur</th>
+    <th>Securite de surface</th>
+    <th>Plongeur</th>
+    </thead>
+    <tbody>
+    <?php
 
-<?php
+    $reqDirecteur = "SELECT PER_NUM FROM PLO_DIRECTEUR WHERE PER_NUM = $numpersonne";
+    $reqDirecteur = $bdd->exec($reqDirecteur);
+
+    if (!empty($reqDirecteur)) {
+        ?>
+        <td><i class="material-icons medium">done</i></td>
+        <?php
+    } else {
+        ?>
+        <td><i class="material-icons medium">close</i></td>
+        <?php
+
+    }
+
+    $reqSecuSurface = "SELECT PER_NUM FROM PLO_SECURITE_DE_SURFACE WHERE PER_NUM = $numpersonne";
+    $reqSecuSurface = $bdd->exec($reqSecuSurface);
+
+    if (!empty($reqDirecteur)) {
+        ?>
+        <td><i class="material-icons medium">done</i></td>
+        <?php
+    } else {
+         ?>
+            <td><i class="material-icons medium">close</i></td>
+        <?php
+    }
+
+
                     $reqPlongeur = "SELECT * FROM PLO_PLONGEUR WHERE PER_NUM = $id";
                     $reqPlongeur = $bdd->exec($reqPlongeur);
 
@@ -25,7 +63,25 @@ if (isset($_POST['id'])){
 
 
     $req = 'SELECT * from PLO_PLONGEE join PLO_SITE on PLO_PLONGEE.SIT_NUM = PLO_SITE.SIT_NUM join PLO_EMBARCATION on PLO_PLONGEE.EMB_NUM = PLO_EMBARCATION.EMB_NUM JOIN PLO_PALANQUE USING (PLO_DATE,PLO_MAT_MID_SOI) JOIN PLO_CONCERNER USING (PLO_DATE, PLO_MAT_MID_SOI, PAL_NUM) JOIN PLO_PLONGEUR USING (PER_NUM) WHERE PER_NUM = $id';
-  $rep = $bdd->exec($req);
+    $rep = $bdd->exec($req);
+
+
+    if (!empty($rep)){
+        ?>
+        <td><i class="material-icons medium">done</i></td>
+        <?php
+    }else{
+        ?>
+        <td><i class="material-icons medium">close</i></td>
+        <?php
+    }
+
+?>
+
+            </tbody>
+        </table>
+    </div>
+        <?php
 
   if (!empty($rep)) {
     ?>
@@ -91,7 +147,5 @@ if (isset($_POST['id'])){
   }
 
 }
-
-
 
 }

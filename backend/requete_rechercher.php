@@ -20,7 +20,6 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
       <thead>
         <tr>
           <th>Nom</th>
-          <th>Prénom</th>
           <th>Statut</th>
           <th>Nombres de plongées</th>
           <th>Certificat</th>
@@ -35,11 +34,7 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
         <tr>
           <td>
             <p class="text-left">
-              <?php echo $row["PER_NOM"]; ?></p>
-          </td>
-          <td>
-            <p class="text-left">
-              <?php echo $row["PER_PRENOM"]; ?></p>
+              <?php echo $row["PER_NOM"]." ".$row["PER_PRENOM"]; ?></p>
           </td>
             <td>
                 <p class="text-left">
