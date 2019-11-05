@@ -43,6 +43,53 @@ include "header.php";
         <br/>
         <br/>
         <br/>
+
+        <div class="row center-align">
+            <div class="col s3">
+                <ul class="collection with-header">
+                    <li class="collection-header"><h4>PLONGÉE</h4></li>
+                    <li class="collection-item"><div><a href="#!">Rechercher</a></div></li>
+                    <li class="collection-item"><div><a href="#!">Ajouter</a></div></li>
+                </ul>
+            </div>
+
+
+
+            <div class="col s3">
+                <ul class="collection with-header">
+                    <li class="collection-header"><h4>PERSONNE</h4></li>
+                    <li class="collection-item"><div><a href="#!">Rechercher</a></div></li>
+                    <li class="collection-item"><div><a href="#!">Ajouter</a></div></li>
+                </ul>
+            </div>
+
+
+
+            <div class="col s3">
+                <ul class="collection with-header">
+                    <li class="collection-header"><h4>SITE</h4></li>
+                    <li class="collection-item"><div><a href="#!">Rechercher</a></div></li>
+                    <li class="collection-item"><div><a href="#!">Ajouter</a></div></li>
+                </ul>
+            </div>
+
+
+
+            <div class="col s3">
+                <ul class="collection with-header">
+                    <li class="collection-header"><h4>EMBARCATION</h4></li>
+                    <li class="collection-item"><div><a href="#!">Rechercher</a></div></li>
+                    <li class="collection-item"><div><a href="#!">Ajouter</a></div></li>
+                </ul>
+            </div>
+
+
+        </div>
+
+
+
+
+
         
 
         <div class="backback">
