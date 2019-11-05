@@ -20,6 +20,7 @@ $bdd = new bddPlongee();
       <th>Type d'embarcation</th>
         <th>Afficher</th>
       <th>Modifier</th>
+        <th>PDF</th>
       <th>Supprimer</th>
     </tr>
       <?php
@@ -60,6 +61,11 @@ $bdd = new bddPlongee();
           <td><a class="btn btn-primary" href="">
               Modifier
             </a></td>
+            <td>
+                <a class="btn btn-danger" href="../backend/creationPDF.php">
+                    Générer PDF
+                </a>
+            </td>
 
           <td><a class="btn btn-danger" href="">
               Supprimer
