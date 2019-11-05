@@ -56,19 +56,19 @@ $bdd = new bddPlongee();
               <?php echo $row["EMB_NOM"]; ?></p>
           </td>
             <td>
-                <button type="submit" form="formAfficher">Afficher</button>
+                <button class="waves-effect waves-light btn-small deep-purple darken-2" type="submit" form="formAfficher"><i class="material-icons medium">visibility</i></button>
             </td>
-          <td><a class="btn btn-primary" href="">
-              Modifier
+          <td><a class="btn waves-effect waves-light blue lighten-2" href="">
+                  <i class="material-icons medium">create</i>
             </a></td>
             <td>
-                <a class="btn btn-danger" href="../backend/creationPDF.php?dateplongee=<?php echo $row["PLO_DATE"];?>&seance=<?php echo $row["PLO_MAT_MID_SOI"];?>">
-                    Générer PDF
+                <a class="btn waves-effect waves-light orange" href="../backend/creationPDF.php?dateplongee=<?php echo $row["PLO_DATE"];?>&seance=<?php echo $row["PLO_MAT_MID_SOI"];?>">
+                    <i class="material-icons medium">file_download</i>
                 </a>
             </td>
 
-          <td><a class="btn btn-danger" href="">
-              Supprimer
+          <td><a class="btn waves-effect waves-light red" href="">
+                  <i class="material-icons medium">clear</i>
             </a></td>
         </tr>
       <?php
