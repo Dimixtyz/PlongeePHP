@@ -65,10 +65,17 @@ for($i=0;$i<$nbPalanque;$i++){
 
  }
 
-
-
-
 }
+?>
+
+<form id="redirectionPlongee" method="post" action="../frontend/affichagePlongee.php">
+    <input type="hidden" name="datePlo" value="<?php echo $dateplongee;?>">
+    <input type="hidden" name="periodePlongee" value="<?php echo $seance;?>">
+</form>
+
+<script type="text/javascript">
+    document.getElementById('redirectionPlongee').submit();
+</script>
 
 
 

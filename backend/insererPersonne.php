@@ -1,6 +1,8 @@
 <?php
 include_once "bddPlongee.php";
 include_once "TestNom.php";
+header('Content-type: application/json');
+$reponse = array();
 
 $bdd = new bddPlongee();
 
@@ -27,21 +29,31 @@ function peutOnInserer(&$pre,&$no){
 
         $res = $bdd->exec($req);
         if ($res[0][0] > 0) {
+            $reponse = "Cet utilisateur existe deja";
+            envoiJSON($reponse);
             return false;
         } else {
             return true;
         }
     }else{
+        $reponse = "Nom ou prenom inadapte";
+        envoiJSON($reponse);
         return false;
     }
 }
 
 if(isset($_POST['nom'])&& $_POST['nom']!=""){
     $nom = $_POST['nom'];
+}else{
+    $reponse = "Champ nom incomplet";
+    envoiJSON($reponse);
 }
 
 if(isset($_POST['prenom'])&& $_POST['prenom']!=""){
     $prenom = $_POST['prenom'];
+}else{
+    $reponse = "Champ prenom incomplet";
+    envoiJSON($reponse);
 }
 
 if(isset($_POST['statut'])){
@@ -74,7 +86,8 @@ if(isset($statut)&& sizeof($statut)>0){
 
 
         }else{
-            echo "Impossible d'inserer cet utilisateur";
+            $reponse = "Impossible d ajouter cet utilisateur";
+            envoiJSON($reponse);
         }
 
     }
@@ -101,13 +114,19 @@ if(isset($statut)&& sizeof($statut)>0){
 
     }
 
+    $reponse = "Utilisateur bien ajoute";
+    envoiJSON($reponse);
+
 }else{
-    echo "VOUS DEVEZ CHOISIR UN STATUT !!";
+    $reponse = "Impossible d ajouter cet utilisateur";
+    envoiJSON($reponse);
 }
 
-
-header("Location: ../frontend/recherche_personne.php");
-exit();
+function envoiJSON($var) {
+    $myJson = json_encode($var);
+    echo $myJson;
+    exit();
+}
 
 
 ?>
