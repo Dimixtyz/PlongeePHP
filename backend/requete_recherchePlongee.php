@@ -62,7 +62,7 @@ $bdd = new bddPlongee();
               Modifier
             </a></td>
             <td>
-                <a class="btn btn-danger" href="../backend/creationPDF.php">
+                <a class="btn btn-danger" href="../backend/creationPDF.php?dateplongee=<?php echo $row["PLO_DATE"];?>&seance=<?php echo $row["PLO_MAT_MID_SOI"];?>">
                     Générer PDF
                 </a>
             </td>

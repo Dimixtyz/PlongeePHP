@@ -1,6 +1,29 @@
 <?php
 
 require "fpdf.php";
+include_once "bddPlongee.php";
+
+$bdd = new bddPlongee();
+
+
+
+$dateplongee = "'".$_GET['dateplongee']."'";
+$seanceplongee = "'".$_GET['seance']."'";
+
+$reqPlongee = "SELECT * FROM PLO_PLONGEE JOIN PLO_SITE USING(SIT_NUM) WHERE PLO_DATE = $dateplongee AND PLO_MAT_MID_SOI = $seanceplongee";
+$reqPalanquees = "SELECT * FROM PLO_PALANQUEE WHERE PLO_DATE = $dateplongee AND PLO_MAT_MID_SOI = $seanceplongee";
+
+$resPlongee = $bdd->exec($reqPlongee);
+
+$resPalanquees = $bdd->exec($reqPalanquees);
+
+var_dump($resPlongee);
+
+$siteplongee = $resPlongee[0]['SIT_NOM'].", ".$resPlongee[0]['SIT_LOCALISATION'];
+
+
+
+
 
 
 
@@ -17,19 +40,19 @@ class myPDF extends FPDF{
     }
 
 
-    function headerTable(){
+    function headerTable($date,$site){
         $this->Ln();
 
         $this->SetFont('Times','B',12);
         $this->Cell(50,10,'Date',1,0,'C');
         $this->SetFont('Times','',12);
-        $this->Cell(50,10,'12-05-13',1,0,'C');
+        $this->Cell(50,10,$date,1,0,'C');
         $this->Ln();
 
         $this->SetFont('Times','B',12);
         $this->Cell(50,10,'Site de plongee',1,0,'C');
         $this->SetFont('Times','',12);
-        $this->Cell(50,10,'Villers sur Mer',1,0,'C');
+        $this->Cell(50,10,$site,1,0,'C');
         $this->Ln();
 
 
@@ -37,7 +60,7 @@ class myPDF extends FPDF{
         $this->Ln();
         $this->Cell(50,10,'Directeur de plongee',1,0,'C');
         $this->SetFont('Times','',12);
-        $this->Cell(50,10,'Thomas LAPIERRE',1,0,'C');
+        $this->Cell(50,10,'thomas lala',1,0,'C');
         $this->Ln();
 
         $this->SetFont('Times','B',12);
@@ -59,16 +82,49 @@ class myPDF extends FPDF{
     function palanquee(){
         $this->Ln();
         $this->SetFont('Times','B',12);
-        $this->Cell(200,10,'Palanquee n1',1,0,'C');
+        $this->Cell(185,10,'Palanquee n1',1,0,'C');
         $this->Ln();
         $this->SetFont('Times','B',12);
-        $this->Cell(50,10,'Heure de depart',1,0,'C');
+        $this->Cell(46.25,10,'Heure de depart',1,0,'C');
         $this->SetFont('Times','',12);
-        $this->Cell(50,10,'12h55',1,0,'C');
+        $this->Cell(46.25,10,'12h55',1,0,'C');
         $this->SetFont('Times','B',12);
-        $this->Cell(50,10,'Heure de retour',1,0,'C');
+        $this->Cell(46.25,10,'Heure de retour',1,0,'C');
         $this->SetFont('Times','',12);
-        $this->Cell(50,10,'13h30',1,0,'C');
+        $this->Cell(46.25,10,'13h30',1,0,'C');
+
+        $this->Ln();
+        $this->SetFont('Times','B',12);
+        $this->Cell(46.25,10,'Temps prevu',1,0,'C');
+        $this->SetFont('Times','',12);
+        $this->Cell(46.25,10,'3min',1,0,'C');
+        $this->SetFont('Times','B',12);
+        $this->Cell(46.25,10,'Profondeur prevu',1,0,'C');
+        $this->SetFont('Times','',12);
+        $this->Cell(46.25,10,'6min',1,0,'C');
+
+        $this->Ln();
+        $this->SetFont('Times','B',12);
+        $this->Cell(46.25,10,'Temps realise',1,0,'C');
+        $this->SetFont('Times','',12);
+        $this->Cell(46.25,10,'3min',1,0,'C');
+        $this->SetFont('Times','B',12);
+        $this->Cell(46.25,10,'Profondeur realise',1,0,'C');
+        $this->SetFont('Times','',12);
+        $this->Cell(46.25,10,'2min',1,0,'C');
+
+        $this->Ln();
+        $this->SetFont('Times','B',12);
+        $this->Cell(92.5,10,'Nom Prenom',1,0,'C');
+        $this->Cell(92.5,10,'Niveau',1,0,'C');
+        $this->Ln();
+        $this->SetFont('Times','',12);
+
+
+
+
+
+
 
     }
 
@@ -77,6 +133,6 @@ class myPDF extends FPDF{
 $pdf = new myPDF();
 $pdf->AliasNbPages();
 $pdf->AddPage('P','A4',0);
-$pdf->headerTable();
+$pdf->headerTable($dateplongee,$siteplongee);
 $pdf->palanquee();
 $pdf->Output();
