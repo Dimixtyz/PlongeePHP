@@ -108,12 +108,12 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
             </td>
 
 
-          <td><a class="button blue" href="<?php echo "../frontend/formModifPersonnes.php?id=".$row['PER_NUM'];?>">
-              Modifier
+          <td><a class="btn waves-effect waves-light blue lighten-2" href="<?php echo "../frontend/formModifPersonnes.php?id=".$row['PER_NUM'];?>">
+                  <i class="material-icons medium">create</i>
             </a></td>
 
-          <td><a class="button red" href="<?php echo "../backend/supprimerPersonne.php?id=".$row['PER_NUM'];?>">
-              Supprimer
+          <td><a class="btn waves-effect waves-light red lighten-2" href="<?php echo "../backend/supprimerPersonne.php?id=".$row['PER_NUM'];?>">
+                  <i class="material-icons medium">clear</i>
             </a></td>
         </tr>
       <?php
