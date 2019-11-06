@@ -18,6 +18,7 @@ function peutOnInserer(&$pre,&$no){
 
     if(strlen($pre)>= 30 || strlen($no)>=30){
         echo "Nom ou prenom trop long !\n";
+        return false;
     }
 
     if (VerificationNom($no) && VerificationPrenom($pre)) {
@@ -57,21 +58,20 @@ if(isset($_POST['aptitudeplongeur'])){
 
 
 
-if(isset($statut)&& sizeof($statut)>0){
-    if(isset($nom,$prenom)){
-        if(peutOnInserer($prenom,$nom)){
-            $PERNUM = $dernierUtil+1 ;
+if(isset($statut, $nom, $prenom)&& sizeof($statut)>0){
 
-            $prenom = "'".$prenom."'";
-            $nom = "'".$nom."'";
-            $reqInsertionPerso = "insert into PLO_PERSONNE(PER_NUM, PER_NOM, PER_PRENOM) values ($PERNUM,$nom,$prenom)";
-            $bdd->inserer($reqInsertionPerso);
-            $eleveinserer = true;
-        }else{
-            echo "Impossible d'inserer cet utilisateur";
-        }
+    if(peutOnInserer($prenom,$nom)){
+        $PERNUM = $dernierUtil+1 ;
 
+        $prenom = "'".$prenom."'";
+        $nom = "'".$nom."'";
+        $reqInsertionPerso = "insert into PLO_PERSONNE(PER_NUM, PER_NOM, PER_PRENOM) values ($PERNUM,$nom,$prenom)";
+        $bdd->inserer($reqInsertionPerso);
+        $eleveinserer = true;
+    }else{
+        echo "Impossible d'inserer cet utilisateur";
     }
+
 
     for($i=0 ; $i<sizeof($statut);$i++){
         if($eleveinserer){
@@ -91,17 +91,23 @@ if(isset($statut)&& sizeof($statut)>0){
 
         }
 
-
-
     }
+
+    if (!empty($_POST['certificat'])){
+        $reqCertificat = "UPDATE PLO_PERSONNE SET PER_DATE_CERTIF_MED = SYSDATE() WHERE PER_NUM = $PERNUM";
+        $bdd->inserer($reqCertificat);
+    }
+
+
+    header("Location: ../frontend/recherche_personne.php");
+    exit();
 
 }else{
     echo "VOUS DEVEZ CHOISIR UN STATUT !!";
 }
 
 
-header("Location: ../frontend/recherche_personne.php");
-exit();
+
 
 
 ?>

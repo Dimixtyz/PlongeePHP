@@ -133,14 +133,13 @@ $bdd = new bddPlongee();
                 }
 
                 if ($valide){
-                    echo "Complet";
+                    echo "<span class='new badge' data-badge-caption='Complet'></span>";
                     $reqStatut = "UPDATE PLO_PLONGEE SET PLO_ETAT = 'Complet' WHERE PLO_DATE = $dateRecherche AND PLO_MAT_MID_SOI = $periodeRecherce";
                 }else{
-                    echo "Incomplet";
+                    echo "<span class='new badge red' data-badge-caption='Incomplet'></span>";
                     $reqStatut = "UPDATE PLO_PLONGEE SET PLO_ETAT = 'Imcomplet' WHERE PLO_DATE = $dateRecherche AND PLO_MAT_MID_SOI = $periodeRecherce";
                 }
                 $bdd->inserer($reqStatut);
-
 
                 ?>
             </td>

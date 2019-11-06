@@ -158,13 +158,13 @@ include "../header.php";
 
             <br/>
             <br/>
-            <button class="btn waves-effect waves-light" type="submit" name="action">Créer la plongée
+            <button class="btn waves-effect waves-light green lighten-1" style="border-radius:10px;" type="submit" name="action">Créer la plongée
                 <i class="material-icons right">send</i>
             </button>
-            <button class="btn waves-effect waves-light" type="reset" name="action">Effacer
+            <button class="btn waves-effect waves-light red lighten-1" style="border-radius:10px;" type="reset" name="action">Effacer
                 <i class="material-icons right">clear</i>
             </button>
-            <button class="btn waves-effect waves-light" type="button" value = "Retour"  onclick = "history.back()" style="margin:auto">
+            <button class="btn waves-effect waves-light grey darken-4" style="border-radius:10px;" value = "Retour"  onclick = "history.back()" style="margin:auto">
                 Retour
             </button>
         </fieldset><br/>
