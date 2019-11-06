@@ -103,6 +103,8 @@ $numpal = $_GET['aff'];
             <tr>
                 <td><?php echo $reqPlongeur[$j]['PER_NOM']." ".$reqPlongeur[$j]['PER_PRENOM']?></td>
                 <td><?php echo $reqPlongeur[$j]['APT_LIBELLE']?></td>
+
+
                 <td><a class="btn waves-effect waves-light red" href="">
                         <i class="material-icons medium">clear</i>
                     </a></td>
@@ -121,6 +123,35 @@ $numpal = $_GET['aff'];
 
 
     </fieldset>
+
+<script>
+    function suppPlo(datePlo, periodePlo, numPal, numPer){
+
+        console.log("date : "+datePlo+" periode : "+periodePlo);
+
+        const form = document.createElement('form');
+        form.method = 'post';
+        form.action = '../backend/suppressionPlongee.php';
+
+        const champDate = document.createElement('input');
+        champDate.type = 'hidden';
+        champDate.name = 'datePlo';
+        champDate.value = datePlo;
+
+        const champPeriode = document.createElement('input');
+        champPeriode.type = 'hidden';
+        champPeriode.name = 'periodePlongee';
+        champPeriode.value = periodePlo;
+
+        form.appendChild(champDate);
+        form.appendChild(champPeriode);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+
+
 
 
 
