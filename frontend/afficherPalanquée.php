@@ -105,6 +105,16 @@ $numpal = $_POST['numPal'];
           </table>
         </fieldset>
 
+        <?php
+        $date = "\"" . $_POST['datePlo'] . "\"";
+        $periode = $_POST['periodePlongee'];
+        $idPal = $resPalanquees[0]['PAL_NUM'];
+
+
+        ?>
+
+        <a onclick='modifierInfosPal(<?php echo "$date, $periode, $numpal, $idPal";?>)' href="#" class="waves-effect waves-light btn-large grey circle"><i class="material-icons white-text">keyboard_backspace</i></a>
+
     <br>
     <br>
 <fieldset>
@@ -194,6 +204,42 @@ $numpal = $_POST['numPal'];
 </body>
 
 <script>
+
+    function modifierInfosPal(datePlo, periodePlo, numPal, idPal){
+
+        const form = document.createElement('form');
+        form.method = 'post';
+        form.action = '../frontend/modifierInfosPalanquee.php';
+
+        const champDate = document.createElement('input');
+        champDate.type = 'hidden';
+        champDate.name = 'datePlo';
+        champDate.value = datePlo;
+
+        const champNum = document.createElement('input');
+        champNum.type = 'hidden';
+        champNum.name = 'id';
+        champNum.value = idPal;
+
+        const champNumPal = document.createElement('input');
+        champNumPal.type = 'hidden';
+        champNumPal.name = 'numPal';
+        champNumPal.value = numPal;
+
+        const champPeriode = document.createElement('input');
+        champPeriode.type = 'hidden';
+        champPeriode.name = 'periodePlongee';
+        champPeriode.value = periodePlo;
+
+        form.appendChild(champDate);
+        form.appendChild(champPeriode);
+        form.appendChild(champNum);
+        form.appendChild(champNumPal);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
     function suppPlo(datePlo, periodePlo, idPal, idPer, numeroPal){
 
         console.log("date : "+datePlo+" periode : "+periodePlo);
