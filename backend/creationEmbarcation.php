@@ -1,11 +1,11 @@
 <?php
 include_once "bddPlongee.php";
 
-if(isset($_POST['nomEmb'])){
+if(isset($_POST['moyenEmbarcation'])){
 
     $bdd = new bddPlongee();
 
-    $nomMaj = "'".strtoupper($_POST['nomEmb'])."'";
+    $nomMaj = "'".strtoupper($_POST['moyenEmbarcation'])."'";
     $reqVerificationNom = "SELECT * FROM PLO_EMBARCATION WHERE upper(EMB_NOM) = $nomMaj";
     $reqVerificationNom = $bdd->exec($reqVerificationNom);
 
@@ -22,7 +22,7 @@ if(isset($_POST['nomEmb'])){
             $numEmb = 1;
         }
 
-        $embNom = "'" . $_POST['nomEmb'] . "'";
+        $embNom = "'" . $_POST['moyenEmbarcation'] . "'";
 
         $reqinserer = "INSERT INTO PLO_EMBARCATION (EMB_NUM, EMB_NOM) VALUES ($numEmb,$embNom)";
 
