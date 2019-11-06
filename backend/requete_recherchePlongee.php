@@ -19,7 +19,6 @@ $bdd = new bddPlongee();
       <th>Site</th>
       <th>Type d'embarcation</th>
         <th>Afficher</th>
-      <th>Modifier</th>
         <th>PDF</th>
       <th>Supprimer</th>
     </tr>
@@ -58,9 +57,7 @@ $bdd = new bddPlongee();
             <td>
                 <button class="waves-effect waves-light btn-small deep-purple darken-2" type="submit" form="formAfficher"><i class="material-icons medium">visibility</i></button>
             </td>
-          <td><a class="btn waves-effect waves-light blue lighten-2" href="">
-                  <i class="material-icons medium">create</i>
-            </a></td>
+
             <td>
                 <a class="btn waves-effect waves-light orange" target="_blank" href="../backend/creationPDF.php?dateplongee=<?php echo $row["PLO_DATE"];?>&seance=<?php echo $row["PLO_MAT_MID_SOI"];?>">
                     <i class="material-icons medium">file_download</i>

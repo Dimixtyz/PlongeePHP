@@ -2,7 +2,7 @@
 include_once "../backend/bddPlongee.php";
 include_once "../header.php";
 
-
+var_dump($_POST);
 
 if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
 

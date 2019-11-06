@@ -1,4 +1,5 @@
 <?php
+include_once "../header.php";
 include_once "../backend/bddPlongee.php";
 if(isset($_GET['datePlo'], $_GET['periodePlongee'])) {
 
@@ -21,7 +22,23 @@ $numpal = $_GET['aff'];
 
 ?>
 
-        <h4>Palanquee <?php echo $numpal+1;?></h4>
+        <h4>Palanquée <?php echo $numpal+1;?> de la plongée du <?php echo $_GET['datePlo'];?> (<?php
+
+
+            if(isset($_GET['periodePlongee'])&&$_GET['periodePlongee']==1){
+                echo "Matin";
+            }else if(isset($_GET['periodePlongee'])&&$_GET['periodePlongee']==2){
+                echo "Après-midi";
+            }else if(isset($_GET['periodePlongee'])&&$_GET['periodePlongee']==3){
+                echo "Soir";
+            }
+
+
+
+
+
+
+        ?>)</h4>
 
         <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
 
@@ -61,6 +78,51 @@ $numpal = $_GET['aff'];
 
           </table>
         </fieldset>
+
+    <br>
+    <br>
+<fieldset>
+    <table>
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Niveau</th>
+            <th>Supprimer</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <?php
+        $numPal = "'".$resPalanquees[$numpal]['PAL_NUM']."'";
+        $reqPlongeur = "SELECT * FROM PLO_PALANQUEE JOIN PLO_CONCERNER USING (PLO_DATE,PLO_MAT_MID_SOI,PAL_NUM) JOIN PLO_PLONGEUR USING (PER_NUM) JOIN PLO_PERSONNE USING (PER_NUM) JOIN PLO_APTITUDE USING (APT_CODE) WHERE PLO_DATE = $datePlongee AND PLO_MAT_MID_SOI = $periodePlongee AND PAL_NUM=$numPal";
+        $reqPlongeur = $bdd->exec($reqPlongeur);
+
+
+        for ($j=0 ; $j<sizeof($reqPlongeur); $j++){
+            ?>
+            <tr>
+                <td><?php echo $reqPlongeur[$j]['PER_NOM']." ".$reqPlongeur[$j]['PER_PRENOM']?></td>
+                <td><?php echo $reqPlongeur[$j]['APT_LIBELLE']?></td>
+                <td><a class="btn waves-effect waves-light red" href="">
+                        <i class="material-icons medium">clear</i>
+                    </a></td>
+            </tr>
+            <?php
+        }
+
+        ?>
+        </tbody>
+
+    </table>
+    <br>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Ajouter un plongeur
+        <i class="material-icons right">add_box</i>
+    </button>
+
+
+    </fieldset>
+
+
 
 
 
