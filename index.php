@@ -68,7 +68,7 @@ include "header.php";
             <div class="col s3">
                 <ul class="collection with-header">
                     <li class="collection-header"><h4>SITE</h4></li>
-                    <li class="collection-item"><div><a class="btn waves-effect waves-light yellow" href="#!">Rechercher</a></div></li>
+                    <li class="collection-item"><div><a class="btn waves-effect waves-light yellow" href="/frontend/formSite.php">Consulter</a></div></li>
                     <li class="collection-item"><div><a class="btn waves-effect waves-light green" href="#!">Ajouter</a></div></li>
                 </ul>
             </div>
