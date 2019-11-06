@@ -95,7 +95,12 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
                     <i class="material-icons medium">create</i>
                 </a></td>
 
-            <td><a class="btn waves-effect waves-light red" href="">
+
+            <?php
+            $date = "\"".$_POST['datePlo']."\"";
+            $numPal = $resPalanquees[$i]['PAL_NUM'];
+            ?>
+            <td><a onclick='suppPal(<?php echo "$date, $periode, $numPal";?>)' href="#" class="btn waves-effect waves-light red">
                     <i class="material-icons medium">clear</i>
                 </a></td>
         </tr>
@@ -110,3 +115,36 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
     <button class="btn waves-effect waves-light" type="submit" name="action">Ajouter une palanquée
         <i class="material-icons right">library_add</i>
     </button>
+
+    <script>
+
+        function suppPal(datePlo, periodePlo, numPal){
+
+            const form = document.createElement('form');
+            form.method = 'post';
+            form.action = '../backend/suppressionPalanquee.php';
+
+            const champDate = document.createElement('input');
+            champDate.type = 'hidden';
+            champDate.name = 'datePlo';
+            champDate.value = datePlo;
+
+            const champNum = document.createElement('input');
+            champNum.type = 'hidden';
+            champNum.name = 'idPal';
+            champNum.value = numPal;
+
+            const champPeriode = document.createElement('input');
+            champPeriode.type = 'hidden';
+            champPeriode.name = 'periodePlongee';
+            champPeriode.value = periodePlo;
+
+            form.appendChild(champDate);
+            form.appendChild(champPeriode);
+            form.appendChild(champNum);
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+    </script>
