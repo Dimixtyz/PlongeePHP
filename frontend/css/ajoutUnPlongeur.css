@@ -34,12 +34,12 @@ button:hover {
     display:none;
     position: fixed;
     z-index: 1;
-    left: 0;
-    top: 0;
+    left: 10;
+    top: 10;
     width: 100%;
-    height: 100%;
+    height: 150%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.1);
 }
 
 /* Modal Content Box */
@@ -49,6 +49,7 @@ button:hover {
     border: 1px solid #fefefe;
     width: 40%;
     padding-bottom: 30px;
+    border-radius:10px;
 }
 
 /* The Close Button (x) */
