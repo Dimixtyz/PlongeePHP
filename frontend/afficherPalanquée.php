@@ -13,7 +13,7 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'], $_POST['id'], $_POST['numP
     $reqPlongee = "SELECT * FROM PLO_PLONGEE JOIN PLO_SITE USING(SIT_NUM) WHERE PLO_DATE = $datePlongee AND PLO_MAT_MID_SOI = $periodePlongee";
     $reqPalanquees = "SELECT * FROM PLO_PALANQUEE WHERE PLO_DATE = $datePlongee AND PLO_MAT_MID_SOI = $periodePlongee AND PAL_NUM = $idPal";
 
-    echo $reqPlongee."\n".$reqPalanquees;
+
     $resPlongee = $bdd->exec($reqPlongee);
 
     $resPalanquees = $bdd->exec($reqPalanquees);
