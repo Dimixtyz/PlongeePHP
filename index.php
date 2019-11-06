@@ -90,7 +90,6 @@ include "header.php";
 
 
 
-        
 
         <div class="backback">
             <div class="row" id="range1">
@@ -145,7 +144,7 @@ include "header.php";
                 </div>
             </div>
         </div>
-          
+
 
 
 
