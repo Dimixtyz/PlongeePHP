@@ -174,14 +174,17 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
         </tr>
 
   <?php
-
 }
+
+    $date = $_POST['datePlo'];
+    $periode= $_POST['periodePlongee'];
 ?>
     </tbody>
     </table>
+
     <br>
     <a class="btn waves-effect waves-light blue lighten-2" href="formPalanqueeAjoutApres.php?dateplo='.<?php echo $date?>.'&seance='.<?php echo $periode?>">
-        Ajouter une palanquée<i class="material-icons medium">add_box</i>
+        Ajouter une palanquée <i class="material-icons medium">add_box</i>
     </a>
 
 
