@@ -12,11 +12,12 @@ include "../header.php";
     <body>
 
 
+    <br/>
 
+    <a class="btn waves-effect waves-light green" style="border-radius:10px;" href="formSite.php">Ajouter un site de plongée</a>
 
-    <a href="formPlongeee.php">Ajouter une plongée</a>
-
-    <div id="listeEleves"></div>
+    <div id="listeSite"></div>
 
     </body>
 </html>
+
