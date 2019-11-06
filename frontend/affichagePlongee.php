@@ -89,13 +89,26 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
 
 
 
-  <div><h2>FICHE DE SECURITE</h2></div>
+  <div><h2>FICHE DE SECURITÉ</h2></div>
+
+
+ <a href="">Modifier</a>
 
   <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
     <table class="centered">
       <tr>
         <td>Date :</td>
-        <td><?php echo $resPlongee[0]['PLO_DATE'];?></td>
+        <td><pre><?php echo $resPlongee[0]['PLO_DATE'];?>   |   <?php
+            if($resPlongee[0]['PLO_MAT_MID_SOI']==1){
+                echo "Matin";
+            }else if($resPlongee[0]['PLO_MAT_MID_SOI']==2){
+                echo "Après-midi";
+            }else if($resPlongee[0]['PLO_MAT_MID_SOI']==3){
+                echo "Soir";
+            }
+
+
+                ?></pre></td>
       </tr>
 
       <tr>
@@ -125,7 +138,8 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
           $numSecu = "'".$resPlongee[0]['PER_NUM_SECU']."'";
           $reqSecu = "SELECT PER_NOM, PER_PRENOM FROM PLO_PERSONNE WHERE PER_NUM = $numSecu";
           $resSecu = $bdd->exec($reqSecu);
-          echo $resSecu[0]['PER_NOM']." ".$resSecu[0]['PER_PRENOM'];?></td></td>
+          echo $resSecu[0]['PER_NOM']." ".$resSecu[0]['PER_PRENOM'];?>
+        </td>
       </tr>
     </table>
   </fieldset>
@@ -154,7 +168,16 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
                     <a> Palanquée n°<?php echo $i+1;?></a></p>
             </td>
             <td>
-                <a>1</a>
+                <a><?php
+                    $numPal = "'".$resPalanquees[$i]['PAL_NUM']."'";
+                    $reqnbelev = "SELECT COUNT(*) as NB_ELEV FROM PLO_CONCERNER WHERE PLO_DATE =".$datePlongee." AND PLO_MAT_MID_SOI =".$periodePlongee." AND PAL_NUM =".$numPal;
+                    $repnbelev = $bdd->exec($reqnbelev);
+
+                    echo $repnbelev[0]['NB_ELEV'];
+
+
+
+                    ?></a>
             </td>
 
 
