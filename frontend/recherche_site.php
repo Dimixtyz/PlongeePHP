@@ -21,3 +21,6 @@ include "../header.php";
     </body>
 </html>
 
+<?php
+include "../backend/requete_rechercheSite.php";
+?>
