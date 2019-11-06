@@ -204,6 +204,6 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
     </table>
 
     <br>
-    <a class="btn waves-effect waves-light blue lighten-2" href="formPalanqueeAjoutApres.php?dateplo='.<?php echo $date?>.'&seance='.<?php echo $periode?>">Ajouter une palanquée  <i class="material-icons small">add_box</i></a>
+    <a class="btn waves-effect waves-light blue lighten-2" style="border-radius:10px;" href="formPalanqueeAjoutApres.php?dateplo='.<?php echo $date?>.'&seance='.<?php echo $periode?>">Ajouter une palanquée  <i class="material-icons small">add_box</i></a>
 
 

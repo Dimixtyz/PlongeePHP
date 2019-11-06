@@ -94,10 +94,11 @@ $numpal = $_POST['numPal'];
 
                     </table>
 
-
+                    <button class="btn waves-effect waves-light green lighten-1" style="border-radius:10px;" type="submit" name="action">Valider la modification
+                        <i class="material-icons right">send</i>
+                    </button>
             </fieldset>
 
-            <input type="submit">
 
 
         </form>
