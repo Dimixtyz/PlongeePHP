@@ -37,7 +37,7 @@
             <li><a href="/frontend/formSite.php">Ajouter</a></li>
         </ul>
         <ul id="dropdown4" class="dropdown-content">
-            <li><a href="/frontend/">Consulter</a></li>
+            <li><a href="/frontend/recherche_embarcation.php">Consulter</a></li>
             <li class="divider"></li>
             <li><a href="/frontend/formEmbarcation.php">Ajouter</a></li>
         </ul>

@@ -75,7 +75,7 @@ include "header.php";
             <div class="col s3" style="border-radius:10px;">
                 <ul class="collection with-header" style="border-radius:10px;">
                     <li class="collection-header"><h4>SITE</h4></li>
-                    <li class="collection-item"><div><a class="btn waves-effect waves-light green" style="border-radius:10px;" href="">Consulter</a></div></li>
+                    <li class="collection-item"><div><a class="btn waves-effect waves-light green" style="border-radius:10px;" href="/frontend/recherche_site.php">Consulter</a></div></li>
                     <li class="collection-item"><div><a class="btn waves-effect waves-light green" style="border-radius:10px;" href="/frontend/formSite.php">Ajouter</a></div></li>
                 </ul>
             </div>
@@ -85,7 +85,7 @@ include "header.php";
             <div class="col s3" style="border-radius:10px;"> 
                 <ul class="collection with-header" style="border-radius:10px;">
                     <li class="collection-header"><h4>EMBARCATION</h4></li>
-                    <li class="collection-item"><div><a class="btn waves-effect waves-light green" style="border-radius:10px;" href="#!">Consulter</a></div></li>
+                    <li class="collection-item"><div><a class="btn waves-effect waves-light green" style="border-radius:10px;" href="/frontend/recherche_embarcation.php">Consulter</a></div></li>
                     <li class="collection-item"><div><a class="btn waves-effect waves-light green" style="border-radius:10px;" href="/frontend/formEmbarcation.php">Ajouter</a></div></li>
                 </ul>
             </div>
