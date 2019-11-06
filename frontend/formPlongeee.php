@@ -47,12 +47,26 @@ include "../header.php";
             </p>
             <br/>
             <br/>
-            <fieldset>
-                <legend>Site de la plongée</legend>
-                <label>Nom du site : </label><input type="text" name="nomsite"><br/>
-                <label>Localisation du site : </label><input type="text" name="localisationsite"><br/>
-            </fieldset>
 
+            <label>Nom du site : </label>
+            <select id="nomSite" class="browser-default" name="nomDuSite">
+                <option value = "">Sélectionnez le nom du site</option>
+                <?php 
+                require_once "../backend/bddPlongee.php";
+                $bdd = new bddPlongee();
+
+                $req = "select * from PLO_SITE order by SIT_NOM";
+
+                $rep = $bdd->exec($req);
+
+                for($i = 0; $i<sizeof($rep); $i++){
+                    $val = $rep[$i][0];
+                    $valaafficher = $rep[$i][1].' '.$rep[$i][2];
+                    echo "<option value=$val>$valaafficher</option><br/>";
+                }
+                ?>
+            </select>
+            
 
             <br/>
             <br/>
