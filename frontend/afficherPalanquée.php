@@ -13,6 +13,7 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'], $_POST['id'], $_POST['numP
     $reqPlongee = "SELECT * FROM PLO_PLONGEE JOIN PLO_SITE USING(SIT_NUM) WHERE PLO_DATE = $datePlongee AND PLO_MAT_MID_SOI = $periodePlongee";
     $reqPalanquees = "SELECT * FROM PLO_PALANQUEE WHERE PLO_DATE = $datePlongee AND PLO_MAT_MID_SOI = $periodePlongee AND PAL_NUM = $idPal";
 
+    echo $reqPlongee."\n".$reqPalanquees;
     $resPlongee = $bdd->exec($reqPlongee);
 
     $resPalanquees = $bdd->exec($reqPalanquees);
@@ -152,7 +153,7 @@ $numpal = $_POST['numPal'];
 
 <div id="modal-wrapper" class="modal">
 
-    <form method="post" class="modal-content animate" action="../backend/ajoutUnSeulUtilisateur.php?date=<?php echo $datePlongee;?>&numpal=<?php echo $numPal;?>&seance=<?php echo $periodePlongee;?>">
+    <form method="post" class="modal-content animate" action="../backend/ajoutUnSeulUtilisateur.php?date=<?php echo $datePlongee;?>&numpal=<?php echo $numPal;?>&seance=<?php echo $periodePlongee;?>&numeroPal=<?php echo $numpal;?>">
 
         <div class="imgcontainer">
             <span onclick="document.getElementById('modal-wrapper').style.display='none'" class="close" title="Close PopUp">&times;</span>
