@@ -54,7 +54,7 @@ $req = "INSERT INTO PLO_CONCERNER (PLO_DATE, PLO_MAT_MID_SOI, PAL_NUM, PER_NUM) 
 
 try{
     $bdd->inserer($req);
-    modifierPal($date, $periode, 1, $numPal);
+    echo "<script>modifierPal($dateplongee, $seance,1, $numpal)</script>";
 
 }catch(PDOException $e){
     echo "l'ajout de l'élève a échoué car il est déjà présent dans la palanquée";
