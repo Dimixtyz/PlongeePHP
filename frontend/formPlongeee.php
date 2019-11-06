@@ -5,9 +5,7 @@ include "../header.php";
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <meta charset="utf-8">
     <title>Formulaire plongée</title>
@@ -71,24 +69,27 @@ include "../header.php";
             <br/>
             <br/>
 
-            <label>Type d'embarcation : </label>
-            <select id="nomSite" class="browser-default" name="nomDuSite">
-                <option value = "">Sélectionnez le type d'embarcation : </option>
-                <?php 
+            <label> Type d'embarcation : </label><br/>
+            <?php
+
                 require_once "../backend/bddPlongee.php";
                 $bdd = new bddPlongee();
 
-                $req = "select * from PLO_EMBARCATION order by EMB_NOM";
+                $req = "SELECT * FROM PLO_EMBARCATION";
 
-                $rep = $bdd->exec($req);
+                $embarcation = $bdd->exec($req);
 
-                for($i = 0; $i<sizeof($rep); $i++){
-                    $val = $rep[$i][0];
-                    $valaafficher = $rep[$i][1].' '.$rep[$i][2];
-                    echo "<option value=$val>$valaafficher</option><br/>";
+                if(!empty($embarcation)){
+                    for($i=0; $i<sizeof($embarcation); $i++){
+                        echo " <label>
+              <input class=\"with-gap\" name=\"type_embarcation\" value=".$embarcation[$i]['EMB_NUM']." type=\"radio\"  />
+              <span>".$embarcation[$i]['EMB_NOM']."</span>
+            </label><br/>";
+
+                    }
                 }
-                ?>
-            </select>
+
+            ?>
 
 
             <br/>
