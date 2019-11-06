@@ -1,3 +1,21 @@
+<script>
+    function supprimerSite(numSite){
+
+        const form = document.createElement('form');
+        form.method = 'post';
+        form.action = '../backend/suppressionSite.php';
+
+        const champPeriode = document.createElement('input');
+        champPeriode.type = 'hidden';
+        champPeriode.name = 'numSite';
+        champPeriode.value = numSite;
+
+        form.appendChild(champPeriode);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
 <?php
 
     include "bddPlongee.php";
@@ -30,7 +48,15 @@
                     <p class="text-left"><?php echo $row["SIT_LOCALISATION"]; ?></p>
                 </td>
 
-                <td><a href="#" class="btn waves-effect waves-light red"><i class="material-icons medium">clear</i>
+                <td><a onclick="supprimerSite(<?php echo $row['SIT_NUM'];?>)" href="#" class="btn waves-effect waves-light red <?php
+                    $nSite = $row['SIT_NUM'];
+                    $reqSupprimable = "SELECT * FROM PLO_SITE JOIN PLO_PLONGEE USING (SIT_NUM) WHERE SIT_NUM = $nSite";
+                    $reqSupprimable = $bdd->exec($reqSupprimable);
+                    if (!empty($reqSupprimable)){
+                        echo "disabled";
+                    }
+
+                    ?>"><i class="material-icons medium">clear</i>
                 </a></td>
             </tr>    
                 <?php
