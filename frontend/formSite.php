@@ -13,7 +13,7 @@ include "../header.php";
     <title>Formulaire site</title>
   </head>
   <body>
-        <form methode="post" action="../backend/creationSite.php">
+        <form method="post" action="../backend/creationSite.php">
             <fieldset style="width:850px; margin-left: auto; margin-right: auto; margin-top:5%">
                 <legend>Formulaire d'ajout de site</legend>
                 <label>Nom du site : </label><input type="text" name="nomsite"><br/>
