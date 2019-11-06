@@ -103,7 +103,7 @@ include "../header.php";
         </div>
 
           <div>
-              <label for="certificat">Certificat médical :</label><br>
+              Certificat médical :<br/>
               <input type="file" name="certificat" id="certificat">
           </div>
 
@@ -113,11 +113,14 @@ include "../header.php";
 
           <br>
 
-        <button class="btn waves-effect waves-light red lighten-1" style="border-radius:10px;" type="submit" name="action">Valider
+        <button class="btn waves-effect waves-light green lighten-1" style="border-radius:10px;" type="submit" name="action">Valider
          <i class="material-icons right">send</i>
         </button>
         <button class="btn waves-effect waves-light red lighten-1" style="border-radius:10px;" type="reset" name="action">Effacer
             <i class="material-icons right">clear</i>
+        </button>
+        <button class="btn waves-effect waves-light grey darken-4" style="border-radius:10px;" value = "Retour"  onclick = "history.back()" style="margin:auto">
+                Retour
         </button>
       </fieldset>
   </form>

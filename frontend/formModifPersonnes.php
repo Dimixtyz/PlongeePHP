@@ -182,7 +182,7 @@ if(isset($_GET['id'])) {
             <br/>
             <br/>
 
-            <button class="btn waves-effect waves-light" type="submit" name="action">Modifier
+            <button class="btn waves-effect waves-light green lighten-1" style="border-radius:10px;" type="submit" name="action">Modifier
                 <i class="material-icons right">send</i>
             </button>
 
