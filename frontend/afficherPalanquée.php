@@ -103,6 +103,8 @@ $numpal = $_POST['numPal'];
             </tr>
 
           </table>
+          <br/>
+          <a onclick='modifierInfosPal(<?php echo "$date, $periode, $numpal, $idPal";?>)' href="#" class="btn waves-effect waves-light btn large blue lighten-2" style="border-radius:10px;">Modifier<i class="material-icons white-text">create</i></a>
         </fieldset>
 
         <?php
@@ -112,8 +114,6 @@ $numpal = $_POST['numPal'];
 
 
         ?>
-
-        <a onclick='modifierInfosPal(<?php echo "$date, $periode, $numpal, $idPal";?>)' href="#" class="waves-effect waves-light btn-large grey circle"><i class="material-icons white-text">keyboard_backspace</i></a>
 
     <br>
     <br>
@@ -158,7 +158,7 @@ $numpal = $_POST['numPal'];
 
     </table>
     <br>
-    <button class="btn waves-effect waves-light" type="submit" name="action" onclick="document.getElementById('modal-wrapper').style.display='block'">Ajouter un plongeur
+    <button class="btn waves-effect waves-light" style="border-radius:10px;" type="submit" name="action" onclick="document.getElementById('modal-wrapper').style.display='block'">Ajouter un plongeur
         <i class="material-icons right">add_box</i>
     </button>
 
