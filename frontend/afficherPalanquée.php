@@ -42,6 +42,8 @@ $numpal = $_POST['numPal'];
       xmlns:margin-right="http://www.w3.org/1999/xhtml" xmlns:color="http://www.w3.org/1999/xhtml"
       xmlns:font-size="http://www.w3.org/1999/xhtml">
 
+
+
         <h4>Palanquée <?php echo $numpal+1;?> de la plongée du <?php echo $resPlongee[0]["PLO_DATE"];?> (<?php
 
 
@@ -98,6 +100,7 @@ $numpal = $_POST['numPal'];
     <br>
     <br>
 <fieldset>
+
     <table>
         <thead>
         <tr>
@@ -142,12 +145,14 @@ $numpal = $_POST['numPal'];
     </button>
 
 
+
     </fieldset>
+
 
 
 <div id="modal-wrapper" class="modal">
 
-    <form method="post" class="modal-content animate" action="../backend/ajoutUnSeulUtilisateur.php?date=<?php echo $date;?>&sea=<?php $periodePlongee;?>&numpal=<?php echo $numPal;?>">
+    <form method="post" class="modal-content animate" action="../backend/ajoutUnSeulUtilisateur.php?date=<?php echo $datePlongee;?>&numpal=<?php echo $numPal;?>&seance=<?php echo $periodePlongee;?>">
 
         <div class="imgcontainer">
             <span onclick="document.getElementById('modal-wrapper').style.display='none'" class="close" title="Close PopUp">&times;</span>
