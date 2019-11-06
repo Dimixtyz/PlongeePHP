@@ -89,13 +89,23 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
 
 
 
-  <div><h2>FICHE DE SECURITE</h2></div>
+  <div><h2>FICHE DE SECURITÉ</h2></div>
 
   <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
     <table class="centered">
       <tr>
         <td>Date :</td>
-        <td><?php echo $resPlongee[0]['PLO_DATE'];?></td>
+        <td><pre><?php echo $resPlongee[0]['PLO_DATE'];?>   |   <?php
+            if($resPlongee[0]['PLO_MAT_MID_SOI']==1){
+                echo "Matin";
+            }else if($resPlongee[0]['PLO_MAT_MID_SOI']==2){
+                echo "Après-midi";
+            }else if($resPlongee[0]['PLO_MAT_MID_SOI']==3){
+                echo "Soir";
+            }
+
+
+                ?></pre></td>
       </tr>
 
       <tr>
@@ -125,9 +135,11 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
           $numSecu = "'".$resPlongee[0]['PER_NUM_SECU']."'";
           $reqSecu = "SELECT PER_NOM, PER_PRENOM FROM PLO_PERSONNE WHERE PER_NUM = $numSecu";
           $resSecu = $bdd->exec($reqSecu);
-          echo $resSecu[0]['PER_NOM']." ".$resSecu[0]['PER_PRENOM'];?></td></td>
+          echo $resSecu[0]['PER_NOM']." ".$resSecu[0]['PER_PRENOM'];?>
+        </td>
       </tr>
     </table>
+    <a class="btn waves-effect waves-light green lighten-1" style="border-radius:10px;text-align:center;" href="formModifPlongee.php?dateplo=<?php echo $datePlongee;?>&seance=<?php echo $periodePlongee;?>">Modifier   <i class="material-icons medium">edit</i></a>
   </fieldset>
 
   <br>
@@ -154,7 +166,16 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
                     <a> Palanquée n°<?php echo $i+1;?></a></p>
             </td>
             <td>
-                <a>1</a>
+                <a><?php
+                    $numPal = "'".$resPalanquees[$i]['PAL_NUM']."'";
+                    $reqnbelev = "SELECT COUNT(*) as NB_ELEV FROM PLO_CONCERNER WHERE PLO_DATE =".$datePlongee." AND PLO_MAT_MID_SOI =".$periodePlongee." AND PAL_NUM =".$numPal;
+                    $repnbelev = $bdd->exec($reqnbelev);
+
+                    echo $repnbelev[0]['NB_ELEV'];
+
+
+
+                    ?></a>
             </td>
 
 
@@ -163,12 +184,12 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
             $numPal = $resPalanquees[$i]['PAL_NUM'];
             ?>
 
-            <td><a onclick='modifierPal(<?php echo "$date, $periode, $i, $numPal";?>)' href="#" class="btn waves-effect waves-light blue lighten-2">
+            <td><a onclick='modifierPal(<?php echo "$date, $periode, $i, $numPal";?>)' href="#" class="btn waves-effect waves-light blue lighten-2" style="border-radius:10px;">
                     <i class="material-icons medium">create</i>
                 </a></td>
 
 
-            <td><a onclick='suppPal(<?php echo "$date, $periode, $numPal";?>)' href="#" class="btn waves-effect waves-light red">
+            <td><a onclick='suppPal(<?php echo "$date, $periode, $numPal";?>)' href="#" class="btn waves-effect waves-light red" style="border-radius:10px;">
                     <i class="material-icons medium">clear</i>
                 </a></td>
         </tr>
@@ -183,8 +204,6 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
     </table>
 
     <br>
-    <a class="btn waves-effect waves-light blue lighten-2" href="formPalanqueeAjoutApres.php?dateplo='.<?php echo $date?>.'&seance='.<?php echo $periode?>">
-        Ajouter une palanquée <i class="material-icons medium">add_box</i>
-    </a>
+    <a class="btn waves-effect waves-light blue lighten-2" href="formPalanqueeAjoutApres.php?dateplo='.<?php echo $date?>.'&seance='.<?php echo $periode?>">Ajouter une palanquée  <i class="material-icons small">add_box</i></a>
 
 
