@@ -23,6 +23,7 @@ if(isset($_POST['seance'])){
 }
 
 
+
 if (isset($_POST['numSite'], $_POST['effectifP'], $_POST['effectifB'], $_POST['directeurdeplongee'], $_POST['securitedesurface'], $_POST['nombrePal'], $seance, $dateplongee)){
 $numsite = $_POST['numSite'];
 

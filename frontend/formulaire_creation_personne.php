@@ -113,10 +113,10 @@ include "../header.php";
 
           <br>
 
-        <button class="btn waves-effect waves-light" type="submit" name="action">Valider
+        <button class="btn waves-effect waves-light red lighten-1" style="border-radius:10px;" type="submit" name="action">Valider
          <i class="material-icons right">send</i>
         </button>
-        <button class="btn waves-effect waves-light" type="reset" name="action">Effacer
+        <button class="btn waves-effect waves-light red lighten-1" style="border-radius:10px;" type="reset" name="action">Effacer
             <i class="material-icons right">clear</i>
         </button>
       </fieldset>
