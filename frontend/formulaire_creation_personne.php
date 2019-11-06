@@ -33,6 +33,9 @@ include "../header.php";
         </script>
   </head>
   <body>
+  <br/>
+  <br/>
+  <br/>
   <form id="formInscription" action="../backend/insererPersonne.php" method="post" enctype="multipart/form-data">
 	  <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
         <legend>Inscription personne</legend>
