@@ -10,7 +10,7 @@ if (isset($_POST['numEmb'])){
 
     $bdd->inserer($reqSupp);
 
-    header('Location: ../frontend/recherche_site.php');
+    header('Location: ../frontend/recherche_embarcation.php');
     exit();
 
 

@@ -1,3 +1,22 @@
+<script>
+    function supprimerSite(numEmb){
+
+        const form = document.createElement('form');
+        form.method = 'post';
+        form.action = '../backend/suppressionEmbarcation.php';
+
+        const champNumEmb = document.createElement('input');
+        champNumEmb.type = 'hidden';
+        champNumEmb.name = 'numEmb';
+        champNumEmb.value = numEmb;
+
+        form.appendChild(champNumEmb);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+
 <?php
 
     include "bddPlongee.php";
@@ -27,7 +46,15 @@
                 </td>
 
                 <td>
-                    <a href="#" class="btn waves-effect waves-light red"><i class="material-icons medium">clear</i></a>
+                    <a onclick="supprimerSite(<?php echo $row['EMB_NUM'];?>)" href="#" class="btn waves-effect waves-light red <?php
+                    $nEmb = $row['EMB_NUM'];
+                    $reqSupprimable = "SELECT * FROM PLO_EMBARCATION JOIN PLO_PLONGEE USING (EMB_NUM) WHERE EMB_NUM = $nEmb";
+                    $reqSupprimable = $bdd->exec($reqSupprimable);
+                    if (!empty($reqSupprimable)){
+                        echo "disabled";
+                    }
+
+                    ?>"><i class="material-icons medium">clear</i></a>
                 </td>
             </tr>    
                 <?php
