@@ -1,8 +1,6 @@
 <?php
 include_once "bddPlongee.php";
 include_once "TestNom.php";
-header('Content-type: application/json');
-$reponse = array();
 
 $bdd = new bddPlongee();
 
@@ -18,6 +16,9 @@ $oninsereoupas = false ;
 function peutOnInserer(&$pre,&$no){
     $bdd = new bddPlongee();
 
+    if(strlen($pre)>= 30 || strlen($no)>=30){
+        echo "Nom ou prenom trop long !\n";
+    }
 
     if (VerificationNom($no) && VerificationPrenom($pre)) {
 
@@ -26,34 +27,22 @@ function peutOnInserer(&$pre,&$no){
 
         $req = "SELECT COUNT(*) FROM PLO_PERSONNE WHERE upper(PER_NOM) = $nomRecherche AND upper(PER_PRENOM) = $prenomRecherche";
 
-
         $res = $bdd->exec($req);
         if ($res[0][0] > 0) {
-            $reponse = "Cet utilisateur existe deja";
-            envoiJSON($reponse);
             return false;
         } else {
             return true;
         }
-    }else{
-        $reponse = "Nom ou prenom inadapte";
-        envoiJSON($reponse);
-        return false;
     }
+
 }
 
 if(isset($_POST['nom'])&& $_POST['nom']!=""){
     $nom = $_POST['nom'];
-}else{
-    $reponse = "Champ nom incomplet";
-    envoiJSON($reponse);
 }
 
 if(isset($_POST['prenom'])&& $_POST['prenom']!=""){
     $prenom = $_POST['prenom'];
-}else{
-    $reponse = "Champ prenom incomplet";
-    envoiJSON($reponse);
 }
 
 if(isset($_POST['statut'])){
@@ -78,16 +67,8 @@ if(isset($statut)&& sizeof($statut)>0){
             $reqInsertionPerso = "insert into PLO_PERSONNE(PER_NUM, PER_NOM, PER_PRENOM) values ($PERNUM,$nom,$prenom)";
             $bdd->inserer($reqInsertionPerso);
             $eleveinserer = true;
-
-            if (!empty($_POST['certificat'])){
-                $reqCertificat = "UPDATE PLO_PERSONNE SET PER_DATE_CERTIF_MED = SYSDATE() WHERE PER_NUM = $PERNUM";
-                $bdd->inserer($reqCertificat);
-            }
-
-
         }else{
-            $reponse = "Impossible d ajouter cet utilisateur";
-            envoiJSON($reponse);
+            echo "Impossible d'inserer cet utilisateur";
         }
 
     }
@@ -114,19 +95,13 @@ if(isset($statut)&& sizeof($statut)>0){
 
     }
 
-    $reponse = "Utilisateur bien ajoute";
-    envoiJSON($reponse);
-
 }else{
-    $reponse = "Impossible d ajouter cet utilisateur";
-    envoiJSON($reponse);
+    echo "VOUS DEVEZ CHOISIR UN STATUT !!";
 }
 
-function envoiJSON($var) {
-    $myJson = json_encode($var);
-    echo $myJson;
-    exit();
-}
+
+header("Location: ../frontend/recherche_personne.php");
+exit();
 
 
 ?>
