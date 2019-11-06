@@ -13,6 +13,7 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'], $_POST['id'], $_POST['numP
     $reqPlongee = "SELECT * FROM PLO_PLONGEE JOIN PLO_SITE USING(SIT_NUM) WHERE PLO_DATE = $datePlongee AND PLO_MAT_MID_SOI = $periodePlongee";
     $reqPalanquees = "SELECT * FROM PLO_PALANQUEE WHERE PLO_DATE = $datePlongee AND PLO_MAT_MID_SOI = $periodePlongee AND PAL_NUM = $idPal";
 
+
     $resPlongee = $bdd->exec($reqPlongee);
 
     $resPalanquees = $bdd->exec($reqPalanquees);
@@ -23,6 +24,26 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'], $_POST['id'], $_POST['numP
 $numpal = $_POST['numPal'];
 
 ?>
+
+<head>
+    <link rel="stylesheet" href="css/ajoutUnPlongeur.css">
+
+    <script>
+        // If user clicks anywhere outside of the modal, Modal will close
+
+        const modal = document.getElementById('modal-wrapper');
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body background=”../background1.png” xmlns:float="http://www.w3.org/1999/xhtml"
+      xmlns:margin-right="http://www.w3.org/1999/xhtml" xmlns:color="http://www.w3.org/1999/xhtml"
+      xmlns:font-size="http://www.w3.org/1999/xhtml">
+
+
 
         <h4>Palanquée <?php echo $numpal+1;?> de la plongée du <?php echo $resPlongee[0]["PLO_DATE"];?> (<?php
 
@@ -80,6 +101,7 @@ $numpal = $_POST['numPal'];
     <br>
     <br>
 <fieldset>
+
     <table>
         <thead>
         <tr>
@@ -119,12 +141,50 @@ $numpal = $_POST['numPal'];
 
     </table>
     <br>
-    <button class="btn waves-effect waves-light" type="submit" name="action">Ajouter un plongeur
+    <button class="btn waves-effect waves-light" type="submit" name="action" onclick="document.getElementById('modal-wrapper').style.display='block'">Ajouter un plongeur
         <i class="material-icons right">add_box</i>
     </button>
 
 
+
     </fieldset>
+
+
+
+<div id="modal-wrapper" class="modal">
+
+    <form method="post" class="modal-content animate" action="../backend/ajoutUnSeulUtilisateur.php?date=<?php echo $datePlongee;?>&numpal=<?php echo $numPal;?>&seance=<?php echo $periodePlongee;?>&numeroPal=<?php echo $numpal;?>">
+
+        <div class="imgcontainer">
+            <span onclick="document.getElementById('modal-wrapper').style.display='none'" class="close" title="Close PopUp">&times;</span>
+            <img src="../images/add_person.png" alt="Avatar" class="avatar">
+            <h1 style="text-align:center">Ajouter plongeur</h1>
+        </div>
+
+
+        <div class="box">
+            <select name="elevepal" style="display: block">
+                <option value="choisir">Choisissez un élève</option>
+                <?php
+                $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
+                $rep = $bdd->exec($req);
+
+                if(sizeof($rep>0)){
+                    for($h=0; $h<sizeof($rep);$h++){
+                        echo " <option value = '".$rep[$h]['PER_NUM']."' > ".$rep[$h]['PER_NOM']." ".$rep[$h]['PER_PRENOM']." </option > ";
+                    }
+
+
+                }
+                ?>
+
+            </select>
+            <button type="submit">Ajouter</button>
+        </div>
+    </form>
+
+</div>
+</body>
 
 <script>
     function suppPlo(datePlo, periodePlo, idPal, idPer, numeroPal){

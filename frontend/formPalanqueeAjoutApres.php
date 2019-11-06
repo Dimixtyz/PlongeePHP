@@ -13,16 +13,17 @@ $date = preg_replace("#.$#", "", $date);
 $sea = preg_replace("#^'#", "", $seance);
 $sea = preg_replace("#^.#", "", $sea);
 
+
 echo "<form method='POST' action='../backend/ajoutNouvellePalanquee.php?dateplo=".$date."&heure=".$sea."'>";
 
 
 
 
-if($seance==1){
+if($sea==1){
             $vall= "Matin";
-        }else if($seance==2){
+        }else if($sea==2){
            $vall ="Après-midi";
-        }else{
+        }else if($sea==3){
             $vall ="Soir";
         }
 

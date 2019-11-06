@@ -71,6 +71,7 @@ $bdd = new bddPlongee();
       <th>Séance</th>
       <th>Site</th>
       <th>Type d'embarcation</th>
+        <th>Statut</th>
         <th>Afficher</th>
         <th>PDF</th>
       <th>Supprimer</th>
@@ -107,6 +108,45 @@ $bdd = new bddPlongee();
             <p class="text-left">
               <?php echo $row["EMB_NOM"]; ?></p>
           </td>
+
+            <td>
+                <?php
+                $valide = true;
+                $dateRecherche = "'".$row["PLO_DATE"]."'";
+                $periodeRecherce = "'".$row["PLO_MAT_MID_SOI"]."'";
+
+                $reqStatut = "SELECT * FROM PLO_PALANQUEE JOIN PLO_PLONGEE USING (PLO_DATE, PLO_MAT_MID_SOI) WHERE PLO_DATE = $dateRecherche AND PLO_MAT_MID_SOI = $periodeRecherce";
+                $reqStatut = $bdd->exec($reqStatut);
+
+                if (!empty($reqStatut)){
+
+                    foreach ($reqStatut as $key => $planquee) {
+
+                        foreach ($planquee as $valeur){
+                            $valide = false;
+                        }
+
+                    }
+
+                }else{
+                    $valide = false;
+                }
+
+                if ($valide){
+                    echo "Complet";
+                    $reqStatut = "UPDATE PLO_PLONGEE SET PLO_ETAT = 'Complet' WHERE PLO_DATE = $dateRecherche AND PLO_MAT_MID_SOI = $periodeRecherce";
+                }else{
+                    echo "Incomplet";
+                    $reqStatut = "UPDATE PLO_PLONGEE SET PLO_ETAT = 'Imcomplet' WHERE PLO_DATE = $dateRecherche AND PLO_MAT_MID_SOI = $periodeRecherce";
+                }
+                $bdd->inserer($reqStatut);
+
+
+                ?>
+            </td>
+
+
+
             <td>
                 <a onclick='afficherPlo(<?php echo "$date, $periode";?>)' href="#" class="btn waves-effect waves-light deep-purple darken-2" ><i class="material-icons medium">visibility</i></a>
             </td>
