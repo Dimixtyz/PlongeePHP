@@ -15,12 +15,11 @@ include "../header.php";
   <body>
         <form methode="post">
             <fieldset style="width:850px; margin-left: auto; margin-right: auto; margin-top:5%">
-                <legend>Formulaire d'ajout de site</legend>
-                <label>Nom du site : </label><input type="text" name="nomsite"><br/>
-                <label>Localisation du site : </label><input type="text" name="localisationsite"><br/>
+                <legend>Formulaire d'ajout de type d'embarcation</legend>
+                <label>Ajouter un moyen d'embarcation : <label>
+                <input type="text" name="moyenEmbarcation"><br/>
                 <br/>
-                <br/>
-                <button class="btn waves-effect waves-light green lighten-1" style="border-radius:10px;" type="submit" name="action">Ajouter le site
+                <button class="btn waves-effect waves-light green lighten-1" style="border-radius:10px;" type="submit" name="action">Ajouter l'embarcation
                     <i class="material-icons right">send</i>
                 </button>
                 <button class="btn waves-effect waves-light red lighten-1" style="border-radius:10px;" type="reset" name="action">Effacer
@@ -33,4 +32,3 @@ include "../header.php";
         </form>
     </body>
 </html>
-        
