@@ -26,8 +26,9 @@
                     <p class="text-left"><?php echo $row["EMB_NOM"]; ?></p>
                 </td>
 
-                <td><a href="#" class="btn waves-effect waves-light red"><i class="material-icons medium">clear</i>
-                </a></td>
+                <td>
+                    <a href="#" class="btn waves-effect waves-light red"><i class="material-icons medium">clear</i></a>
+                </td>
             </tr>    
                 <?php
            }
