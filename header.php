@@ -32,12 +32,12 @@
             <li><a href="/frontend/formulaire_creation_personne.php">Ajouter</a></li>
         </ul>
         <ul id="dropdown3" class="dropdown-content">
-            <li><a href="#!">Consulter</a></li>
+            <li><a href="/frontend/recherche_site.php">Consulter</a></li>
             <li class="divider"></li>
             <li><a href="/frontend/formSite.php">Ajouter</a></li>
         </ul>
         <ul id="dropdown4" class="dropdown-content">
-            <li><a href="#!">Consulter</a></li>
+            <li><a href="/frontend/">Consulter</a></li>
             <li class="divider"></li>
             <li><a href="/frontend/formEmbarcation.php">Ajouter</a></li>
         </ul>

@@ -44,6 +44,9 @@ include "header.php";
         <br/>
         <br/>
         <br/>
+        <div style="text-align:center;">
+            <img src="http://www.plaisancebaiedemorlaix.com/sites/default/files/logo-carantec_nautisme.jpg">
+        </div>
         <br/>
         <br/>
         <br/>
