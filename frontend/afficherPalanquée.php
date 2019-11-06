@@ -41,7 +41,7 @@ $numpal = $_POST['numPal'];
         }
     </script>
 </head>
-<body background=”../background1.png” xmlns:float="http://www.w3.org/1999/xhtml"
+<body xmlns:float="http://www.w3.org/1999/xhtml"
       xmlns:margin-right="http://www.w3.org/1999/xhtml" xmlns:color="http://www.w3.org/1999/xhtml"
       xmlns:font-size="http://www.w3.org/1999/xhtml">
 
