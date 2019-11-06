@@ -1,3 +1,57 @@
+<script>
+
+    function supprimer(datePlo, periodePlo){
+
+        console.log("date : "+datePlo+" periode : "+periodePlo);
+
+        const form = document.createElement('form');
+        form.method = 'post';
+        form.action = '../backend/suppressionPlongee.php';
+
+        const champDate = document.createElement('input');
+        champDate.type = 'hidden';
+        champDate.name = 'datePlo';
+        champDate.value = datePlo;
+
+        const champPeriode = document.createElement('input');
+        champPeriode.type = 'hidden';
+        champPeriode.name = 'periodePlongee';
+        champPeriode.value = periodePlo;
+
+        form.appendChild(champDate);
+        form.appendChild(champPeriode);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    function afficher(datePlo, periodePlo){
+
+        console.log("date : "+datePlo+" periode : "+periodePlo);
+
+        const form = document.createElement('form');
+        form.method = 'post';
+        form.action = '../frontend/affichagePlongee.php';
+
+        const champDate = document.createElement('input');
+        champDate.type = 'hidden';
+        champDate.name = 'datePlo';
+        champDate.value = datePlo;
+
+        const champPeriode = document.createElement('input');
+        champPeriode.type = 'hidden';
+        champPeriode.name = 'periodePlongee';
+        champPeriode.value = periodePlo;
+
+        form.appendChild(champDate);
+        form.appendChild(champPeriode);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+</script>
+
 <?php
 
 include "bddPlongee.php";
@@ -11,7 +65,6 @@ $bdd = new bddPlongee();
   if (!empty($rep)) {
     ?>
 
-      <form id="formAfficher" method="post" action="../frontend/affichagePlongee.php"/>
     <table class="col-md-3 table">
     <tr>
       <th>Date</th>
@@ -67,7 +120,10 @@ $bdd = new bddPlongee();
                 </a>
             </td>
 
-          <td><a class="btn waves-effect waves-light red <?php
+            <?php $date = "\"".$row["PLO_DATE"]."\"";
+            $periode = $row["PLO_MAT_MID_SOI"];?>
+
+          <td><a onclick='supprimer(<?php echo "$date, $periode";?>)' class="btn waves-effect waves-light red <?php
               $ploDate = "'".$row["PLO_DATE"]."'";
               $ploPeriode = "'".$row["PLO_MAT_MID_SOI"]."'";
 
@@ -90,4 +146,5 @@ $bdd = new bddPlongee();
     ?>
       </table>
     </div>
+
   <?php
