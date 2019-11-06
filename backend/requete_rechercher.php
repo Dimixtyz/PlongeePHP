@@ -108,7 +108,7 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
             </td>
 
 
-          <td><a class="btn waves-effect waves-light blue lighten-2" href="<?php echo "../frontend/formModifPersonnes.php?id=".$row['PER_NUM'];?>">
+          <td><a class="btn waves-effect waves-light blue lighten-2" href="<?php echo "../frontend/formModifPersonnes.php?id=".$row['PER_NUM'];?>" style="border-radius:10px;">
                   <i class="material-icons medium">create</i>
             </a></td>
 
@@ -125,7 +125,7 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
                   echo "disabled";
               }
 
-              ?>" href="<?php echo "../backend/supprimerPersonne.php?id=".$row['PER_NUM'];?>">
+              ?>" href="<?php echo "../backend/supprimerPersonne.php?id=".$row['PER_NUM'];?>" style="border-radius:10px;">
                   <i class="material-icons medium">clear</i>
             </a></td>
         </tr>

@@ -103,7 +103,17 @@ $numpal = $_POST['numPal'];
             </tr>
 
           </table>
+          <br/>
+          <a onclick='modifierInfosPal(<?php echo "$date, $periode, $numpal, $idPal";?>)' href="#" class="btn waves-effect waves-light btn large blue lighten-2" style="border-radius:10px;">Modifier<i class="material-icons white-text">create</i></a>
         </fieldset>
+
+        <?php
+        $date = "\"" . $_POST['datePlo'] . "\"";
+        $periode = $_POST['periodePlongee'];
+        $idPal = $resPalanquees[0]['PAL_NUM'];
+
+
+        ?>
 
     <br>
     <br>
@@ -148,7 +158,7 @@ $numpal = $_POST['numPal'];
 
     </table>
     <br>
-    <button class="btn waves-effect waves-light" type="submit" name="action" onclick="document.getElementById('modal-wrapper').style.display='block'">Ajouter un plongeur
+    <button class="btn waves-effect waves-light" style="border-radius:10px;" type="submit" name="action" onclick="document.getElementById('modal-wrapper').style.display='block'">Ajouter un plongeur
         <i class="material-icons right">add_box</i>
     </button>
 
@@ -194,6 +204,42 @@ $numpal = $_POST['numPal'];
 </body>
 
 <script>
+
+    function modifierInfosPal(datePlo, periodePlo, numPal, idPal){
+
+        const form = document.createElement('form');
+        form.method = 'post';
+        form.action = '../frontend/modifierInfosPalanquee.php';
+
+        const champDate = document.createElement('input');
+        champDate.type = 'hidden';
+        champDate.name = 'datePlo';
+        champDate.value = datePlo;
+
+        const champNum = document.createElement('input');
+        champNum.type = 'hidden';
+        champNum.name = 'id';
+        champNum.value = idPal;
+
+        const champNumPal = document.createElement('input');
+        champNumPal.type = 'hidden';
+        champNumPal.name = 'numPal';
+        champNumPal.value = numPal;
+
+        const champPeriode = document.createElement('input');
+        champPeriode.type = 'hidden';
+        champPeriode.name = 'periodePlongee';
+        champPeriode.value = periodePlo;
+
+        form.appendChild(champDate);
+        form.appendChild(champPeriode);
+        form.appendChild(champNum);
+        form.appendChild(champNumPal);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
     function suppPlo(datePlo, periodePlo, idPal, idPer, numeroPal){
 
         console.log("date : "+datePlo+" periode : "+periodePlo);
