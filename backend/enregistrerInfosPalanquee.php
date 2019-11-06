@@ -70,6 +70,7 @@ if (isset($_POST['heureDepart'],$_POST['heureRetour'],$_POST['tempsPrevu'],$_POS
 
         if ($heureDepart < $heureRetour){
             $tempsReel = $temps2 - $temps1;
+            echo "En cours ... ";
         }
     }
 
@@ -87,11 +88,12 @@ if (isset($_POST['heureDepart'],$_POST['heureRetour'],$_POST['tempsPrevu'],$_POS
 
     ?>
 
-<script>goPal(<?php echo "$datePlo, $periodePlo, $numeroPal, $idPal";?>)</script>
+<script>goPal(<?php echo "$datePlo, $periodePlo, $numeroPal, $idPal";?>);</script>
+
 
 <?php
 
-
+exit();
 
 }else{
     echo "infos manquantes";
