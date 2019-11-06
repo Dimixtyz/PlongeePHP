@@ -59,7 +59,7 @@ include "../header.php";
                 for($i = 0; $i<sizeof($rep); $i++){
                     $val = $rep[$i][0];
                     $valaafficher = $rep[$i][1].' '.$rep[$i][2];
-                    echo "<option value=$val>$valaafficher</option><br/>";
+                    echo "<option name='numSite' value=\"".$val."\">$valaafficher</option><br/>";
                 }
                 ?>
             </select>

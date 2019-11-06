@@ -2,36 +2,6 @@
 include("bddPlongee.php");
 $bdd = new bddPlongee();
 
-if(isset($_POST['nomsite'])&& !empty($_POST['nomsite'])){
-    $nomdusite = $_POST['nomsite'];
-
-}
-if(isset($_POST['localisationsite']) && !empty($_POST['localisationsite'])){
-
-    $localisationsite = $_POST['localisationsite'];
-
-}
-
-if(isset($nomdusite) && isset($localisationsite)){
-    $reqderniersite = "select SIT_NUM from PLO_SITE order by SIT_NUM desc LIMIT 1";
-    $rep = $bdd->exec($reqderniersite);
-
-    if(!empty($rep)){
-        $dernierSite = $rep[0]['SIT_NUM'];
-        $numsite = $dernierSite+1;
-
-    }else{
-        $numsite = 1;
-    }
-
-    $sitnom = "'".$nomdusite."'" ;
-    $sitlocalisation = "'".$localisationsite."'";
-    $reqinserer = "INSERT INTO PLO_SITE (SIT_NUM, SIT_NOM, SIT_LOCALISATION) VALUES ($numsite,$sitnom,$sitlocalisation)";
-
-    $bdd->inserer($reqinserer);
-
-}
-
 
 if(isset($_POST['dateplongee'])){
     $dateplongee = $_POST['dateplongee'];
@@ -53,8 +23,8 @@ if(isset($_POST['seance'])){
 }
 
 
-
-
+if (isset($_POST['numSite'], $_POST['effectifP'], $_POST['effectifB'], $_POST['directeurdeplongee'], $_POST['securitedesurface'], $_POST['nombrePal'], $seance, $dateplongee)){
+$numsite = $_POST['numSite'];
 
 $typeembarcation = $_POST['type_embarcation'];
 
@@ -86,6 +56,9 @@ header('Location: ../frontend/formPalanquee.php?dateplo='.$dateplongee.'&heure='
 exit();
 
 
+}else{
+    echo "Infos manquantes";
+}
 
 
 
