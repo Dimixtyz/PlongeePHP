@@ -26,6 +26,8 @@ $numpal = $_POST['numPal'];
 ?>
 
 <head>
+
+
     <link rel="stylesheet" href="css/ajoutUnPlongeur.css">
 
     <script>
@@ -43,9 +45,14 @@ $numpal = $_POST['numPal'];
       xmlns:margin-right="http://www.w3.org/1999/xhtml" xmlns:color="http://www.w3.org/1999/xhtml"
       xmlns:font-size="http://www.w3.org/1999/xhtml">
 
+        <?php
+        $date = "\"" . $_POST['datePlo'] . "\"";
+        $periode = $_POST['periodePlongee'];
+        ?>
+        <a onclick='afficherPlo(<?php echo "$date, $periode";?>)' href="#" class="waves-effect waves-light btn-large blue circle"><i class="material-icons white-text">keyboard_backspace</i></a>
 
 
-        <h4>Palanquée <?php echo $numpal+1;?> de la plongée du <?php echo $resPlongee[0]["PLO_DATE"];?> (<?php
+        <h4 class="center-align">Palanquée <?php echo $numpal+1;?> de la plongée du <?php echo $resPlongee[0]["PLO_DATE"];?> (<?php
 
 
             if($resPlongee[0]["PLO_MAT_MID_SOI"] == 1){
@@ -57,7 +64,7 @@ $numpal = $_POST['numPal'];
             }
 
 
-        ?>)</h4>
+                ?>)</h4>
 
         <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
 
@@ -229,6 +236,31 @@ $numpal = $_POST['numPal'];
         document.body.appendChild(form);
         form.submit();
     }
+
+
+    function afficherPlo(datePlo, periodePlo){
+
+        const form = document.createElement('form');
+        form.method = 'post';
+        form.action = '../frontend/affichagePlongee.php';
+
+        const champDate = document.createElement('input');
+        champDate.type = 'hidden';
+        champDate.name = 'datePlo';
+        champDate.value = datePlo;
+
+        const champPeriode = document.createElement('input');
+        champPeriode.type = 'hidden';
+        champPeriode.name = 'periodePlongee';
+        champPeriode.value = periodePlo;
+
+        form.appendChild(champDate);
+        form.appendChild(champPeriode);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
 </script>
 
 
