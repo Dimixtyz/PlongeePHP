@@ -1,15 +1,16 @@
 <?php
 include_once "../header.php";
 include_once "../backend/bddPlongee.php";
-if(isset($_GET['datePlo'], $_GET['periodePlongee'])) {
+if(isset($_POST['datePlo'], $_POST['periodePlongee'], $_POST['id'], $_POST['numPal'])) {
 
     $bdd = new bddPlongee();
 
-    $datePlongee = "'" . $_GET['datePlo'] . "'";
-    $periodePlongee = "'" . $_GET['periodePlongee'] . "'";
+    $datePlongee = "'" . $_POST['datePlo'] . "'";
+    $periodePlongee = "'" . $_POST['periodePlongee'] . "'";
+    $idPal = $_POST['id'];
 
     $reqPlongee = "SELECT * FROM PLO_PLONGEE JOIN PLO_SITE USING(SIT_NUM) WHERE PLO_DATE = $datePlongee AND PLO_MAT_MID_SOI = $periodePlongee";
-    $reqPalanquees = "SELECT * FROM PLO_PALANQUEE WHERE PLO_DATE = $datePlongee AND PLO_MAT_MID_SOI = $periodePlongee";
+    $reqPalanquees = "SELECT * FROM PLO_PALANQUEE WHERE PLO_DATE = $datePlongee AND PLO_MAT_MID_SOI = $periodePlongee AND PAL_NUM = $idPal";
 
     $resPlongee = $bdd->exec($reqPlongee);
 
@@ -18,24 +19,20 @@ if(isset($_GET['datePlo'], $_GET['periodePlongee'])) {
 }
 
 
-$numpal = $_GET['aff'];
+$numpal = $_POST['numPal'];
 
 ?>
 
-        <h4>Palanquée <?php echo $numpal+1;?> de la plongée du <?php echo $_GET['datePlo'];?> (<?php
+        <h4>Palanquée <?php echo $numpal+1;?> de la plongée du <?php echo $resPlongee[0]["PLO_DATE"];?> (<?php
 
 
-            if(isset($_GET['periodePlongee'])&&$_GET['periodePlongee']==1){
+            if($resPlongee[0]["PLO_MAT_MID_SOI"] == 1){
                 echo "Matin";
-            }else if(isset($_GET['periodePlongee'])&&$_GET['periodePlongee']==2){
+            }else if($resPlongee[0]["PLO_MAT_MID_SOI"]==2){
                 echo "Après-midi";
-            }else if(isset($_GET['periodePlongee'])&&$_GET['periodePlongee']==3){
+            }else if($resPlongee[0]["PLO_MAT_MID_SOI"]==3){
                 echo "Soir";
             }
-
-
-
-
 
 
         ?>)</h4>
@@ -45,34 +42,34 @@ $numpal = $_GET['aff'];
           <table class="centered">
             <tr>
               <td>Heure de départ :</td>
-              <td><?php echo $resPalanquees[$numpal]['PAL_HEURE_IMMERSION']?></td>
+              <td><?php echo $resPalanquees[0]['PAL_HEURE_IMMERSION']?></td>
               <td>Heure retour :</td>
-              <td><?php echo $resPalanquees[$numpal]['PAL_HEURE_SORTIE_EAU']?></td>
+              <td><?php echo $resPalanquees[0]['PAL_HEURE_SORTIE_EAU']?></td>
             </tr>
 
             <tr>
               <td>Temps Prévu :</td>
-              <td><?php if(!empty($resPalanquees[$numpal]['PAL_DUREE_PREVUE'])){
-                  echo $resPalanquees[$numpal]['PAL_DUREE_PREVUE']." min";
+              <td><?php if(!empty($resPalanquees[0]['PAL_DUREE_PREVUE'])){
+                  echo $resPalanquees[0]['PAL_DUREE_PREVUE']." min";
                 }?></td>
 
               <td>Profondeur Prévu :</td>
               <td><?php
-                if(!empty($resPalanquees[$numpal]['PAL_PROFONDEUR_PREVU'])){
-                  echo $resPalanquees[$numpal]['PAL_PROFONDEUR_PREVU']." m";
+                if(!empty($resPalanquees[0]['PAL_PROFONDEUR_PREVU'])){
+                  echo $resPalanquees[0]['PAL_PROFONDEUR_PREVU']." m";
                 }?></td>
             </tr>
 
             <tr>
               <td>Temps Réalisé :</td>
-              <td><?php if(!empty($resPalanquees[$numpal]['PAL_DUREE_FOND'])){
-                echo $resPalanquees[$numpal]['PAL_DUREE_FOND']." min";
+              <td><?php if(!empty($resPalanquees[0]['PAL_DUREE_FOND'])){
+                echo $resPalanquees[0]['PAL_DUREE_FOND']." min";
                 }?></td>
 
               <td>Profondeur Réalisé :</td>
               <td><?php
-                if(!empty($resPalanquees[$numpal]['PAL_PROFONDEUR_REELLE'])){
-                  echo $resPalanquees[$numpal]['PAL_PROFONDEUR_REELLE']." m";
+                if(!empty($resPalanquees[0]['PAL_PROFONDEUR_REELLE'])){
+                  echo $resPalanquees[0]['PAL_PROFONDEUR_REELLE']." m";
                 }?></td>
             </tr>
 
@@ -93,7 +90,7 @@ $numpal = $_GET['aff'];
 
         <tbody>
         <?php
-        $numPal = "'".$resPalanquees[$numpal]['PAL_NUM']."'";
+        $numPal = "'".$resPalanquees[0]['PAL_NUM']."'";
         $reqPlongeur = "SELECT * FROM PLO_PALANQUEE JOIN PLO_CONCERNER USING (PLO_DATE,PLO_MAT_MID_SOI,PAL_NUM) JOIN PLO_PLONGEUR USING (PER_NUM) JOIN PLO_PERSONNE USING (PER_NUM) JOIN PLO_APTITUDE USING (APT_CODE) WHERE PLO_DATE = $datePlongee AND PLO_MAT_MID_SOI = $periodePlongee AND PAL_NUM=$numPal";
         $reqPlongeur = $bdd->exec($reqPlongeur);
 

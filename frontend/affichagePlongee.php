@@ -1,8 +1,75 @@
+<script>
+
+    function suppPal(datePlo, periodePlo, numPal){
+
+        const form = document.createElement('form');
+        form.method = 'post';
+        form.action = '../backend/suppressionPalanquee.php';
+
+        const champDate = document.createElement('input');
+        champDate.type = 'hidden';
+        champDate.name = 'datePlo';
+        champDate.value = datePlo;
+
+        const champNum = document.createElement('input');
+        champNum.type = 'hidden';
+        champNum.name = 'idPal';
+        champNum.value = numPal;
+
+        const champPeriode = document.createElement('input');
+        champPeriode.type = 'hidden';
+        champPeriode.name = 'periodePlongee';
+        champPeriode.value = periodePlo;
+
+        form.appendChild(champDate);
+        form.appendChild(champPeriode);
+        form.appendChild(champNum);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    function modifierPal(datePlo, periodePlo, numPal, idPal){
+
+        const form = document.createElement('form');
+        form.method = 'post';
+        form.action = '../frontend/afficherPalanquée.php';
+
+        const champDate = document.createElement('input');
+        champDate.type = 'hidden';
+        champDate.name = 'datePlo';
+        champDate.value = datePlo;
+
+        const champNum = document.createElement('input');
+        champNum.type = 'hidden';
+        champNum.name = 'id';
+        champNum.value = idPal;
+
+        const champNumPal = document.createElement('input');
+        champNumPal.type = 'hidden';
+        champNumPal.name = 'numPal';
+        champNumPal.value = numPal;
+
+        const champPeriode = document.createElement('input');
+        champPeriode.type = 'hidden';
+        champPeriode.name = 'periodePlongee';
+        champPeriode.value = periodePlo;
+
+        form.appendChild(champDate);
+        form.appendChild(champPeriode);
+        form.appendChild(champNum);
+        form.appendChild(champNumPal);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+
+</script>
 <?php
 include_once "../backend/bddPlongee.php";
 include_once "../header.php";
 
-var_dump($_POST);
 
 if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
 
@@ -91,15 +158,16 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
             </td>
 
 
-            <td><a class="btn waves-effect waves-light blue lighten-2" href="afficherPalanquée.php?np=<?php echo $resPalanquees[$i][2];?>&aff=<?php echo $i;?>&datePlo=<?php echo $date;?>&periodePlongee=<?php echo $periode;?>">
-                    <i class="material-icons medium">create</i>
-                </a></td>
-
-
             <?php
             $date = "\"".$_POST['datePlo']."\"";
             $numPal = $resPalanquees[$i]['PAL_NUM'];
             ?>
+
+            <td><a onclick='modifierPal(<?php echo "$date, $periode, $i, $numPal";?>)' href="#" class="btn waves-effect waves-light blue lighten-2">
+                    <i class="material-icons medium">create</i>
+                </a></td>
+
+
             <td><a onclick='suppPal(<?php echo "$date, $periode, $numPal";?>)' href="#" class="btn waves-effect waves-light red">
                     <i class="material-icons medium">clear</i>
                 </a></td>
@@ -116,35 +184,4 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
         Ajouter une palanquée<i class="material-icons medium">add_box</i>
     </a>
 
-    <script>
 
-        function suppPal(datePlo, periodePlo, numPal){
-
-            const form = document.createElement('form');
-            form.method = 'post';
-            form.action = '../backend/suppressionPalanquee.php';
-
-            const champDate = document.createElement('input');
-            champDate.type = 'hidden';
-            champDate.name = 'datePlo';
-            champDate.value = datePlo;
-
-            const champNum = document.createElement('input');
-            champNum.type = 'hidden';
-            champNum.name = 'idPal';
-            champNum.value = numPal;
-
-            const champPeriode = document.createElement('input');
-            champPeriode.type = 'hidden';
-            champPeriode.name = 'periodePlongee';
-            champPeriode.value = periodePlo;
-
-            form.appendChild(champDate);
-            form.appendChild(champPeriode);
-            form.appendChild(champNum);
-
-            document.body.appendChild(form);
-            form.submit();
-        }
-
-    </script>
