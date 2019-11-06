@@ -1,3 +1,33 @@
+<body>
+
+<script>
+    function afficherPlo(datePlo, periodePlo){
+
+        console.log("date : "+datePlo+" periode : "+periodePlo);
+
+        const form = document.createElement('form');
+        form.method = 'post';
+        form.action = '../frontend/affichagePlongee.php';
+
+        const champDate = document.createElement('input');
+        champDate.type = 'hidden';
+        champDate.name = 'datePlo';
+        champDate.value = datePlo;
+
+        const champPeriode = document.createElement('input');
+        champPeriode.type = 'hidden';
+        champPeriode.name = 'periodePlongee';
+        champPeriode.value = periodePlo;
+
+        form.appendChild(champDate);
+        form.appendChild(champPeriode);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+
+
 <?php
 
 
@@ -17,14 +47,11 @@ if (isset($_POST['datePlo'], $_POST['periodePlongee'], $_POST['idPal'])) {
     $reqSuppPal = "DELETE FROM PLO_PALANQUEE WHERE PLO_DATE = $ploDate AND PLO_MAT_MID_SOI = $ploPeriode AND PAL_NUM = $idPal";
     $bdd->inserer($reqSuppPal);
 
-?>
 
+    $date = "\"" . $_POST['datePlo'] . "\"";
+    $periode = $_POST['periodePlongee'];
 
-
-
-
-    <?php
-
+    echo "<script>afficherPlo($date, $periode)</script>";
 
     exit();
 
@@ -32,3 +59,8 @@ if (isset($_POST['datePlo'], $_POST['periodePlongee'], $_POST['idPal'])) {
 }else{
     echo "Champs incomplets";
 }
+
+?>
+
+</body>
+
