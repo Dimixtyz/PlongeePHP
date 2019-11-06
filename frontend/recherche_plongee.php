@@ -13,8 +13,8 @@ include "../header.php";
 
 
 
-
-    <a href="formPlongeee.php">Ajouter une plongée</a>
+    <br/>
+    <a class="btn waves-effect waves-light green" style="border-radius:10px;" href="formulaire_creation_personne.php">Ajouter une plongée</a>
 
     <div id="listeEleves"></div>
 
