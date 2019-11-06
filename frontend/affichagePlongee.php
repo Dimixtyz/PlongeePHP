@@ -92,7 +92,7 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
   <div><h2>FICHE DE SECURITÉ</h2></div>
 
 
- <a href="">Modifier</a>
+ <a href="formModifPlongee.php?dateplo=<?php echo $datePlongee;?>&seance=<?php echo $periodePlongee;?>">Modifier</a>
 
   <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
     <table class="centered">
