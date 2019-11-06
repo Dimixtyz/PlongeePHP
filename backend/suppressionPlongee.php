@@ -14,7 +14,7 @@ if (isset($_POST['datePlo'], $_POST['periodePlongee'])) {
         echo "Impossible de supprimer cette plongée !";
     }else{
 
-        $reqSupp = "DELETE FROM PLO_PLONGE WHERE PLO_DATE = $ploDate AND PLO_MAT_MID_SOI = $ploPeriode";
+        $reqSupp = "DELETE FROM PLO_PLONGEE WHERE PLO_DATE = $ploDate AND PLO_MAT_MID_SOI = $ploPeriode";
         $bdd->inserer($reqSupp);
 
         header("Location: ../frontend/recherche_plongee.php");
