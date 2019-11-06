@@ -11,15 +11,9 @@ include "../header.php";
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <meta charset="utf-8">
     <title>Formulaire plongée</title>
-    <script>
-        function AjouterPalanquee(){
-            input = jQuery(`<div class="row"><div class="col s11"><label for="palanquee[]">Compétence : </label><input type="text" name="competence[]"></div><a class="btn-floating btn-large waves-effect waves-light red" onclick="document.getElementById('addInput').removeChild(this.parentNode)"><i class="material-icons">delete_forever</i></a></div>`);
-            jQuery('#addInput').append(input);
-        } 
-    </script>
-    </head>
-    <body>
-    <form method="post" action="../backend/insererPlongee.php">
+  </head>
+  <body>
+  <form method="post" action="../backend/insererPlongee.php">
 	    <fieldset style="width:850px; margin-left: auto; margin-right: auto; margin-top:5%">
   	        <legend>FORMULAIRE PLONGÉE</legend>
             <br/>
@@ -148,180 +142,12 @@ include "../header.php";
             <br/>
             <br/>
 
-<<<<<<< HEAD
-            <div id="addInput">
-                <div class="row">
-                    <div class="col s11">
-                        <label for="palanquee[]">Palanquée : </label><input type="text" name="palanquee[]">
-=======
 
-
-
-
-
-            <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
-                <legend>Palanquée avant la plongée</legend><br/>
-
-                <label>Temps prévu (en minutes) : </label><input type="number" name="tempsprevu">
-                <label>Profondeur prévue (en mètres) :</label><input type="number" name="profprevue">
-
-
-                <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
-                    <legend>Ajout de personne à la palanquée</legend><br/>
-
-
-
-
-
-
-
-
-
-                    <div class="input-field col s12">
-                        <select style="display: block" name="elevepal1[]">
-                            <option value="choisir">Choisissez un élève</option>
-
-
-                            <?php
-                            include_once "../backend/bddPlongee.php";
-                            $bdd = new bddPlongee();
-                            $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
-                            $rep = $bdd->exec($req);
-
-                            if(sizeof($rep>0)){
-                                for($i=0; $i<sizeof($rep);$i++){
-                                    echo "<option value='".$rep[$i]['PER_NUM']."'>".$rep[$i]['PER_NOM']." ".$rep[$i]['PER_PRENOM']."</option>";
-                                }
-
-
-                            }
-                            ?>
-
-                        </select><br>
-
-
-                        <select style="display: block" name="elevepal1[]">
-                            <option value="choisir">Choisissez un élève</option>
-
-
-                            <?php
-                            include_once "../backend/bddPlongee.php";
-                            $bdd = new bddPlongee();
-                            $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
-                            $rep = $bdd->exec($req);
-
-                            if(sizeof($rep>0)){
-                                for($i=0; $i<sizeof($rep);$i++){
-                                    echo "<option value='".$rep[$i]['PER_NUM']."'>".$rep[$i]['PER_NOM']." ".$rep[$i]['PER_PRENOM']."</option>";
-                                }
-
-
-                            }
-                            ?>
-
-                        </select><br>
-
-                        <select style="display: block" name="elevepal1[]">
-                            <option value="choisir">Choisissez un élève</option>
-
-                            <?php
-                            include_once "../backend/bddPlongee.php";
-                            $bdd = new bddPlongee();
-                            $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
-                            $rep = $bdd->exec($req);
-
-                            if(sizeof($rep>0)){
-                                for($i=0; $i<sizeof($rep);$i++){
-                                    echo "<option value='".$rep[$i]['PER_NUM']."'>".$rep[$i]['PER_NOM']." ".$rep[$i]['PER_PRENOM']."</option>";
-                                }
-
-
-                            }
-                            ?>
-
-                        </select><br>
-
-                        <select style="display: block" name="elevepal1[]">
-                            <option value="choisir">Choisissez un élève</option>
-
-
-                            <?php
-                            include_once "../backend/bddPlongee.php";
-                            $bdd = new bddPlongee();
-                            $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
-                            $rep = $bdd->exec($req);
-
-                            if(sizeof($rep>0)){
-                                for($i=0; $i<sizeof($rep);$i++){
-                                    echo "<option value='".$rep[$i]['PER_NUM']."'>".$rep[$i]['PER_NOM']." ".$rep[$i]['PER_PRENOM']."</option>";
-                                }
-
-
-                            }
-                            ?>
-
-                        </select><br>
-
-                        <select style="display: block" name="elevepal1[]">
-                            <option value="choisir">Choisissez un élève</option>
-
-
-                            <?php
-                            include_once "../backend/bddPlongee.php";
-                            $bdd = new bddPlongee();
-                            $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
-                            $rep = $bdd->exec($req);
-
-                            if(sizeof($rep>0)){
-                                for($i=0; $i<sizeof($rep);$i++){
-                                    echo "<option value='".$rep[$i]['PER_NUM']."'>".$rep[$i]['PER_NOM']." ".$rep[$i]['PER_PRENOM']."</option>";
-                                }
-
-
-                            }
-                            ?>
-
-                        </select><br>
-
-                        <select style="display: block" name="elevepal1[]">
-                            <option value="choisir">Choisissez un élève</option>
-
-
-                            <?php
-                            include_once "../backend/bddPlongee.php";
-                            $bdd = new bddPlongee();
-                            $req = "SELECT * FROM PLO_PERSONNE JOIN PLO_PLONGEUR USING(PER_NUM) ORDER BY PER_NOM";
-                            $rep = $bdd->exec($req);
-
-                            if(sizeof($rep>0)){
-                                for($i=0; $i<sizeof($rep);$i++){
-                                    echo "<option value='".$rep[$i]['PER_NUM']."'>".$rep[$i]['PER_NOM']." ".$rep[$i]['PER_PRENOM']."</option>";
-                                }
-
-
-                            }
-                            ?>
-
-                        </select><br>
-
-
-
-
-
->>>>>>> 8ff4240da044eafffa0edb0da1c8c834a48b7701
-                    </div>
-                    <a class="btn-floating btn-large waves-effect waves-light" onclick="onclick="location.href='/formPalanquee.php';><i class="material-icons">add</i></a>
-                </div>
-            </div>
-
-            <button class="btn waves-effect waves-light" type="button" onClick="AjouterPalanquee();">Ajouter palanquée
-                <i class="material-icons right">add</i>
-            </button><br/><br/>
 
 
             <br/>
             <br/>
-            <button class="btn waves-effect waves-light" type="submit" name="action">Valider
+            <button class="btn waves-effect waves-light" type="submit" name="action">Créer la plongée
                 <i class="material-icons right">send</i>
             </button>
             <button class="btn waves-effect waves-light" type="reset" name="action">Effacer

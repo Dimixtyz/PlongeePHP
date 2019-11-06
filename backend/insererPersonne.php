@@ -16,6 +16,10 @@ $oninsereoupas = false ;
 function peutOnInserer(&$pre,&$no){
     $bdd = new bddPlongee();
 
+    if(strlen($pre)>= 30 || strlen($no)>=30){
+        echo "Nom ou prenom trop long !\n";
+    }
+
     if (VerificationNom($no) && VerificationPrenom($pre)) {
 
         $nomRecherche = "'" . strtoupper($no) . "'";

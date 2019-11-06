@@ -151,6 +151,34 @@ if(isset($_GET['id'])) {
             <input type="hidden" name="id" value="<?php echo $id;?>">
             <?php if($plongeur){echo "<script> affichageAptitude('divAptitude');console.log('Plongeur');</script>";}?>
 
+            <br>
+            <?php
+
+            $reqTestCertificat = "SELECT PER_NUM FROM PLO_PERSONNE WHERE PER_NUM = '".$id."' AND PER_DATE_CERTIF_MED > DATE_ADD(NOW(), INTERVAL -365 DAY)";
+            $reqTestCertificat = $bdd->exec($reqTestCertificat);
+
+            if (empty($reqTestCertificat)){
+                ?>
+                <div>
+                    Certificat médical :<br>
+                    <input type="file" name="certificat" id="certificat">
+                </div>
+                <?php
+            }else{
+               ?>
+
+                <div>
+                    Certificat médical à jour<br>
+                    <a onclick="newCertificat()">nouveau certificat</a>
+                    <div id="newCerti"></div>
+                </div>
+
+                <?php
+            }
+
+            ?>
+
+
             <br/>
             <br/>
 
@@ -160,6 +188,16 @@ if(isset($_GET['id'])) {
 
         </fieldset>
     </form>
+
+
+    <script>
+
+        function newCertificat() {
+            document.getElementById("newCerti").innerHTML = "<input type='file' name='certificat' id='certificat'>";
+        }
+
+    </script>
+
 
     </body>
     </html>
