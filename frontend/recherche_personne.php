@@ -56,8 +56,8 @@ include "../header.php";
     <input type="text" id="recherche" placeholder="Rechercher des membres...">
   </div>
 
-
-    <a href="formulaire_creation_personne.php">Ajouter une personne</a>
+    
+    <a class="btn waves-effect waves-light green" style="border-radius:10px;" href="formulaire_creation_personne.php">Ajouter une personne </a>
 
     <div id="listeEleves"></div>
 
