@@ -5,7 +5,7 @@ if(isset($_POST['nomEmb'])){
 
     $bdd = new bddPlongee();
 
-    $nomMaj = strtoupper($_POST['nomEmb']);
+    $nomMaj = "'".strtoupper($_POST['nomEmb'])."'";
     $reqVerificationNom = "SELECT * FROM PLO_EMBARCATION WHERE upper(EMB_NOM) = $nomMaj";
     $reqVerificationNom = $bdd->exec($reqVerificationNom);
 

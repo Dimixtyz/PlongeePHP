@@ -4,7 +4,7 @@ include_once "bddPlongee.php";
 if (isset($_POST['nomsite'], $_POST['localisationsite'])) {
     $bdd = new bddPlongee();
 
-    $nomMaj = strtoupper($_POST['nomsite']);
+    $nomMaj = "'".strtoupper($_POST['nomsite'])."'";
 
     $reqVerificationNom = "SELECT * FROM PLO_SITE WHERE upper(SIT_NOM) = $nomMaj";
     $reqVerificationNom = $bdd->exec($reqVerificationNom);
