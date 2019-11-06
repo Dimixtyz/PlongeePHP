@@ -70,7 +70,6 @@ if (isset($_POST['heureDepart'],$_POST['heureRetour'],$_POST['tempsPrevu'],$_POS
 
         if ($heureDepart < $heureRetour){
             $tempsReel = $temps2 - $temps1;
-            echo $tempsReel;
         }
     }
 
