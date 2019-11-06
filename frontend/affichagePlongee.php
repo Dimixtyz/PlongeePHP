@@ -69,13 +69,16 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
         <tr>
             <th>Num Palanquée</th>
             <th>Nombre d'élèves</th>
-            <th>Nombres de plongées</th>
-            <th>Modifier</th>
+            <th>Modifier/Consulter</th>
             <th>Supprimer</th>
         </tr>
         </thead>
     <tbody>
     <?php
+    $date = $_POST['datePlo'];
+    $periode= $_POST['periodePlongee'];
+    //$date = preg_replace("#^'#", "", $datePlongee);
+    //$date = preg_replace("#'$#", "", $date);
     for ($i = 0; $i<sizeof($resPalanquees); $i++){
         ?>
         <tr>
@@ -87,14 +90,8 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
                 <a>1</a>
             </td>
 
-            <td>
-                <a>2</a>
 
-            </td>
-
-
-
-            <td><a class="btn waves-effect waves-light blue lighten-2" href="">
+            <td><a class="btn waves-effect waves-light blue lighten-2" href="afficherPalanquée.php?np=<?php echo $resPalanquees[$i][2];?>&aff=<?php echo $i;?>&datePlo=<?php echo $date;?>&periodePlongee=<?php echo $periode;?>">
                     <i class="material-icons medium">create</i>
                 </a></td>
 
@@ -109,5 +106,7 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
 ?>
     </tbody>
     </table>
-
-
+    <br>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Ajouter une palanquée
+        <i class="material-icons right">library_add</i>
+    </button>
