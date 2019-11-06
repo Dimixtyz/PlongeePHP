@@ -64,7 +64,7 @@ class myPDF extends FPDF{
         $this->SetFont('Times','B',12);
         $this->Cell(50,10,'Site de plongee',1,0,'C');
         $this->SetFont('Times','',12);
-        $this->Cell(50,10,$site,1,0,'C');
+        $this->Cell(50,10,utf8_decode($site),1,0,'C');
         $this->Ln();
 
 
@@ -72,13 +72,13 @@ class myPDF extends FPDF{
         $this->Ln();
         $this->Cell(50,10,'Directeur de plongee',1,0,'C');
         $this->SetFont('Times','',12);
-        $this->Cell(50,10,$dir,1,0,'C');
+        $this->Cell(50,10,utf8_decode($dir),1,0,'C');
         $this->Ln();
 
         $this->SetFont('Times','B',12);
         $this->Cell(50,10,'Securite de surface',1,0,'C');
         $this->SetFont('Times','',12);
-        $this->Cell(50,10,$sec,1,0,'C');
+        $this->Cell(50,10,utf8_decode($sec),1,0,'C');
         $this->Ln();
 
 
@@ -91,10 +91,10 @@ class myPDF extends FPDF{
 
     }
 
-    function palanquee($heuredep,$heureret,$tempsprev,$profprev,$tempsrea,$profreal){
+    function palanquee($num,$heuredep,$heureret,$tempsprev,$profprev,$tempsrea,$profreal){
         $this->Ln();
         $this->SetFont('Times','B',12);
-        $this->Cell(185,10,'Palanquee n1',1,0,'C');
+        $this->Cell(185,10,utf8_decode('Palanquée n°').$num,1,0,'C');
         $this->Ln();
         $this->SetFont('Times','B',12);
         $this->Cell(46.25,10,'Heure de depart',1,0,'C');
@@ -141,8 +141,8 @@ class myPDF extends FPDF{
 
     function ajoutNomNiveau($nom,$niv){
         $this->SetFont('Times','',12);
-        $this->Cell(92.5,10,$nom,1,0,'C');
-        $this->Cell(92.5,10,$niv,1,0,'C');
+        $this->Cell(92.5,10,utf8_decode($nom),1,0,'C');
+        $this->Cell(92.5,10,utf8_decode($niv),1,0,'C');
         $this->Ln();
     }
 
@@ -190,7 +190,7 @@ for ($i = 0; $i<sizeof($resPalanquees); $i++) {
     }
 
 
-    $pdf->palanquee($heuredep,$heuresorti,$dureepre,$profpre,$dureefinal,$profreel);
+    $pdf->palanquee($i+1,$heuredep,$heuresorti,$dureepre,$profpre,$dureefinal,$profreel);
 
     $numPal = "'".$resPalanquees[$i]['PAL_NUM']."'";
     $reqPlongeur = "SELECT * FROM PLO_PALANQUEE JOIN PLO_CONCERNER USING (PLO_DATE,PLO_MAT_MID_SOI,PAL_NUM) JOIN PLO_PLONGEUR USING (PER_NUM) JOIN PLO_PERSONNE USING (PER_NUM) JOIN PLO_APTITUDE USING (APT_CODE) WHERE PLO_DATE = $dateplongee AND PLO_MAT_MID_SOI = $seanceplongee AND PAL_NUM=$numPal";

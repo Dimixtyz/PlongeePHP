@@ -62,7 +62,7 @@ $bdd = new bddPlongee();
                   <i class="material-icons medium">create</i>
             </a></td>
             <td>
-                <a class="btn waves-effect waves-light orange" href="../backend/creationPDF.php?dateplongee=<?php echo $row["PLO_DATE"];?>&seance=<?php echo $row["PLO_MAT_MID_SOI"];?>">
+                <a class="btn waves-effect waves-light orange" target="_blank" href="../backend/creationPDF.php?dateplongee=<?php echo $row["PLO_DATE"];?>&seance=<?php echo $row["PLO_MAT_MID_SOI"];?>">
                     <i class="material-icons medium">file_download</i>
                 </a>
             </td>
