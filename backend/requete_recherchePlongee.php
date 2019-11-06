@@ -25,7 +25,7 @@
         form.submit();
     }
 
-    function afficher(datePlo, periodePlo){
+    function afficherPlo(datePlo, periodePlo){
 
         console.log("date : "+datePlo+" periode : "+periodePlo);
 
@@ -79,8 +79,8 @@ $bdd = new bddPlongee();
       foreach ($rep as $row) {
         ?>
 
-          <input type="hidden" name="datePlo" value="<?php echo $row["PLO_DATE"];?>">
-          <input type="hidden" name="periodePlongee" value="<?php echo $row["PLO_MAT_MID_SOI"];?>">
+          <?php $date = "\"".$row["PLO_DATE"]."\"";
+          $periode = $row["PLO_MAT_MID_SOI"];?>
 
         <tr>
           <td>
@@ -108,7 +108,7 @@ $bdd = new bddPlongee();
               <?php echo $row["EMB_NOM"]; ?></p>
           </td>
             <td>
-                <button class="waves-effect waves-light btn-small deep-purple darken-2" type="submit" form="formAfficher"><i class="material-icons medium">visibility</i></button>
+                <a onclick='afficherPlo(<?php echo "$date, $periode";?>)' href="#" class="btn waves-effect waves-light deep-purple darken-2" ><i class="material-icons medium">visibility</i></a>
             </td>
 
             <td>
@@ -117,10 +117,9 @@ $bdd = new bddPlongee();
                 </a>
             </td>
 
-            <?php $date = "\"".$row["PLO_DATE"]."\"";
-            $periode = $row["PLO_MAT_MID_SOI"];?>
 
-          <td><a onclick='supprimer(<?php echo "$date, $periode";?>)' class="btn waves-effect waves-light red <?php
+
+          <td><a onclick='supprimer(<?php echo "$date, $periode";?>)' href="#" class="btn waves-effect waves-light red <?php
               $ploDate = "'".$row["PLO_DATE"]."'";
               $ploPeriode = "'".$row["PLO_MAT_MID_SOI"]."'";
 
@@ -130,7 +129,7 @@ $bdd = new bddPlongee();
                   echo "disabled";
               }
 
-              ?>" href="">
+              ?>">
                   <i class="material-icons medium">clear</i>
             </a></td>
 
