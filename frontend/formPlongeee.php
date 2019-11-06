@@ -46,7 +46,7 @@ include "../header.php";
             <br/>
 
             <label>Nom du site : </label>
-            <select id="nomSite" class="browser-default" name="nomDuSite">
+            <select id="numSite" class="browser-default" name="numSite">
                 <option value = "">Sélectionnez le nom du site</option>
                 <?php 
                 require_once "../backend/bddPlongee.php";
