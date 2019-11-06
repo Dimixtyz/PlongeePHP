@@ -37,7 +37,7 @@ if (isset($_POST['datePlo'], $_POST['periodePlongee'], $_POST['idPal'])) {
 </body>
 
 <script>
-    function afficherPal(datePlo, periodePlo){
+    function afficherPlo(datePlo, periodePlo){
 
         console.log("date : "+datePlo+" periode : "+periodePlo);
 
