@@ -7,12 +7,11 @@ include "header.php";
 
     <head>
         <title>Accueil</title>
-        <link rel="stylesheet" type="text/css" href="/frontend/css/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
 
-    <body id="fond">
+    <body style="background-color:#eeeeee">
         <!--<div class="slider">
             <ul class="slides">
                 <li>
@@ -43,111 +42,52 @@ include "header.php";
         <br/>
         <br/>
         <br/>
+        <br/>
+        <br/>
+        <br/>
 
         <div class="row center-align">
-            <div class="col s3">
-                <ul class="collection with-header">
+            <div class="col s3" style="border-radius:10px;">
+                <ul class="collection with-header" style="border-radius:10px;">
                     <li class="collection-header"><h4>PLONGÉE</h4></li>
-                    <li class="collection-item"><div><a class="btn waves-effect waves-light yellow" href="#!">Rechercher</a></div></li>
-                    <li class="collection-item"><div><a class="btn waves-effect waves-light green" href="#!">Ajouter</a></div></li>
+                    <li class="collection-item"><div><a class="btn waves-effect waves-light green" style="border-radius:10px;" href="/frontend/recherche_plongee.php">Consulter</a></div></li>
+                    <li class="collection-item"><div><a class="btn waves-effect waves-light green" style="border-radius:10px;" href="/frontend/formPlongeee.php">Ajouter</a></div></li>
                 </ul>
             </div>
 
 
 
-            <div class="col s3">
-                <ul class="collection with-header">
+            <div class="col s3" style="border-radius:10px;">
+                <ul class="collection with-header" style="border-radius:10px;">
                     <li class="collection-header"><h4>PERSONNE</h4></li>
-                    <li class="collection-item"><div><a class="btn waves-effect waves-light yellow" href="#!">Rechercher</a></div></li>
-                    <li class="collection-item"><div><a class="btn waves-effect waves-light green" href="#!">Ajouter</a></div></li>
+                    <li class="collection-item"><div><a class="btn waves-effect waves-light green" style="border-radius:10px;" href="/frontend/recherche_personne.php">Consulter</a></div></li>
+                    <li class="collection-item"><div><a class="btn waves-effect waves-light green" style="border-radius:10px;" href="/frontend/formulaire_creation_personne.php">Ajouter</a></div></li>
                 </ul>
             </div>
 
 
 
-            <div class="col s3">
-                <ul class="collection with-header">
+            <div class="col s3" style="border-radius:10px;">
+                <ul class="collection with-header" style="border-radius:10px;">
                     <li class="collection-header"><h4>SITE</h4></li>
-                    <li class="collection-item"><div><a class="btn waves-effect waves-light yellow" href="">Consulter</a></div></li>
-                    <li class="collection-item"><div><a class="btn waves-effect waves-light green" href="/frontend/formSite.php">Ajouter</a></div></li>
+                    <li class="collection-item"><div><a class="btn waves-effect waves-light green" style="border-radius:10px;" href="">Consulter</a></div></li>
+                    <li class="collection-item"><div><a class="btn waves-effect waves-light green" style="border-radius:10px;" href="/frontend/formSite.php">Ajouter</a></div></li>
                 </ul>
             </div>
 
 
 
-            <div class="col s3">
-                <ul class="collection with-header">
+            <div class="col s3" style="border-radius:10px;"> 
+                <ul class="collection with-header" style="border-radius:10px;">
                     <li class="collection-header"><h4>EMBARCATION</h4></li>
-                    <li class="collection-item"><div><a class="btn waves-effect waves-light yellow" href="#!">Rechercher</a></div></li>
-                    <li class="collection-item"><div><a class="btn waves-effect waves-light green" href="#!">Ajouter</a></div></li>
+                    <li class="collection-item"><div><a class="btn waves-effect waves-light green" style="border-radius:10px;" href="#!">Consulter</a></div></li>
+                    <li class="collection-item"><div><a class="btn waves-effect waves-light green" style="border-radius:10px;" href="/frontend/formEmbarcation.php">Ajouter</a></div></li>
                 </ul>
             </div>
 
-
+            <br/>
+            <br/>
         </div>
-
-
-
-
-
-
-        <div class="backback">
-            <div class="row" id="range1">
-                <div class="col s12 m6 l3" id="cadre1"> 
-                    <p class="titre1">PLONGÉE</p>
-                </div>
-                <div class="col s12 m6 l3" id="cadre1"> 
-                    <p class="titre1">PERSONNE</p>
-                </div>
-                <div class="col s12 m6 l3" id="cadre1"> 
-                    <p class="titre1">SITE</p>
-                </div>
-                <div class="col s12 m6 l3" id="cadre1"> 
-                    <p class="titre1">EMBARCATION</p>
-                </div>
-            </div>
-
-
-
-            <div class="row" id="range2">
-                <div class="col s12 m6 l3" id="cadre2">
-                    <div class="bouton1">
-                        <a id="texteBouton" class="waves-effect waves-light btn lime lighten-2" href="/frontend/recherche_plongee.php">Recherche plongée</a>
-                        <br/>
-                        <br/>
-                        <a id="texteBouton" class="waves-effect waves-light btn lime lighten-2" href="/frontend/formPlongeee.php">Ajouter plongée</a>
-                    </div>
-                </div>
-                <div class="col s12 m6 l3" id="cadre2">
-                    <div class="bouton1">
-                        <a id="texteBouton" class="waves-effect waves-light btn lime lighten-2" href="/frontend/recherche_personne.php">Personne</a>
-                        <br/>
-                        <br/>
-                        <a id="texteBouton" class="waves-effect waves-light btn lime lighten-2" href="/frontend/formulaire_creation_personne.php">Inscription personne</a>
-                    </div>      
-                </div>
-                <div class="col s12 m6 l3" id="cadre2">
-                    <div class="bouton1">
-                        <a id="texteBouton" class="waves-effect waves-light btn lime lighten-2"  href="/frontend/recherche_personne.php">Ajouter site</a>
-                        <br/>
-                        <br/>
-                        <a id="texteBouton" class="waves-effect waves-light btn lime lighten-2"  href="/frontend/recherche_personne.php">Gestion site</a>
-                    </div>      
-                </div>
-                <div class="col s12 m6 l3" id="cadre2">
-                    <div class="bouton1">
-                        <a id="texteBouton" class="waves-effect waves-light btn lime lighten-2" href="/frontend/recherche_personne.php">Ajouter embarcation</a>
-                        <br/>
-                        <br/>
-                        <a id="texteBouton" class="waves-effect waves-light btn lime lighten-2"  href="">Gestion embarcation</a>
-                    </div>      
-                </div>
-            </div>
-        </div>
-
-
-
-
         <br/>
         <br/>
     </body>

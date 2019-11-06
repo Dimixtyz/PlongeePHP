@@ -71,27 +71,24 @@ include "../header.php";
             <br/>
             <br/>
 
-            <label> Type d'embarcation : </label><br/>
-            <?php
-
+            <label>Type d'embarcation : </label>
+            <select id="nomSite" class="browser-default" name="nomDuSite">
+                <option value = "">Sélectionnez le type d'embarcation : </option>
+                <?php 
                 require_once "../backend/bddPlongee.php";
                 $bdd = new bddPlongee();
 
-                $req = "SELECT * FROM PLO_EMBARCATION";
+                $req = "select * from PLO_EMBARCATION order by EMB_NOM";
 
-                $embarcation = $bdd->exec($req);
+                $rep = $bdd->exec($req);
 
-                if(!empty($embarcation)){
-                    for($i=0; $i<sizeof($embarcation); $i++){
-                        echo " <label>
-              <input class=\"with-gap\" name=\"type_embarcation\" value=".$embarcation[$i]['EMB_NUM']." type=\"radio\"  />
-              <span>".$embarcation[$i]['EMB_NOM']."</span>
-            </label><br/>";
-
-                    }
+                for($i = 0; $i<sizeof($rep); $i++){
+                    $val = $rep[$i][0];
+                    $valaafficher = $rep[$i][1].' '.$rep[$i][2];
+                    echo "<option value=$val>$valaafficher</option><br/>";
                 }
-
-            ?>
+                ?>
+            </select>
 
 
             <br/>
