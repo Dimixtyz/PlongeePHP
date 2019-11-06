@@ -44,10 +44,9 @@ class myPDF extends FPDF{
     {
         $this->Image('../images/logo-carantec_nautisme.jpg',10,6,70,20);
         $this->SetFont('Arial','B',25);
-        $this->Cell(270,10,"FICHE DE SECURITE",0,0,'C');
+        $this->Cell(270,10,utf8_decode("FICHE DE SECURITÉ"),0,0,'C');
         $this->Ln();
-        //$this->SetFont('Times','',12);
-        //$this->Cell(270,5,"Thomas",0,0,'C');
+
 
     }
 
@@ -62,7 +61,7 @@ class myPDF extends FPDF{
         $this->Ln();
 
         $this->SetFont('Times','B',12);
-        $this->Cell(50,10,'Site de plongee',1,0,'C');
+        $this->Cell(50,10,utf8_decode('Site de plongée'),1,0,'C');
         $this->SetFont('Times','',12);
         $this->Cell(50,10,utf8_decode($site),1,0,'C');
         $this->Ln();
@@ -70,13 +69,13 @@ class myPDF extends FPDF{
 
         $this->SetFont('Times','B',12);
         $this->Ln();
-        $this->Cell(50,10,'Directeur de plongee',1,0,'C');
+        $this->Cell(50,10,utf8_decode('Directeur de plongée'),1,0,'C');
         $this->SetFont('Times','',12);
         $this->Cell(50,10,utf8_decode($dir),1,0,'C');
         $this->Ln();
 
         $this->SetFont('Times','B',12);
-        $this->Cell(50,10,'Securite de surface',1,0,'C');
+        $this->Cell(50,10,utf8_decode('Sécurite de surface'),1,0,'C');
         $this->SetFont('Times','',12);
         $this->Cell(50,10,utf8_decode($sec),1,0,'C');
         $this->Ln();
@@ -97,7 +96,7 @@ class myPDF extends FPDF{
         $this->Cell(185,10,utf8_decode('Palanquée n°').$num,1,0,'C');
         $this->Ln();
         $this->SetFont('Times','B',12);
-        $this->Cell(46.25,10,'Heure de depart',1,0,'C');
+        $this->Cell(46.25,10,utf8_decode('Heure de départ'),1,0,'C');
         $this->SetFont('Times','',12);
         $this->Cell(46.25,10,$heuredep,1,0,'C');
         $this->SetFont('Times','B',12);
@@ -107,27 +106,27 @@ class myPDF extends FPDF{
 
         $this->Ln();
         $this->SetFont('Times','B',12);
-        $this->Cell(46.25,10,'Temps prevu',1,0,'C');
+        $this->Cell(46.25,10,utf8_decode('Temps prévu'),1,0,'C');
         $this->SetFont('Times','',12);
         $this->Cell(46.25,10,$tempsprev,1,0,'C');
         $this->SetFont('Times','B',12);
-        $this->Cell(46.25,10,'Profondeur prevu',1,0,'C');
+        $this->Cell(46.25,10,utf8_decode('Profondeur prévue'),1,0,'C');
         $this->SetFont('Times','',12);
         $this->Cell(46.25,10,$profprev,1,0,'C');
 
         $this->Ln();
         $this->SetFont('Times','B',12);
-        $this->Cell(46.25,10,'Temps realise',1,0,'C');
+        $this->Cell(46.25,10,utf8_decode('Temps réalisé'),1,0,'C');
         $this->SetFont('Times','',12);
         $this->Cell(46.25,10,$tempsrea,1,0,'C');
         $this->SetFont('Times','B',12);
-        $this->Cell(46.25,10,'Profondeur realise',1,0,'C');
+        $this->Cell(46.25,10,utf8_decode('Profondeur réalisée'),1,0,'C');
         $this->SetFont('Times','',12);
         $this->Cell(46.25,10,$profreal,1,0,'C');
         $this->Ln();
         $this->SetFont('Times','B',12);
-        $this->Cell(92.5,10,'Nom Prenom',1,0,'C');
-        $this->Cell(92.5,10,'Niveau',1,0,'C');
+        $this->Cell(92.5,10,utf8_decode('Nom Prénom'),1,0,'C');
+        $this->Cell(92.5,10,utf8_decode('Niveau'),1,0,'C');
         $this->Ln();
 
 

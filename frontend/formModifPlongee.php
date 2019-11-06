@@ -22,65 +22,23 @@ if(isset($_GET['dateplo'], $_GET['seance'])) {
 }
 
 ?>
-
+<form method="post" action="../backend/modifierPlongee.php?date=<?php echo $datePlongee;?>&seance=<?php echo $periode;?>">
 <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
     <table class="centered">
-      <tr>
-        <td>Date :</td>
-        <td>
-             <input type="date" class="date" id="datePlongee" name="dateplongee" value="<?php
-
-                if($resPlongee[0]['PLO_DATE']!=""){
-                    echo $resPlongee[0]['PLO_DATE'];
-                }
-
-
-             ?>">
-
-        </td>
-          <td>
-            <p>
-                <label>
-                    <input name="seance" value="matin" type="radio" <?php
-
+        <tr>
+            <td>Date :</td>
+            <td><pre><?php echo $resPlongee[0]['PLO_DATE'];?>   |   <?php
                     if($resPlongee[0]['PLO_MAT_MID_SOI']==1){
-                        echo "checked";
+                        echo "Matin";
+                    }else if($resPlongee[0]['PLO_MAT_MID_SOI']==2){
+                        echo "Après-midi";
+                    }else if($resPlongee[0]['PLO_MAT_MID_SOI']==3){
+                        echo "Soir";
                     }
 
 
-                    ?>  />
-                    <span>Matin</span>
-                </label><br/>
-            </p>
-            <p>
-                <label>
-                    <input name="seance" value="apresmidi" type="radio" <?php
-
-                    if($resPlongee[0]['PLO_MAT_MID_SOI']==2){
-                        echo "checked";
-                    }
-
-
-                    ?> />
-                    <span>Après-midi</span>
-                </label><br/>
-            </p>
-            <p>
-                <label>
-                    <input name="seance" value="soir" type="radio" <?php
-
-                    if($resPlongee[0]['PLO_MAT_MID_SOI']==3){
-                        echo "checked";
-                    }
-
-
-                    ?>  />
-                    <span>Soir</span>
-                </label>
-            </p>
-
-            </td>
-      </tr>
+                    ?></pre></td>
+        </tr>
 
       <tr>
         <td>Directeur de plongée :</td>
@@ -150,6 +108,39 @@ if(isset($_GET['dateplo'], $_GET['seance'])) {
         </td>
 
       </tr>
+        <tr>
+            <td>Embarcation :</td>
+            <td><?php
+
+                require_once "../backend/bddPlongee.php";
+                $bdd = new bddPlongee();
+
+                $req = "SELECT * FROM PLO_EMBARCATION";
+
+                $embarcation = $bdd->exec($req);
+
+                if(!empty($embarcation)){
+                    for($i=0; $i<sizeof($embarcation); $i++){
+                        if($resPlongee[0]['EMB_NUM']==$embarcation[$i]['EMB_NUM']){
+                            echo " <label>
+              <input class=\"with-gap\" name=\"type_embarcation\" value=".$embarcation[$i]['EMB_NUM']." type=\"radio\" checked  />
+              <span>".$embarcation[$i]['EMB_NOM']."</span>
+            </label><br/>";
+                        }else{
+                            echo " <label>
+              <input class=\"with-gap\" name=\"type_embarcation\" value=".$embarcation[$i]['EMB_NUM']." type=\"radio\" />
+              <span>".$embarcation[$i]['EMB_NOM']."</span>
+            </label><br/>";
+                        }
+
+
+                    }
+                }
+
+                ?></td>
+
+
+        </tr>
     </table>
 
     <table class="centered">
@@ -185,6 +176,12 @@ if(isset($_GET['dateplo'], $_GET['seance'])) {
       </tr>
     </table>
   </fieldset>
+
+
+<button class="btn waves-effect waves-light red lighten-1" style="border-radius:10px;" type="submit" name="action">Modifier la plongée
+    <i class="material-icons right">send</i>
+</button>
+</form>
 
 
 
