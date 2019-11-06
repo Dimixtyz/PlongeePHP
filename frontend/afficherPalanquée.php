@@ -95,14 +95,18 @@ $numpal = $_POST['numPal'];
         $reqPlongeur = $bdd->exec($reqPlongeur);
 
 
+        $date = "\"".$_POST['datePlo']."\"";
+        $periode = $_POST['periodePlongee'];
+        $idPal = $resPalanquees[0]['PAL_NUM'];
+
         for ($j=0 ; $j<sizeof($reqPlongeur); $j++){
             ?>
             <tr>
                 <td><?php echo $reqPlongeur[$j]['PER_NOM']." ".$reqPlongeur[$j]['PER_PRENOM']?></td>
                 <td><?php echo $reqPlongeur[$j]['APT_LIBELLE']?></td>
 
-
-                <td><a class="btn waves-effect waves-light red" href="">
+                    <?php $idPer = $reqPlongeur[$j]['PER_NUM'] ?>
+                <td><a onclick='suppPlo(<?php echo "$date, $periode, $idPal, $idPer, $numpal";?>)' href="#" class="btn waves-effect waves-light red">
                         <i class="material-icons medium">clear</i>
                     </a></td>
             </tr>
@@ -122,18 +126,33 @@ $numpal = $_POST['numPal'];
     </fieldset>
 
 <script>
-    function suppPlo(datePlo, periodePlo, numPal, numPer){
+    function suppPlo(datePlo, periodePlo, idPal, idPer, numeroPal){
 
         console.log("date : "+datePlo+" periode : "+periodePlo);
 
         const form = document.createElement('form');
         form.method = 'post';
-        form.action = '../backend/suppressionPlongee.php';
+        form.action = '../backend/suppressionPlongeurPal.php';
 
         const champDate = document.createElement('input');
         champDate.type = 'hidden';
         champDate.name = 'datePlo';
         champDate.value = datePlo;
+
+        const champIdPal = document.createElement('input');
+        champIdPal.type = 'hidden';
+        champIdPal.name = 'idPal';
+        champIdPal.value = idPal;
+
+        const champIdPer = document.createElement('input');
+        champIdPer.type = 'hidden';
+        champIdPer.name = 'idPlo';
+        champIdPer.value = idPer;
+
+        const champNumPam = document.createElement('input');
+        champNumPam.type = 'hidden';
+        champNumPam.name = 'numeroPalPlo';
+        champNumPam.value = numeroPal;
 
         const champPeriode = document.createElement('input');
         champPeriode.type = 'hidden';
@@ -141,7 +160,10 @@ $numpal = $_POST['numPal'];
         champPeriode.value = periodePlo;
 
         form.appendChild(champDate);
+        form.appendChild(champIdPal);
         form.appendChild(champPeriode);
+        form.appendChild(champIdPer);
+        form.appendChild(champNumPam);
 
         document.body.appendChild(form);
         form.submit();
