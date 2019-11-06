@@ -2,6 +2,7 @@
 include_once "../backend/bddPlongee.php";
 include_once "../header.php";
 
+var_dump($_POST);
 
 if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
 
@@ -19,6 +20,7 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
 
 } ?>
 
+<fieldset style="width:800px; margin-left: auto; margin-right: auto;">
 
   <div><h2>FICHE DE SECURITE</h2></div>
 
@@ -105,7 +107,6 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
     </tbody>
     </table>
     <br>
-<a class="btn waves-effect waves-light blue lighten-2" href="formPalanqueeAjoutApres.php?dateplo='.<?php echo $date?>.'&seance='.<?php echo $periode?>">
-    Ajouter une palanquée<i class="material-icons medium">add_box</i>
-</a>
-
+    <button class="btn waves-effect waves-light" type="submit" name="action">Ajouter une palanquée
+        <i class="material-icons right">library_add</i>
+    </button>
