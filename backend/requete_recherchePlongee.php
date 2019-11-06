@@ -67,7 +67,16 @@ $bdd = new bddPlongee();
                 </a>
             </td>
 
-          <td><a class="btn waves-effect waves-light red" href="">
+          <td><a class="btn waves-effect waves-light red <?php
+              $ploDate = $row['PLO_DATE'];
+              $ploPeriode = $row['PLO_MAT_MID_SOI'];
+
+              $reqSupprimable = "SELECT * FROM PLO_PLONGEE JOIN PLO_PALANQUEE USING (PLO_DATE, PLO_MAT_MID_SOI) WHERE PLO_DATE = $ploDate AND PLO_MAT_MID_SOI = $ploPeriode";
+              if (!empty($reqSupprimable)){
+                  echo "disabled";
+              }
+
+              ?>" href="">
                   <i class="material-icons medium">clear</i>
             </a></td>
         </tr>
