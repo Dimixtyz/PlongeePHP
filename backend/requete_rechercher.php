@@ -112,7 +112,20 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
                   <i class="material-icons medium">create</i>
             </a></td>
 
-          <td><a class="btn waves-effect waves-light red" href="<?php echo "../backend/supprimerPersonne.php?id=".$row['PER_NUM'];?>">
+          <td><a class="btn waves-effect waves-light red <?php
+              $perNum = $row['PER_NUM'];
+              $reqSuppPlongeur = "SELECT * FROM PLO_PLONGEUR JOIN PLO_CONCERNER USING (PER_NUM) JOIN PLO_PALANQUEE USING (PLO_DATE, PLO_MAT_MID_SOI, PAL_NUM) WHERE PER_NUM =$perNum";
+              $reqSuppPlongeur = $bdd->exec($reqSuppPlongeur);
+              $reqSuppDir = "SELECT * FROM PLO_PLONGEE WHERE PER_NUM_DIR = $perNum";
+              $reqSuppDir = $bdd->exec($reqSuppDir);
+              $reqSuppSecu = "SELECT * FROM PLO_PLONGEE WHERE PER_NUM_SECU = $perNum";
+              $reqSuppSecu = $bdd->exec($reqSuppSecu);
+
+              if(!empty($reqSuppPlongeur)||!empty($reqSuppDir)||!empty($reqSuppSecu)){
+                  echo "disabled";
+              }
+
+              ?>" href="<?php echo "../backend/supprimerPersonne.php?id=".$row['PER_NUM'];?>">
                   <i class="material-icons medium">clear</i>
             </a></td>
         </tr>
