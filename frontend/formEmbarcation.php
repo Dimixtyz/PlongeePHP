@@ -13,7 +13,7 @@ include "../header.php";
     <title>Formulaire site</title>
   </head>
   <body>
-        <form methode="post">
+        <form methode="post" action="../backend/creationEmbarcation.php">
             <fieldset style="width:850px; margin-left: auto; margin-right: auto; margin-top:5%">
                 <legend>Formulaire d'ajout de type d'embarcation</legend>
                 <label>Ajouter un moyen d'embarcation : <label>
