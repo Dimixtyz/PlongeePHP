@@ -146,7 +146,7 @@ $numpal = $_POST['numPal'];
                 <td><?php echo $reqPlongeur[$j]['APT_LIBELLE']?></td>
 
                     <?php $idPer = $reqPlongeur[$j]['PER_NUM'] ?>
-                <td><a onclick='suppPlo(<?php echo "$date, $periode, $idPal, $idPer, $numpal";?>)' href="#" class="btn waves-effect waves-light red">
+                <td><a onclick='suppPlo(<?php echo "$date, $periode, $idPal, $idPer, $numpal";?>)' href="#" class="btn waves-effect waves-light red" style="border-radius:10px;"> 
                         <i class="material-icons medium">clear</i>
                     </a></td>
             </tr>
