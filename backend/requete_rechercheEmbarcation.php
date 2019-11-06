@@ -54,7 +54,7 @@
                         echo "disabled";
                     }
 
-                    ?>"><i class="material-icons medium">clear</i></a>
+                    ?>" style="border-radius:10px;"><i class="material-icons medium">clear</i></a>
                 </td>
             </tr>    
                 <?php

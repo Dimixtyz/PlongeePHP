@@ -147,18 +147,18 @@ $bdd = new bddPlongee();
 
 
             <td>
-                <a onclick='afficherPlo(<?php echo "$date, $periode";?>)' href="#" class="btn waves-effect waves-light deep-purple darken-2" ><i class="material-icons medium">visibility</i></a>
+                <a onclick='afficherPlo(<?php echo "$date, $periode";?>)' href="#" class="btn waves-effect waves-light deep-purple darken-2" style="border-radius:10px;"><i class="material-icons medium">visibility</i></a>
             </td>
 
             <td>
-                <a class="btn waves-effect waves-light orange" target="_blank" href="../backend/creationPDF.php?dateplongee=<?php echo $row["PLO_DATE"];?>&seance=<?php echo $row["PLO_MAT_MID_SOI"];?>">
+                <a class="btn waves-effect waves-light orange" target="_blank" href="../backend/creationPDF.php?dateplongee=<?php echo $row["PLO_DATE"];?>&seance=<?php echo $row["PLO_MAT_MID_SOI"];?>" style="border-radius:10px;">
                     <i class="material-icons medium">file_download</i>
                 </a>
             </td>
 
 
 
-          <td><a onclick='supprimer(<?php echo "$date, $periode";?>)' href="#" class="btn waves-effect waves-light red <?php
+          <td><a onclick='supprimer(<?php echo "$date, $periode";?>)' href="#" class="btn waves-effect waves-light red" style="border-radius:10px;" <?php
               $ploDate = "'".$row["PLO_DATE"]."'";
               $ploPeriode = "'".$row["PLO_MAT_MID_SOI"]."'";
 
@@ -168,7 +168,7 @@ $bdd = new bddPlongee();
                   echo "disabled";
               }
 
-              ?>">
+              ?>>
                   <i class="material-icons medium">clear</i>
             </a></td>
 

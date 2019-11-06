@@ -91,9 +91,6 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
 
   <div><h2>FICHE DE SECURITÉ</h2></div>
 
-
- <a href="formModifPlongee.php?dateplo=<?php echo $datePlongee;?>&seance=<?php echo $periodePlongee;?>">Modifier</a>
-
   <fieldset style="width:800px; margin-left: auto; margin-right: auto;">
     <table class="centered">
       <tr>
@@ -142,6 +139,7 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
         </td>
       </tr>
     </table>
+    <a class="btn waves-effect waves-light green lighten-1" style="border-radius:10px;text-align:center;" href="formModifPlongee.php?dateplo=<?php echo $datePlongee;?>&seance=<?php echo $periodePlongee;?>">Modifier   <i class="material-icons medium">edit</i></a>
   </fieldset>
 
   <br>
@@ -186,12 +184,12 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
             $numPal = $resPalanquees[$i]['PAL_NUM'];
             ?>
 
-            <td><a onclick='modifierPal(<?php echo "$date, $periode, $i, $numPal";?>)' href="#" class="btn waves-effect waves-light blue lighten-2">
+            <td><a onclick='modifierPal(<?php echo "$date, $periode, $i, $numPal";?>)' href="#" class="btn waves-effect waves-light blue lighten-2" style="border-radius:10px;">
                     <i class="material-icons medium">create</i>
                 </a></td>
 
 
-            <td><a onclick='suppPal(<?php echo "$date, $periode, $numPal";?>)' href="#" class="btn waves-effect waves-light red">
+            <td><a onclick='suppPal(<?php echo "$date, $periode, $numPal";?>)' href="#" class="btn waves-effect waves-light red" style="border-radius:10px;">
                     <i class="material-icons medium">clear</i>
                 </a></td>
         </tr>
@@ -206,8 +204,6 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
     </table>
 
     <br>
-    <a class="btn waves-effect waves-light blue lighten-2" href="formPalanqueeAjoutApres.php?dateplo='.<?php echo $date?>.'&seance='.<?php echo $periode?>">
-        Ajouter une palanquée <i class="material-icons medium">add_box</i>
-    </a>
+    <a class="btn waves-effect waves-light blue lighten-2" href="formPalanqueeAjoutApres.php?dateplo='.<?php echo $date?>.'&seance='.<?php echo $periode?>">Ajouter une palanquée  <i class="material-icons small">add_box</i></a>
 
 
