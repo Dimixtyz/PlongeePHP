@@ -29,11 +29,11 @@ if (isset($_POST['id'])) {
 
     if (!empty($reqDirecteur)) {
         ?>
-        <td><i class="material-icons medium">done</i></td>
+        <td><i class="material-icons medium green-text">done</i></td>
         <?php
     } else {
         ?>
-        <td><i class="material-icons medium">close</i></td>
+        <td><i class="material-icons medium red-text">close</i></td>
         <?php
 
     }
@@ -43,11 +43,11 @@ if (isset($_POST['id'])) {
 
     if (!empty($reqSecuSurface)) {
         ?>
-        <td><i class="material-icons medium">done</i></td>
+        <td><i class="material-icons medium green-text">done</i></td>
         <?php
     } else {
          ?>
-            <td><i class="material-icons medium">close</i></td>
+            <td><i class="material-icons medium red-text">close</i></td>
         <?php
     }
 
@@ -62,11 +62,11 @@ if (isset($_POST['id'])) {
 
     if (!empty($reqPlongeur)){
         ?>
-        <td><i class="material-icons medium">done</i></td>
+        <td><i class="material-icons medium green-text">done</i></td>
         <?php
     }else{
         ?>
-        <td><i class="material-icons medium">close</i></td>
+        <td><i class="material-icons medium red-text">close</i></td>
         <?php
     }
 
