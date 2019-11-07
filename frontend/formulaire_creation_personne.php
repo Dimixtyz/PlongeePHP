@@ -105,11 +105,6 @@ include "../header.php";
             </select><br>
         </div>
 
-          <div>
-              Certificat médical :<br/>
-              <input type="file" name="certificat" id="certificat">
-          </div>
-
 
         <br/>
         <br/>
