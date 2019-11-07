@@ -115,15 +115,20 @@ $bdd = new bddPlongee();
                 $dateRecherche = "'".$row["PLO_DATE"]."'";
                 $periodeRecherce = "'".$row["PLO_MAT_MID_SOI"]."'";
 
+
                 $reqStatut = "SELECT * FROM PLO_PALANQUEE JOIN PLO_PLONGEE USING (PLO_DATE, PLO_MAT_MID_SOI) WHERE PLO_DATE = $dateRecherche AND PLO_MAT_MID_SOI = $periodeRecherce";
                 $reqStatut = $bdd->exec($reqStatut);
+
+
 
                 if (!empty($reqStatut)){
 
                     foreach ($reqStatut as $key => $planquee) {
 
                         foreach ($planquee as $valeur){
-                            $valide = false;
+                            if($valeur ==""){
+                                $valide = false;
+                            }
                         }
 
                     }
@@ -133,11 +138,11 @@ $bdd = new bddPlongee();
                 }
 
                 if ($valide){
-                    echo "<span class='new badge' data-badge-caption='Complet'></span>";
+                    echo "<span class='new badge' data-badge-caption='Complété'></span>";
                     $reqStatut = "UPDATE PLO_PLONGEE SET PLO_ETAT = 'Complet' WHERE PLO_DATE = $dateRecherche AND PLO_MAT_MID_SOI = $periodeRecherce";
                 }else{
                     echo "<span class='new badge red' data-badge-caption='Incomplet'></span>";
-                    $reqStatut = "UPDATE PLO_PLONGEE SET PLO_ETAT = 'Imcomplet' WHERE PLO_DATE = $dateRecherche AND PLO_MAT_MID_SOI = $periodeRecherce";
+                    $reqStatut = "UPDATE PLO_PLONGEE SET PLO_ETAT = 'Incomplet' WHERE PLO_DATE = $dateRecherche AND PLO_MAT_MID_SOI = $periodeRecherce";
                 }
                 $bdd->inserer($reqStatut);
 

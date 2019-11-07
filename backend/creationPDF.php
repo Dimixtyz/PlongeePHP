@@ -34,6 +34,7 @@ $securite = $resSecu[0]['PER_NOM']." ".$resSecu[0]['PER_PRENOM'];
 
 
 $effectifbat = $resPlongee[0]['PLO_EFFECTIF_BATEAU'] ;
+$dateplongee=$_GET['dateplongee'];
 
 
 
@@ -161,8 +162,16 @@ $pdf->headerTable($dateplongee,$siteplongee,$directeur,$securite,$effectifbat);
 
 for ($i = 0; $i<sizeof($resPalanquees); $i++) {
 
-    $heuredep = $resPalanquees[$i]['PAL_HEURE_IMMERSION'];
-    $heuresorti = $resPalanquees[$i]['PAL_HEURE_SORTIE_EAU'];
+    if (!empty($resPalanquees[$i]['PAL_HEURE_IMMERSION'])) {
+        $heuredep = $resPalanquees[$i]['PAL_HEURE_IMMERSION'];
+    }else{
+        $heuredep = "/";
+    }
+    if (!empty($heuresorti = $resPalanquees[$i]['PAL_HEURE_SORTIE_EAU'])) {
+        $heuresorti = $resPalanquees[$i]['PAL_HEURE_SORTIE_EAU'];
+    }else{
+        $heuresorti = "/";
+    }
     if (!empty($resPalanquees[$i]['PAL_DUREE_PREVUE'])) {
         $dureepre = $resPalanquees[$i]['PAL_DUREE_PREVUE'] . " min";
     } else {
