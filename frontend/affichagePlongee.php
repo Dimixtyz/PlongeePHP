@@ -73,13 +73,17 @@ include_once "../header.php";
 
 if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
 
+    $datePlongee = preg_replace("#'#", "", $_POST['datePlo']);
+    $periodePlongee = preg_replace("#'#", "", $_POST['periodePlongee']);
+
     $bdd = new bddPlongee();
 
-    $datePlongee = "'" . $_POST['datePlo'] . "'";
-    $periodePlongee = "'" . $_POST['periodePlongee'] . "'";
+    $datePlongee = "'" . $datePlongee . "'";
+    $periodePlongee = "'" . $periodePlongee . "'";
 
     $reqPlongee = "SELECT * FROM PLO_PLONGEE JOIN PLO_SITE USING(SIT_NUM) WHERE PLO_DATE = $datePlongee AND PLO_MAT_MID_SOI = $periodePlongee";
     $reqPalanquees = "SELECT * FROM PLO_PALANQUEE WHERE PLO_DATE = $datePlongee AND PLO_MAT_MID_SOI = $periodePlongee";
+
 
     $resPlongee = $bdd->exec($reqPlongee);
 
