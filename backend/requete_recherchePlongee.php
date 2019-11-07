@@ -126,7 +126,7 @@ $bdd = new bddPlongee();
                     foreach ($reqStatut as $key => $planquee) {
 
                         foreach ($planquee as $valeur){
-                            if($valeur ==""){
+                            if($valeur =="" || $valeur=="00:00:00" || $valeur=="0" || $valeur=="0.00"){
                                 $valide = false;
                             }
                         }
