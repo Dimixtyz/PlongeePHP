@@ -75,13 +75,15 @@ include_once "../header.php";
 
 if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
 
-    $datePlongee = preg_replace("#'#", "", $_POST['datePlo']);
-    $periodePlongee = preg_replace("#'#", "", $_POST['periodePlongee']);
+    $date = preg_replace("#'#", "", $_POST['datePlo']);
+    $date = preg_replace('#"#', "", $date);
+    $periode= preg_replace("#'#", "", $_POST['periodePlongee']);
+    $periode= preg_replace('#"#', "", $periode);
 
     $bdd = new bddPlongee();
 
-    $datePlongee = "'" . $datePlongee . "'";
-    $periodePlongee = "'" . $periodePlongee . "'";
+    $datePlongee = "'" . $date . "'";
+    $periodePlongee = "'" . $periode . "'";
 
     $reqPlongee = "SELECT * FROM PLO_PLONGEE JOIN PLO_SITE USING(SIT_NUM) WHERE PLO_DATE = $datePlongee AND PLO_MAT_MID_SOI = $periodePlongee";
     $reqPalanquees = "SELECT * FROM PLO_PALANQUEE WHERE PLO_DATE = $datePlongee AND PLO_MAT_MID_SOI = $periodePlongee";
@@ -162,9 +164,9 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
     <?php
 
     $date = preg_replace("#'#", "", $_POST['datePlo']);
-    $date = preg_replace('#"#', "", $_POST['datePlo']);
+    $date = preg_replace('#"#', "", $date);
     $periode= preg_replace("#'#", "", $_POST['periodePlongee']);
-    $periode= preg_replace('#"#', "", $_POST['periodePlongee']);
+    $periode= preg_replace('#"#', "", $periode);
 
     for ($i = 0; $i<sizeof($resPalanquees); $i++){
         ?>
@@ -189,9 +191,9 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
 
             <?php
             $date = preg_replace("#'#", "", $_POST['datePlo']);
-            $date = preg_replace('#"#', "", $_POST['datePlo']);
+            $date = preg_replace('#"#', "", $date);
             $periode= preg_replace("#'#", "", $_POST['periodePlongee']);
-            $periode= preg_replace('#"#', "", $_POST['periodePlongee']);
+            $periode= preg_replace('#"#', "", $periode);
             $date = "\"".$date."\"";
             $numPal = $resPalanquees[$i]['PAL_NUM'];
             ?>
@@ -210,9 +212,9 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
 }
 
     $date = preg_replace("#'#", "", $_POST['datePlo']);
-    $date = preg_replace('#"#', "", $_POST['datePlo']);
+    $date = preg_replace('#"#', "", $date);
     $periode= preg_replace("#'#", "", $_POST['periodePlongee']);
-    $periode= preg_replace('#"#', "", $_POST['periodePlongee']);
+    $periode= preg_replace('#"#', "", $periode);
 ?>
     </tbody>
     </table>
