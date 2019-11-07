@@ -31,6 +31,8 @@
 
     function modifierPal(datePlo, periodePlo, numPal, idPal){
 
+        console.log("Modification");
+
         const form = document.createElement('form');
         form.method = 'post';
         form.action = '../frontend/afficherPalanquée.php';
@@ -73,13 +75,17 @@ include_once "../header.php";
 
 if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
 
+    $datePlongee = preg_replace("#'#", "", $_POST['datePlo']);
+    $periodePlongee = preg_replace("#'#", "", $_POST['periodePlongee']);
+
     $bdd = new bddPlongee();
 
-    $datePlongee = "'" . $_POST['datePlo'] . "'";
-    $periodePlongee = "'" . $_POST['periodePlongee'] . "'";
+    $datePlongee = "'" . $datePlongee . "'";
+    $periodePlongee = "'" . $periodePlongee . "'";
 
     $reqPlongee = "SELECT * FROM PLO_PLONGEE JOIN PLO_SITE USING(SIT_NUM) WHERE PLO_DATE = $datePlongee AND PLO_MAT_MID_SOI = $periodePlongee";
     $reqPalanquees = "SELECT * FROM PLO_PALANQUEE WHERE PLO_DATE = $datePlongee AND PLO_MAT_MID_SOI = $periodePlongee";
+
 
     $resPlongee = $bdd->exec($reqPlongee);
 
@@ -154,10 +160,12 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
         </thead>
     <tbody>
     <?php
-    $date = $_POST['datePlo'];
-    $periode= $_POST['periodePlongee'];
-    //$date = preg_replace("#^'#", "", $datePlongee);
-    //$date = preg_replace("#'$#", "", $date);
+
+    $date = preg_replace("#'#", "", $_POST['datePlo']);
+    $date = preg_replace('#"#', "", $_POST['datePlo']);
+    $periode= preg_replace("#'#", "", $_POST['periodePlongee']);
+    $periode= preg_replace('#"#', "", $_POST['periodePlongee']);
+
     for ($i = 0; $i<sizeof($resPalanquees); $i++){
         ?>
         <tr>
@@ -180,7 +188,11 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
 
 
             <?php
-            $date = "\"".$_POST['datePlo']."\"";
+            $date = preg_replace("#'#", "", $_POST['datePlo']);
+            $date = preg_replace('#"#', "", $_POST['datePlo']);
+            $periode= preg_replace("#'#", "", $_POST['periodePlongee']);
+            $periode= preg_replace('#"#', "", $_POST['periodePlongee']);
+            $date = "\"".$date."\"";
             $numPal = $resPalanquees[$i]['PAL_NUM'];
             ?>
 
@@ -197,8 +209,10 @@ if(isset($_POST['datePlo'], $_POST['periodePlongee'])) {
   <?php
 }
 
-    $date = $_POST['datePlo'];
-    $periode= $_POST['periodePlongee'];
+    $date = preg_replace("#'#", "", $_POST['datePlo']);
+    $date = preg_replace('#"#', "", $_POST['datePlo']);
+    $periode= preg_replace("#'#", "", $_POST['periodePlongee']);
+    $periode= preg_replace('#"#', "", $_POST['periodePlongee']);
 ?>
     </tbody>
     </table>

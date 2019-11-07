@@ -1,5 +1,44 @@
 <?php
-include "../backend/bddPlongee.php";
+include_once "../backend/bddPlongee.php";
+
+?>
+
+<script>
+
+    function afficherPlo(datePlo, periodePlo){
+
+        console.log("date : "+datePlo+" periode : "+periodePlo);
+
+        const form = document.createElement('form');
+        form.method = 'post';
+        form.action = '../frontend/affichagePlongee.php';
+
+        const champDate = document.createElement('input');
+        champDate.type = 'hidden';
+        champDate.name = 'datePlo';
+        champDate.value = datePlo;
+
+        const champPeriode = document.createElement('input');
+        champPeriode.type = 'hidden';
+        champPeriode.name = 'periodePlongee';
+        champPeriode.value = periodePlo;
+
+        form.appendChild(champDate);
+        form.appendChild(champPeriode);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+</script>
+
+<body>
+
+
+<?php
+
+
+
 $bdd = new bddPlongee();
 
 $date = $_GET['date'];
@@ -30,6 +69,15 @@ if (isset($_POST['numSite'], $_POST['effectifB'], $_POST['directeurdeplongee'], 
     {
         $bdd->inserer($reqPlongee);
         echo "on a bien modifé";
+
+        $datePlo = "\"".$date."\"";
+        $periodePlo = $seance;
+
+        ?>
+
+        <script>afficherPlo(<?php echo "$datePlo, $periodePlo";?>);</script>
+
+        <?php
     }
     catch(PDOException $e){
 
@@ -50,3 +98,5 @@ if (isset($_POST['numSite'], $_POST['effectifB'], $_POST['directeurdeplongee'], 
 
 
 ?>
+
+</body>
