@@ -34,7 +34,7 @@ $securite = $resSecu[0]['PER_NOM']." ".$resSecu[0]['PER_PRENOM'];
 
 
 $effectifbat = $resPlongee[0]['PLO_EFFECTIF_BATEAU'] ;
-$dateplongee=$_GET['dateplongee'];
+$dateplongee2=$_GET['dateplongee'];
 
 
 
@@ -58,13 +58,13 @@ class myPDF extends FPDF{
         $this->SetFont('Times','B',12);
         $this->Cell(50,10,'Date',1,0,'C');
         $this->SetFont('Times','',12);
-        $this->Cell(50,10,$date,1,0,'C');
+        $this->Cell(80,10,$date,1,0,'C');
         $this->Ln();
 
         $this->SetFont('Times','B',12);
         $this->Cell(50,10,utf8_decode('Site de plongée'),1,0,'C');
         $this->SetFont('Times','',12);
-        $this->Cell(50,10,utf8_decode($site),1,0,'C');
+        $this->Cell(80,10,utf8_decode($site),1,0,'C');
         $this->Ln();
 
 
@@ -72,20 +72,20 @@ class myPDF extends FPDF{
         $this->Ln();
         $this->Cell(50,10,utf8_decode('Directeur de plongée'),1,0,'C');
         $this->SetFont('Times','',12);
-        $this->Cell(50,10,utf8_decode($dir),1,0,'C');
+        $this->Cell(80,10,utf8_decode($dir),1,0,'C');
         $this->Ln();
 
         $this->SetFont('Times','B',12);
         $this->Cell(50,10,utf8_decode('Sécurite de surface'),1,0,'C');
         $this->SetFont('Times','',12);
-        $this->Cell(50,10,utf8_decode($sec),1,0,'C');
+        $this->Cell(80,10,utf8_decode($sec),1,0,'C');
         $this->Ln();
 
 
         $this->SetFont('Times','B',12);
         $this->Cell(50,10,'Effectif',1,0,'C');
         $this->SetFont('Times','',12);
-        $this->Cell(50,10,$eff,1,0,'C');
+        $this->Cell(80,10,$eff,1,0,'C');
         $this->Ln();
 
 
@@ -157,7 +157,7 @@ class myPDF extends FPDF{
 $pdf = new myPDF();
 $pdf->AliasNbPages();
 $pdf->AddPage('P','A4',0);
-$pdf->headerTable($dateplongee,$siteplongee,$directeur,$securite,$effectifbat);
+$pdf->headerTable($dateplongee2,$siteplongee,$directeur,$securite,$effectifbat);
 
 
 for ($i = 0; $i<sizeof($resPalanquees); $i++) {
@@ -177,6 +177,7 @@ for ($i = 0; $i<sizeof($resPalanquees); $i++) {
     } else {
         $dureepre = "/";
     }
+
 
 
     if (!empty($resPalanquees[$i]['PAL_PROFONDEUR_PREVU'])) {
@@ -206,6 +207,7 @@ for ($i = 0; $i<sizeof($resPalanquees); $i++) {
     for ($j=0 ; $j<sizeof($reqPlongeur); $j++){
             $nomPlongeur = $reqPlongeur[$j]['PER_NOM']." ".$reqPlongeur[$j]['PER_PRENOM'];
             $nivPlongeur = $reqPlongeur[$j]['APT_LIBELLE'];
+
             $pdf->ajoutNomNiveau($nomPlongeur,$nivPlongeur);
 
     }

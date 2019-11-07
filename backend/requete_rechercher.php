@@ -62,7 +62,7 @@ if (isset($_POST['recherche']) && !empty($_POST['recherche'])) {
                         $plongeur=" Plongeur";
                     }
                     if(sizeof($repDirecteur)>0){
-                        $directeur=" Directeur de surface";
+                        $directeur=" Directeur";
                     }
                     if(sizeof($repSecurite)>0){
                         $securite=" Sécurité de surface";
