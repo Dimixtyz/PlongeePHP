@@ -1,5 +1,44 @@
 <?php
-include_once "bddPlongee.php";
+include_once "bddPlongee.php";?>
+
+<script>
+    function goPal(datePlo, periodePlo, numPal, idPal){
+
+        const form = document.createElement('form');
+        form.method = 'post';
+        form.action = '../frontend/afficherPalanquée.php';
+
+        const champDate = document.createElement('input');
+        champDate.type = 'hidden';
+        champDate.name = 'datePlo';
+        champDate.value = datePlo;
+
+        const champNum = document.createElement('input');
+        champNum.type = 'hidden';
+        champNum.name = 'id';
+        champNum.value = idPal;
+
+        const champNumPal = document.createElement('input');
+        champNumPal.type = 'hidden';
+        champNumPal.name = 'numPal';
+        champNumPal.value = numPal;
+
+        const champPeriode = document.createElement('input');
+        champPeriode.type = 'hidden';
+        champPeriode.name = 'periodePlongee';
+        champPeriode.value = periodePlo;
+
+        form.appendChild(champDate);
+        form.appendChild(champPeriode);
+        form.appendChild(champNum);
+        form.appendChild(champNumPal);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+<body>
+<?php
 
 $bdd = new bddPlongee();
 
@@ -7,17 +46,12 @@ $dateplongee = $_GET['dateplo'];
 $seance = $_GET['heure'];
 
 
-var_dump($_POST);
-
 $elevePal = $_POST['elevepal'];
 
 $tempsprevu = $_POST['tempsprevu'];
 
 
 $profondeurprevu= $_POST['profprevue'];
-
-var_dump($elevePal);
-
 
 
 
@@ -39,6 +73,7 @@ var_dump($elevePal);
     catch(PDOException $e){
         echo $e->getTraceAsString();
         echo $e->getMessage();
+        exit();
     }
 
 
@@ -46,27 +81,34 @@ var_dump($elevePal);
     for($j=0; $j < 5 ; $j++){
         if($elevePal[$j]!="choisir"){
             $reqAjoutElevePal = "INSERT INTO PLO_CONCERNER (PLO_DATE, PLO_MAT_MID_SOI, PAL_NUM, PER_NUM) VALUES ('".$dateplongee."','".$seance."','".$repDernierePal."','".$elevePal[$j]."')";
-            echo $reqAjoutElevePal;
-            echo $elevePal[$j];
             try
             {
                 $bdd->inserer($reqAjoutElevePal);
-                echo "eleve a bien été inséré";
             }
             catch(PDOException $e){
                 echo $e->getTraceAsString();
                 echo $e->getMessage();
+                exit();
             }
         }
 
     }
+
+    $req = "SELECT COUNT(*) as NB_PAL FROM PLO_PALANQUEE WHERE PLO_DATE = '".$dateplongee."' AND PLO_MAT_MID_SOI = '".$seance."'";
+    $req = $bdd->exec($req);
+
+    $numPal = $req[0]['NB_PAL'];
+
+    $date = "\"".$dateplongee."\"";
+
 ?>
 
 
+<script>goPal(<?php echo "$date, $seance, $numPal, $repDernierePal" ?>)</script>
 
-<script type="text/javascript">
-    //document.getElementById('redirectionPlongee').submit();
-</script>
+</body>
+
+
 
 
 
